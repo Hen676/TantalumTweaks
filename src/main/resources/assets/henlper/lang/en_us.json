@@ -1,0 +1,26 @@
+{
+  "key.henlper.zoom": "Zoom",
+  "key.henlper.config": "Config",
+  "key.henlper.health_bar": "Health Bar",
+  "key.henlper.light_level": "Light level",
+  "category.henlper.main": "Henlper",
+
+  "screen.henlper.config.title": "Henlper Config",
+
+  "options.henlper.config": "Henlper",
+  "option.henlper.config.enable_reduce_fog": "Enable Reduced Fog",
+  "option.henlper.config.enable_mob_health": "Enable Mob Health",
+
+  "option.henlper.config.enable_light_level": "Enable Light Level",
+  "option.henlper.config.light_level_color": "Light level color",
+  "option.henlper.config.light_level_hue": "Hue",
+  "option.henlper.config.square": "■",
+
+  "option.henlper.config.enable_zoom": "Enable Zoom",
+  "option.henlper.config.zoom_level": "Zoom Level",
+  "option.henlper.config.zoom_amount": "Zoom Amount",
+
+  "option.henlper.config.enable_smokey_furnace": "Enable Smokey Furnace",
+
+  "pack.source.henlper": "Henlper"
+}
