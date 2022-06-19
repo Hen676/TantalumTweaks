@@ -76,15 +76,6 @@ public class ConfigScreen extends Screen {
                         gameOptions -> Config.ENABLE_LIGHT_LEVEL,
                         (gameOptions, option, value) -> Config.ENABLE_LIGHT_LEVEL = value
                 ),
-                /*new DoubleOption(
-                        "option.henlper.config.light_level_color",
-                        0D,
-                        360D,
-                        1F,
-                        gameOptions -> (double) Config.LIGHT_LEVEL_COLOR,
-                        (gameOptions, aDouble) -> Config.LIGHT_LEVEL_COLOR = aDouble.floatValue(),
-                        (gameOptions, doubleOption) -> new TranslatableText("option.henlper.config.light_level_hue").append(": " + doubleOption.get(gameOptions))
-                ),*/
                 CyclingOption.create(
                         "option.henlper.config.light_level_color",
                         DyeColor.values(),
