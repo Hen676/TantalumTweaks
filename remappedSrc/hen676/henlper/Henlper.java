@@ -5,7 +5,6 @@ import hen676.henlper.keybinds.ConfigKeybinding;
 import hen676.henlper.keybinds.HealthBarKeybinding;
 import hen676.henlper.keybinds.LightLevelKeybinding;
 import hen676.henlper.keybinds.ZoomKeybinding;
-import hen676.henlper.option.Options;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
@@ -21,7 +20,6 @@ public class Henlper implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ConfigLoader.init();
-        Options.Load();
 
         ZoomKeybinding.init();
         ConfigKeybinding.init();

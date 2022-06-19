@@ -6,7 +6,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.util.math.random.Random;
+
+import java.util.Random;
 
 public class AddParticles {
     public static void addFurnaceParticles(BlockState state, World world, BlockPos pos, Random random) {
