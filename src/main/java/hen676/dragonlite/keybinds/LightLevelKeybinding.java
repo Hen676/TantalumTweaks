@@ -15,10 +15,10 @@ public class LightLevelKeybinding {
 
     public static void init() {
         keyBindingLightLevel = new KeyBinding(
-                "key.henlper.light_level",
+                "key.dragonlite.light_level",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_M,
-                "category.henlper.main");
+                "category.dragonlite.main");
 
         KeyBindingHelper.registerKeyBinding(keyBindingLightLevel);
 

@@ -1,0 +1,22 @@
+{
+  "key.dragonlite.zoom": "Zoom",
+  "key.dragonlite.config": "Config",
+  "key.dragonlite.health_bar": "Health Bar",
+  "key.dragonlite.light_level": "Light level",
+  "category.dragonlite.main": "Dragon Lite",
+
+  "screen.dragonlite.config.title": "Dragon Lite Config",
+
+  "options.dragonlite.config": "Dragon",
+  "option.dragonlite.config.enable_reduce_fog": "Enable Reduced Fog",
+  "option.dragonlite.config.enable_mob_health": "Enable Mob Health",
+  "option.dragonlite.config.enable_light_level": "Enable Light Level",
+  "option.dragonlite.config.light_level_color": "Light level color",
+  "option.dragonlite.config.enable_zoom": "Enable Zoom",
+  "option.dragonlite.config.zoom_level": "Zoom Level",
+  "option.dragonlite.config.zoom_amount": "Zoom Amount",
+
+  "option.dragonlite.config.enable_smokey_furnace": "Enable Smokey Furnace",
+
+  "pack.source.dragonlite": "Dragon Lite"
+}

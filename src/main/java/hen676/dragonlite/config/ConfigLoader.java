@@ -1,6 +1,6 @@
 package hen676.dragonlite.config;
 
-import hen676.dragonlite.Henlper;
+import hen676.dragonlite.DragonLite;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.File;
@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class ConfigLoader {
     private static final Properties props = new Properties();
-    private static final File file = new File(FabricLoader.getInstance().getConfigDir().resolve(Henlper.MOD_ID + ".properties").toString());
+    private static final File file = new File(FabricLoader.getInstance().getConfigDir().resolve(DragonLite.MOD_ID + ".properties").toString());
     private static boolean toggle = false;
 
     public static void init() {
@@ -27,8 +27,8 @@ public class ConfigLoader {
     }
 
     private static void catchMethod(Exception e, String error) {
-        Henlper.LOGGER.error(error);
-        Henlper.LOGGER.trace(e);
+        DragonLite.LOGGER.error(error);
+        DragonLite.LOGGER.trace(e);
         toggle = true;
     }
 
@@ -42,7 +42,7 @@ public class ConfigLoader {
                     field.set(null, getValue(field.getName(), field.getType()));
             }
         } catch (Exception e) {
-            catchMethod(e, "Failed to load henlper Config!");
+            catchMethod(e, "Failed to load dragonlite Config!");
         }
     }
 
@@ -56,7 +56,7 @@ public class ConfigLoader {
                 props.store(propStream, "Properties of henlper");
             }
         } catch (Exception e) {
-            catchMethod(e, "Failed to generate henlper Config!");
+            catchMethod(e, "Failed to generate dragonlite Config!");
         }
     }
 

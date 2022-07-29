@@ -1,7 +1,7 @@
-package hen676.henlper.gui.screen;
+package hen676.dragonlite.gui.screen;
 
-import hen676.henlper.config.Config;
-import hen676.henlper.config.ConfigLoader;
+import hen676.dragonlite.config.Config;
+import hen676.dragonlite.config.ConfigLoader;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;

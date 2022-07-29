@@ -9,21 +9,21 @@ import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
-public class LightLevelKeybinding {
-    private static KeyBinding keyBindingLightLevel;
+public class HealthBarKeybinding {
+    private static KeyBinding keyBindingHealthBar;
     public static boolean toggle = false;
 
     public static void init() {
-        keyBindingLightLevel = new KeyBinding(
-                "key.henlper.light_level",
+        keyBindingHealthBar = new KeyBinding(
+                "key.dragonlite.health_bar",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_M,
-                "category.henlper.main");
+                GLFW.GLFW_KEY_H,
+                "category.dragonlite.main");
 
-        KeyBindingHelper.registerKeyBinding(keyBindingLightLevel);
+        KeyBindingHelper.registerKeyBinding(keyBindingHealthBar);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (keyBindingLightLevel.wasPressed()) {
+            while (keyBindingHealthBar.wasPressed()) {
                 if (client.world == null)
                     return;
                 toggle = !toggle;

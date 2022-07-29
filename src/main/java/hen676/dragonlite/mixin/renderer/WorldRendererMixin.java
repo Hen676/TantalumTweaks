@@ -16,6 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class WorldRendererMixin {
     @Inject(method = "render", at = @At("TAIL"))
     private void render(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, CallbackInfo ci) {
-        LightLevelRenderer.render(matrices, camera);
+        LightLevelRenderer.render(matrices, camera, gameRenderer, positionMatrix);
     }
 }

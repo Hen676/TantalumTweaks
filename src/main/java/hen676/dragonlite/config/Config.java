@@ -3,7 +3,7 @@ package hen676.dragonlite.config;
 public class Config {
     // Zoom config settings
     public static boolean ENABLE_ZOOM = true;
-    public static double ZOOM_AMOUNT = 0.35D;
+    public static double ZOOM_AMOUNT = 0.35;
 
     // Mob health settings
     public static boolean ENABLE_MOB_HEALTH = true;

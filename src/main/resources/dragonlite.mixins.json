@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "hen676.dragonlite.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "OptionsScreenMixin",
+    "block.BlastFurnaceBlockMixin",
+    "block.FurnaceBlockMixin",
+    "block.SmokerBlockMixin",
+    "renderer.BackgroundRendererMixin",
+    "renderer.LivingEntityRenderMixin",
+    "renderer.WorldRendererMixin"
+  ],
+  "client": [
+    "renderer.GameRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

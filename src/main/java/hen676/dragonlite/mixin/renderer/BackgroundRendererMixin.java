@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Environment(EnvType.CLIENT)
 public abstract class BackgroundRendererMixin {
     @Inject(method = "applyFog", at=@At(value = "RETURN"))
-    private static void setFogRenderDistance(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo ci) {
+    private static void setFogRenderDistance(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci) {
         if (Config.ENABLE_REDUCED_FOG && fogType == BackgroundRenderer.FogType.FOG_TERRAIN) {
             RenderSystem.setShaderFogStart(viewDistance * 0.75F);
             RenderSystem.setShaderFogEnd(viewDistance);

@@ -1,10 +1,10 @@
 package hen676.dragonlite;
 
 import hen676.dragonlite.config.ConfigLoader;
-import hen676.dragonlite.keybinds.ConfigKeybinding;
 import hen676.dragonlite.keybinds.HealthBarKeybinding;
 import hen676.dragonlite.keybinds.LightLevelKeybinding;
 import hen676.dragonlite.keybinds.ZoomKeybinding;
+import hen676.dragonlite.option.Options;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
@@ -13,16 +13,16 @@ import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Henlper implements ClientModInitializer {
-    public static final Logger LOGGER = LogManager.getLogger("Henlper");
-    public static final String MOD_ID = "henlper";
+public class DragonLite implements ClientModInitializer {
+    public static final Logger LOGGER = LogManager.getLogger("Dragon Lite");
+    public static final String MOD_ID = "dragonlite";
 
     @Override
     public void onInitializeClient() {
         ConfigLoader.init();
+        Options.Load();
 
         ZoomKeybinding.init();
-        ConfigKeybinding.init();
         LightLevelKeybinding.init();
         HealthBarKeybinding.init();
 

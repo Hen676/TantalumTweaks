@@ -17,10 +17,10 @@ public class ZoomKeybinding {
 
     public static void init() {
         keyBindingZoom = new KeyBinding(
-                "key.henlper.zoom",
+                "key.dragonlite.zoom",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_V,
-                "category.henlper.main");
+                "category.dragonlite.main");
 
         KeyBindingHelper.registerKeyBinding(keyBindingZoom);
     }

@@ -1,23 +1,23 @@
 {
   "schemaVersion": 1,
-  "id": "henlper",
+  "id": "dragonlite",
   "version": "${version}",
-  "name": "Henlper",
+  "name": "Dragon Lite",
   "description": "",
   "authors": [
     "Hen676"
   ],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/henlper/icon.png",
+  "icon": "assets/dragonlite/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "hen676.henlper.Henlper"
+      "hen676.dragonlite.DragonLite"
     ]
   },
   "mixins": [
-    "henlper.mixins.json"
+    "dragonlite.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.5",

@@ -1,4 +1,4 @@
-package hen676.henlper.keybinds;
+package hen676.dragonlite.keybinds;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

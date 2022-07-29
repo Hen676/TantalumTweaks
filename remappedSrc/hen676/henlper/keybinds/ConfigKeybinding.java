@@ -1,6 +1,6 @@
-package hen676.henlper.keybinds;
+package hen676.dragonlite.keybinds;
 
-import hen676.henlper.gui.screen.ConfigScreen;
+import hen676.dragonlite.gui.screen.ConfigScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;

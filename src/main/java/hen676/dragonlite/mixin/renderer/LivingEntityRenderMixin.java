@@ -4,6 +4,7 @@ import hen676.dragonlite.config.Config;
 import hen676.dragonlite.keybinds.HealthBarKeybinding;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
@@ -30,6 +31,7 @@ public abstract class LivingEntityRenderMixin<T extends LivingEntity, M extends 
         double d = this.dispatcher.getSquaredDistanceToCamera(livingEntity);
         if (!(d > 128.0D) && HealthBarKeybinding.toggle && Config.ENABLE_MOB_HEALTH) {
             matrixStack.push();
+            boolean bl = !livingEntity.isSneaky();
 
             float y = livingEntity.getHeight() + 0.5F;
             matrixStack.translate(0.0D, y, 0.0D);
@@ -41,7 +43,13 @@ public abstract class LivingEntityRenderMixin<T extends LivingEntity, M extends 
             TextRenderer textRenderer = this.getTextRenderer();
             float x = (float)(-textRenderer.getWidth(text) / 2);
             int i = hasLabel(livingEntity) ? -10: 0;
-            textRenderer.draw(text, x, i, -1, false, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider, false, 0, light);
+
+            float g = MinecraftClient.getInstance().options.getTextBackgroundOpacity(0.25F);
+            int j = (int)(g * 255.0F) << 24;
+            textRenderer.draw(text, x, (float)i, 553648127, false, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider, bl, j, light);
+            if (bl) {
+                textRenderer.draw(text, x, (float)i, -1, false, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider, false, 0, light);
+            }
             matrixStack.pop();
         }
     }
