@@ -5,7 +5,9 @@ import hen676.dragonlite.keybinds.HealthBarKeybinding;
 import hen676.dragonlite.keybinds.LightLevelKeybinding;
 import hen676.dragonlite.keybinds.ZoomKeybinding;
 import hen676.dragonlite.option.Options;
+import hen676.dragonlite.render.LightLevelRenderer;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
@@ -21,6 +23,7 @@ public class DragonLite implements ClientModInitializer {
     public void onInitializeClient() {
         ConfigLoader.init();
         Options.Load();
+        WorldRenderEvents.AFTER_TRANSLUCENT.register(LightLevelRenderer::render);
 
         ZoomKeybinding.init();
         LightLevelKeybinding.init();

@@ -16,7 +16,7 @@ import net.minecraft.text.Text;
 public class ConfigScreen extends Screen {
     private ButtonListWidget list;
     private final Screen parent;
-    private static final SimpleOption[] OPTIONS;
+    private static final SimpleOption<?>[] OPTIONS;
 
     public ConfigScreen(Screen parent) {
         super(Text.translatable("screen.dragonlite.config.title"));

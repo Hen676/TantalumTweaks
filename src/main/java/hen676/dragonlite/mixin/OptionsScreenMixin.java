@@ -24,7 +24,7 @@ public abstract class OptionsScreenMixin extends Screen {
         this.addDrawableChild(new ButtonWidget(
                 5,
                 this.height - 25,
-                50,
+                20,
                 20,
                 Text.translatable("options.dragonlite.config"),
                 button -> {

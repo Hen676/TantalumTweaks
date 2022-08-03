@@ -5,6 +5,7 @@ import hen676.dragonlite.config.Config;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.option.SimpleOption;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 
@@ -28,14 +29,14 @@ public class Options {
             true,
             value -> Config.ENABLE_SMOKEY_FURNACE = value);
 
-    public static final SimpleOption<DyeColor> lightLevelColor = new SimpleOption<DyeColor>("option.dragonlite.config.light_level_color",
+    public static final SimpleOption<DyeColor> lightLevelColor = new SimpleOption<>("option.dragonlite.config.light_level_color",
             SimpleOption.emptyTooltip(),
-            (optionText, value) -> Text.translatable("color.minecraft." + value.toString().toLowerCase()),
-            new SimpleOption.PotentialValuesBasedCallbacks(Arrays.asList(DyeColor.values()), Codec.INT.xmap(DyeColor::byId, DyeColor::getId)),
+            (optionText, value) -> Text.translatable("color.minecraft." + value.toString().toLowerCase()).setStyle(Style.EMPTY.withColor(value.getSignColor())),
+            new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(DyeColor.values()), Codec.INT.xmap(DyeColor::byId, DyeColor::getId)),
             DyeColor.RED,
             value -> Config.LIGHT_LEVEL_COLOR = value.getId());
 
-    public static final SimpleOption<Double> zoomLevel = new SimpleOption<Double>("option.dragonlite.config.zoom_level",
+    public static final SimpleOption<Double> zoomLevel = new SimpleOption<>("option.dragonlite.config.zoom_level",
             SimpleOption.emptyTooltip(),
             (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.zoom_amount"), (int)(value * 100.0D)),
             (new SimpleOption.ValidatingIntSliderCallbacks(10, 40)).withModifier(

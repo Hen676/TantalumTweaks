@@ -9,8 +9,7 @@
     "block.FurnaceBlockMixin",
     "block.SmokerBlockMixin",
     "renderer.BackgroundRendererMixin",
-    "renderer.LivingEntityRenderMixin",
-    "renderer.WorldRendererMixin"
+    "renderer.LivingEntityRenderMixin"
   ],
   "client": [
     "renderer.GameRendererMixin"
