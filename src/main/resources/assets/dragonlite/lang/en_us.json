@@ -8,15 +8,13 @@
   "screen.dragonlite.config.title": "Dragon Lite Config",
 
   "options.dragonlite.config": "§bDL",
-  "option.dragonlite.config.enable_reduce_fog": "Enable Reduced Fog",
-  "option.dragonlite.config.enable_mob_health": "Enable Mob Health",
-  "option.dragonlite.config.enable_light_level": "Enable Light Level",
+  "option.dragonlite.config.enable_reduce_fog": "Reduced Nether Fog",
+  "option.dragonlite.config.enable_mob_health": "Mob Health",
+  "option.dragonlite.config.enable_light_level": "Light Level",
   "option.dragonlite.config.light_level_color": "Light level color",
-  "option.dragonlite.config.enable_zoom": "Enable Zoom",
-  "option.dragonlite.config.zoom_level": "Zoom Level",
+  "option.dragonlite.config.enable_zoom": "Zoom",
   "option.dragonlite.config.zoom_amount": "Zoom Amount",
-
-  "option.dragonlite.config.enable_smokey_furnace": "Enable Smokey Furnace",
+  "option.dragonlite.config.enable_smokey_furnace": "Smokey Furnace",
 
   "pack.source.dragonlite": "Dragon Lite"
 }

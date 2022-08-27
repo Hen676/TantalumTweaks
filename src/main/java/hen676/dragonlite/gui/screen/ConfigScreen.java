@@ -50,17 +50,15 @@ public class ConfigScreen extends Screen {
         ConfigLoader.createOrSaveConfig();
     }
 
-
     static {
-
         OPTIONS = new SimpleOption[]{
                 Options.lightLevel,
                 Options.lightLevelColor,
+                Options.zoom,
+                Options.zoomLevel,
                 Options.mobHealth,
                 Options.reduceFog,
-                Options.smokeyFurnace,
-                Options.zoom,
-                Options.zoomLevel
+                Options.smokeyFurnace
         };
     }
 }
