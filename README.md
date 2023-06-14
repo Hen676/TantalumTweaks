@@ -1,3 +1,3 @@
-# Dragon Lite 1.19.2
+# Dragon Lite 1.20.1
 
-Client side minecraft fabric mod with minor quality of life features
+Client-side Minecraft fabric mod with minor quality-of-life features
