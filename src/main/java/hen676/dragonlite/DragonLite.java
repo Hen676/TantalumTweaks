@@ -4,7 +4,7 @@ import hen676.dragonlite.config.ConfigLoader;
 import hen676.dragonlite.keybinds.HealthBarKeybinding;
 import hen676.dragonlite.keybinds.LightLevelKeybinding;
 import hen676.dragonlite.keybinds.ZoomKeybinding;
-import hen676.dragonlite.option.Options;
+import hen676.dragonlite.gui.screen.option.Options;
 import hen676.dragonlite.render.LightLevelRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;

@@ -18,6 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class BlastFurnaceBlockMixin {
     @Inject(method = "randomDisplayTick", at=@At(value = "RETURN"))
     private void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random, CallbackInfo ci) {
-        AddParticles.addFurnaceParticles(state, world, pos, random);
+        AddParticles.addFurnaceParticles(state, world, pos, random, true);
     }
 }

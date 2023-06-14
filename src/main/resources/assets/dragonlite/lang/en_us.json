@@ -12,6 +12,8 @@
   "option.dragonlite.config.enable_mob_health": "Mob Health",
   "option.dragonlite.config.enable_light_level": "Light Level",
   "option.dragonlite.config.light_level_color": "Light level color",
+  "option.dragonlite.config.light_level_alpha": "Light level alpha",
+  "option.dragonlite.config.light_level_alpha_amount": "Light level alpha",
   "option.dragonlite.config.enable_zoom": "Zoom",
   "option.dragonlite.config.zoom_amount": "Zoom Amount",
   "option.dragonlite.config.enable_smokey_furnace": "Smokey Furnace",

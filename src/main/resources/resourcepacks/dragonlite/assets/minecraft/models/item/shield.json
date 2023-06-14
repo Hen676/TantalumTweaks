@@ -17,12 +17,12 @@
     },
     "firstperson_righthand": {
       "rotation": [ 0, 180, 5 ],
-      "translation": [ -10, -2, -10 ],
+      "translation": [ -10, -6, -10 ],
       "scale": [ 1.25, 1.25, 1.25 ]
     },
     "firstperson_lefthand": {
       "rotation": [ 0, 180, 5 ],
-      "translation": [ 10, -4, -10 ],
+      "translation": [ 10, -8, -10 ],
       "scale": [ 1.25, 1.25, 1.25 ]
     },
     "gui": {

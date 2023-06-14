@@ -1,4 +1,4 @@
-package hen676.dragonlite.option;
+package hen676.dragonlite.gui.screen.option;
 
 import com.mojang.serialization.Codec;
 import hen676.dragonlite.config.Config;
@@ -46,6 +46,16 @@ public class Options {
             0.35D,
             value -> Config.ZOOM_AMOUNT = value);
 
+    public static final SimpleOption<Double> lightLevelAlpha = new SimpleOption<>("option.dragonlite.config.light_level_alpha",
+            SimpleOption.emptyTooltip(),
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.light_level_alpha_amount"), (int)(value * 100.0D)),
+            (new SimpleOption.ValidatingIntSliderCallbacks(10, 100)).withModifier(
+                    (sliderProgressValue) -> (double)sliderProgressValue / 100.0D,
+                    (value) -> (int) (value * 100.0D)),
+            Codec.doubleRange(0.1D, 1.0D),
+            0.5D,
+            value -> Config.LIGHT_LEVEL_ALPHA = value);
+
     public static void Load() {
         mobHealth.setValue(Config.ENABLE_MOB_HEALTH);
         zoom.setValue(Config.ENABLE_ZOOM);
@@ -53,5 +63,6 @@ public class Options {
         lightLevel.setValue(Config.ENABLE_LIGHT_LEVEL);
         lightLevelColor.setValue(DyeColor.byId(Config.LIGHT_LEVEL_COLOR));
         smokeyFurnace.setValue(Config.ENABLE_SMOKEY_FURNACE);
+        lightLevelAlpha.setValue(Config.LIGHT_LEVEL_ALPHA);
     }
 }

@@ -37,8 +37,22 @@ public abstract class LivingEntityRenderMixin<T extends LivingEntity, M extends 
             matrixStack.translate(0.0D, y, 0.0D);
             matrixStack.multiply(this.dispatcher.getRotation());
             matrixStack.scale(-0.025F, -0.025F, 0.025F);
+            int healthPercentage = Math.round((livingEntity.getHealth() / livingEntity.getMaxHealth()) * 100);
 
-            String text = livingEntity.getHealth() + "/" + livingEntity.getMaxHealth();
+            String text = healthPercentage + "%";
+            int color = 553648127;
+            if (healthPercentage > 50) {
+                color = 65280;
+            }
+            if (healthPercentage <= 50 && healthPercentage > 25) {
+                color = 16776960;
+            }
+            if (healthPercentage <= 25 && healthPercentage > 10) {
+                color = 16751360;
+            }
+            if (healthPercentage <= 10) {
+                color = 16711680;
+            }
 
             TextRenderer textRenderer = this.getTextRenderer();
             float x = (float)(-textRenderer.getWidth(text) / 2);
@@ -46,9 +60,9 @@ public abstract class LivingEntityRenderMixin<T extends LivingEntity, M extends 
 
             float g = MinecraftClient.getInstance().options.getTextBackgroundOpacity(0.25F);
             int j = (int)(g * 255.0F) << 24;
-            textRenderer.draw(text, x, (float)i, 553648127, false, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider, bl, j, light);
+            textRenderer.draw(text, x, (float)i, 553648127, false, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider, TextRenderer.TextLayerType.NORMAL, j, light);
             if (bl) {
-                textRenderer.draw(text, x, (float)i, -1, false, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider, false, 0, light);
+                textRenderer.draw(text, x, (float)i, color, false, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider, TextRenderer.TextLayerType.SEE_THROUGH, 0, light);
             }
             matrixStack.pop();
         }
