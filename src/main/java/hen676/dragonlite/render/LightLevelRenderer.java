@@ -1,22 +1,24 @@
 package hen676.dragonlite.render;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import hen676.dragonlite.config.Config;
 import hen676.dragonlite.keybinds.LightLevelKeybinding;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.Camera;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.LightType;
 import org.jetbrains.annotations.Nullable;
-import org.joml.*;
+import org.joml.Matrix4f;
 
 @Environment(EnvType.CLIENT)
 public class LightLevelRenderer {
