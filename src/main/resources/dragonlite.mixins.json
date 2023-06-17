@@ -12,7 +12,8 @@
     "renderer.LivingEntityRenderMixin"
   ],
   "client": [
-    "renderer.GameRendererMixin"
+    "renderer.GameRendererMixin",
+    "renderer.InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

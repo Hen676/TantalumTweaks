@@ -16,6 +16,9 @@ public class Options {
     public static final SimpleOption<Boolean> mobHealth = SimpleOption.ofBoolean("option.dragonlite.config.enable_mob_health",
             true,
             value -> Config.ENABLE_MOB_HEALTH = value);
+    public static final SimpleOption<Boolean> compass = SimpleOption.ofBoolean("option.dragonlite.config.enable_compass",
+            true,
+            value -> Config.ENABLE_COMPASS = value);
     public static final SimpleOption<Boolean> zoom = SimpleOption.ofBoolean("option.dragonlite.config.enable_zoom",
             true,
             value -> Config.ENABLE_ZOOM = value);
@@ -60,6 +63,7 @@ public class Options {
         mobHealth.setValue(Config.ENABLE_MOB_HEALTH);
         zoom.setValue(Config.ENABLE_ZOOM);
         reduceFog.setValue(Config.ENABLE_REDUCED_FOG);
+        compass.setValue(Config.ENABLE_COMPASS);
         lightLevel.setValue(Config.ENABLE_LIGHT_LEVEL);
         lightLevelColor.setValue(DyeColor.byId(Config.LIGHT_LEVEL_COLOR));
         smokeyFurnace.setValue(Config.ENABLE_SMOKEY_FURNACE);

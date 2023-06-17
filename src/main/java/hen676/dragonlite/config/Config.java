@@ -1,6 +1,9 @@
 package hen676.dragonlite.config;
 
 public class Config {
+    // Compass settings
+    public static boolean ENABLE_COMPASS = true;
+
     // Zoom config settings
     public static boolean ENABLE_ZOOM = true;
     public static double ZOOM_AMOUNT = 0.35D;

@@ -21,10 +21,14 @@ public class DragonLite implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        // Config
         ConfigLoader.init();
         Options.Load();
+
+        // World render event
         WorldRenderEvents.AFTER_TRANSLUCENT.register(LightLevelRenderer::render);
 
+        // Keybindings
         ZoomKeybinding.init();
         LightLevelKeybinding.init();
         HealthBarKeybinding.init();
@@ -34,7 +38,7 @@ public class DragonLite implements ClientModInitializer {
                 .map(modContainer -> ResourceManagerHelper.registerBuiltinResourcePack(
                         new Identifier(MOD_ID, MOD_ID),
                         modContainer,
-                        ResourcePackActivationType.NORMAL))
+                        ResourcePackActivationType.DEFAULT_ENABLED))
                 .filter(success -> !success)
                 .ifPresent(success -> LOGGER.warn("Could not register built-in resource pack."));
     }
