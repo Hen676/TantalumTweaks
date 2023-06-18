@@ -9,14 +9,26 @@
 
   "options.dragonlite.config": "§bDL",
   "option.dragonlite.config.enable_reduce_fog": "Reduced Nether Fog",
+
   "option.dragonlite.config.enable_mob_health": "Mob Health",
+
   "option.dragonlite.config.enable_light_level": "Light Level",
   "option.dragonlite.config.light_level_color": "Light level color",
   "option.dragonlite.config.light_level_alpha": "Light level alpha",
   "option.dragonlite.config.light_level_alpha_amount": "Light level alpha",
+
   "option.dragonlite.config.enable_zoom": "Zoom",
   "option.dragonlite.config.zoom_amount": "Zoom Amount",
+
   "option.dragonlite.config.enable_smokey_furnace": "Smokey Furnace",
+
+  "option.dragonlite.config.enable_compass": "Hud",
+  "option.dragonlite.config.compass_color": "Hud Color",
+  "option.dragonlite.config.compass_placement": "Hud Placement",
+  "option.dragonlite.config.top_left": "Top Left",
+  "option.dragonlite.config.top_right": "Top Right",
+  "option.dragonlite.config.bottom_left": "Bottom Left",
+  "option.dragonlite.config.bottom_right": "Bottom Right",
 
   "pack.source.dragonlite": "Dragon Lite"
 }

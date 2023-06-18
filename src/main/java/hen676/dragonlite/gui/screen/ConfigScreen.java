@@ -58,6 +58,8 @@ public class ConfigScreen extends Screen {
                 Options.zoom,
                 Options.zoomLevel,
                 Options.compass,
+                Options.compassPlacement,
+                Options.compassColor,
                 Options.mobHealth,
                 Options.reduceFog,
                 Options.smokeyFurnace

@@ -1,8 +1,12 @@
 package hen676.dragonlite.config;
 
+import hen676.dragonlite.util.HudPlacement;
+
 public class Config {
     // Compass settings
     public static boolean ENABLE_COMPASS = true;
+    public static int COMPASS_COLOR = 0;
+    public static int COMPASS_PLACEMENT = 0;
 
     // Zoom config settings
     public static boolean ENABLE_ZOOM = true;
