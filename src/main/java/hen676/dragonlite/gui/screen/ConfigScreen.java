@@ -11,6 +11,7 @@ import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.SimpleOption;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
+import net.minecraft.util.DyeColor;
 
 @Environment(EnvType.CLIENT)
 public class ConfigScreen extends Screen {
@@ -41,7 +42,7 @@ public class ConfigScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         this.renderBackground(context);
         this.list.render(context, mouseX, mouseY, delta);
-        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 5, 16777215);
+        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 20, DyeColor.LIGHT_BLUE.getSignColor());
         super.render(context, mouseX, mouseY, delta);
     }
 
@@ -53,15 +54,20 @@ public class ConfigScreen extends Screen {
     static {
         OPTIONS = new SimpleOption[]{
                 Options.lightLevel,
+                Options.compass,
+
                 Options.lightLevelColor,
+                Options.compassColor,
+
                 Options.lightLevelAlpha,
+                Options.compassPlacement,
+
                 Options.zoom,
                 Options.zoomLevel,
-                Options.compass,
-                Options.compassPlacement,
-                Options.compassColor,
+
                 Options.mobHealth,
                 Options.reduceFog,
+
                 Options.smokeyFurnace
         };
     }

@@ -7,7 +7,7 @@
 
   "screen.dragonlite.config.title": "Dragon Lite Config",
 
-  "options.dragonlite.config": "§bDL",
+  "options.dragonlite.config": "DL",
   "option.dragonlite.config.enable_reduce_fog": "Reduced Nether Fog",
 
   "option.dragonlite.config.enable_mob_health": "Mob Health",
