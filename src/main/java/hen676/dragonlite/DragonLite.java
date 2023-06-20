@@ -11,6 +11,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,6 +40,7 @@ public class DragonLite implements ClientModInitializer {
                 .map(modContainer -> ResourceManagerHelper.registerBuiltinResourcePack(
                         new Identifier(MOD_ID, MOD_ID),
                         modContainer,
+                        Text.translatable("pack.name.dragonlite"),
                         ResourcePackActivationType.DEFAULT_ENABLED))
                 .filter(success -> !success)
                 .ifPresent(success -> LOGGER.warn("Could not register built-in resource pack."));
