@@ -1,6 +1,7 @@
 package hen676.dragonlite;
 
 import hen676.dragonlite.config.ConfigLoader;
+import hen676.dragonlite.keybinds.DebugKeybinding;
 import hen676.dragonlite.keybinds.HealthBarKeybinding;
 import hen676.dragonlite.keybinds.LightLevelKeybinding;
 import hen676.dragonlite.keybinds.ZoomKeybinding;
@@ -19,7 +20,7 @@ import org.apache.logging.log4j.Logger;
 public class DragonLite implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("Dragon Lite");
     public static final String MOD_ID = "dragonlite";
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = true;
 
     @Override
     public void onInitializeClient() {
@@ -34,6 +35,7 @@ public class DragonLite implements ClientModInitializer {
         ZoomKeybinding.init();
         LightLevelKeybinding.init();
         HealthBarKeybinding.init();
+        DebugKeybinding.init();
 
         // Built-in resource pack
         FabricLoader.getInstance().getModContainer(MOD_ID)

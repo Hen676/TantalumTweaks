@@ -53,7 +53,7 @@ public class ConfigLoader {
                     props.setProperty(field.getName(), field.get(field.getType()).toString());
             }
             try (FileOutputStream propStream = new FileOutputStream(file)) {
-                props.store(propStream, "Properties of henlper");
+                props.store(propStream, "Properties of dragonlite");
             }
         } catch (Exception e) {
             catchMethod(e, "Failed to generate dragonlite Config!");

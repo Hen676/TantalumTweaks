@@ -28,8 +28,9 @@ public abstract class LivingEntityRenderMixin<T extends LivingEntity, M extends 
 
     @Inject(method = "render*", at=@At(value = "RETURN"))
     private void render(T livingEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, CallbackInfo ci) {
+        if (!HealthBarKeybinding.toggle || !Config.ENABLE_MOB_HEALTH) return;
         double d = this.dispatcher.getSquaredDistanceToCamera(livingEntity);
-        if (!(d > 128.0D) && HealthBarKeybinding.toggle && Config.ENABLE_MOB_HEALTH) {
+        if (d <= 128.0D) {
             matrixStack.push();
             boolean bl = !livingEntity.isSneaky();
 
