@@ -20,7 +20,7 @@ import org.apache.logging.log4j.Logger;
 public class DragonLite implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("Dragon Lite");
     public static final String MOD_ID = "dragonlite";
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
 
     @Override
     public void onInitializeClient() {
