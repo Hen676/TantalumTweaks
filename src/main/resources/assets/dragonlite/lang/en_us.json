@@ -3,6 +3,7 @@
   "key.dragonlite.config": "Config",
   "key.dragonlite.health_bar": "Health Bar",
   "key.dragonlite.light_level": "Light level",
+  "key.dragonlite.debug": "Debug",
   "category.dragonlite.main": "Dragon Lite",
 
   "screen.dragonlite.config.title": "Dragon Lite Config",

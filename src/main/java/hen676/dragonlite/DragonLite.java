@@ -35,7 +35,8 @@ public class DragonLite implements ClientModInitializer {
         ZoomKeybinding.init();
         LightLevelKeybinding.init();
         HealthBarKeybinding.init();
-        DebugKeybinding.init();
+        if (DEBUG)
+            DebugKeybinding.init();
 
         // Built-in resource pack
         FabricLoader.getInstance().getModContainer(MOD_ID)
