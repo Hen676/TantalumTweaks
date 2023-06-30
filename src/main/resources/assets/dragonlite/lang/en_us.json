@@ -31,6 +31,11 @@
   "option.dragonlite.config.bottom_left": "Bottom Left",
   "option.dragonlite.config.bottom_right": "Bottom Right",
 
+  "message.dragonlite.on": "ON",
+  "message.dragonlite.off": "OFF",
+  "message.dragonlite.health_bar": "Mob Health",
+  "message.dragonlite.light_level": "Light Level",
+
   "pack.name.dragonlite": "Dragon Lite: Lowered shields",
   "pack.source.dragonlite": "Dragon Lite"
 }
