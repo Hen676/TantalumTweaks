@@ -1,7 +1,5 @@
 package hen676.dragonlite.config;
 
-import hen676.dragonlite.util.HudPlacement;
-
 public class Config {
     // Compass settings
     public static boolean ENABLE_COMPASS = true;

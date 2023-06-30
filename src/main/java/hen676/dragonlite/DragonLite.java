@@ -24,7 +24,7 @@ public class DragonLite implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        // Config
+        // Config and Screen
         ConfigLoader.init();
         Options.Load();
 

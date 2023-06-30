@@ -30,7 +30,7 @@ public abstract class InGameHudMixin {
         if (!Config.ENABLE_COMPASS) return;
 
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client.cameraEntity == null) return;
+        if (client.cameraEntity == null || client.options.debugEnabled) return;
         Entity camera = client.cameraEntity;
         Direction direction = camera.getHorizontalFacing();
         List<String> list = new ArrayList<>();
