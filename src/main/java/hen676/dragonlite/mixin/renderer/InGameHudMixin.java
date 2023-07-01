@@ -50,34 +50,33 @@ public abstract class InGameHudMixin {
         list.add(String.format("XYZ: %s, %s, %s",pos.getX(),pos.getY(),pos.getZ()));
         list.add(compass);
 
-        drawText(context, client.textRenderer, list, HudPlacement.byId(Config.COMPASS_PLACEMENT));
+        draw(context, client.textRenderer, list, HudPlacement.byId(Config.COMPASS_PLACEMENT));
     }
 
-    private void drawText(DrawContext context, TextRenderer textRenderer, List<String> list, HudPlacement placement)
+    private void draw(DrawContext context, TextRenderer textRenderer, List<String> list, HudPlacement placement)
     {
-        int x, y;
         if (placement == HudPlacement.TOP_RIGHT || placement == HudPlacement.TOP_LEFT) {
-            y = 2;
-
+            int y = 2;
             for (String s : list) {
-                // TODO:: Make this a function. include below
-                int k = textRenderer.getWidth(s);
-                x = placement == HudPlacement.TOP_LEFT ? 2 : context.getScaledWindowWidth() - (4 + k);
-                context.fill(x, y, x + k + 2, y + 10, -1873784752);
-                context.drawText(textRenderer, s, x + 1, y + 1, DyeColor.byId(Config.COMPASS_COLOR).getSignColor(), true);
+                draw(context, textRenderer, s, y, placement);
                 y += 10;
             }
         }
         else {
             Collections.reverse(list);
-            y = context.getScaledWindowHeight() - 12;
+            int y = context.getScaledWindowHeight() - 12;
             for (String s : list) {
-                int k = textRenderer.getWidth(s);
-                x = placement == HudPlacement.BOTTOM_LEFT ? 2 : context.getScaledWindowWidth() - (4 + k);
-                context.fill(x, y, x + k + 2, y + 10, -1873784752);
-                context.drawText(textRenderer, s, x + 1, y + 1, DyeColor.byId(Config.COMPASS_COLOR).getSignColor(), true);
+                draw(context, textRenderer, s, y, placement);
                 y -= 10;
             }
         }
+    }
+
+    private void draw(DrawContext context, TextRenderer textRenderer, String s, int y, HudPlacement placement)
+    {
+        int k = textRenderer.getWidth(s);
+        int x = (placement == HudPlacement.TOP_LEFT || placement ==  HudPlacement.BOTTOM_LEFT) ? 2 : context.getScaledWindowWidth() - (4 + k);
+        context.fill(x, y, x + k + 2, y + 10, -1873784752);
+        context.drawText(textRenderer, s, x + 1, y + 1, DyeColor.byId(Config.COMPASS_COLOR).getSignColor(), true);
     }
 }
