@@ -14,10 +14,6 @@ import java.util.Arrays;
 
 @Environment(EnvType.CLIENT)
 public class Options {
-    // Mob health option
-    public static final SimpleOption<Boolean> mobHealth = SimpleOption.ofBoolean("option.dragonlite.config.enable_mob_health",
-            true,
-            value -> Config.ENABLE_MOB_HEALTH = value);
 
     // Compass options
     public static final SimpleOption<Boolean> compass = SimpleOption.ofBoolean("option.dragonlite.config.enable_compass",
@@ -37,9 +33,6 @@ public class Options {
             value -> Config.COMPASS_PLACEMENT = value.getId());
 
     // Zoom options
-    public static final SimpleOption<Boolean> zoom = SimpleOption.ofBoolean("option.dragonlite.config.enable_zoom",
-            true,
-            value -> Config.ENABLE_ZOOM = value);
     public static final SimpleOption<Double> zoomLevel = new SimpleOption<>("option.dragonlite.config.zoom_level",
             SimpleOption.emptyTooltip(),
             (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.zoom_amount"), (int)(value * 100.0D)),
@@ -61,10 +54,6 @@ public class Options {
             value -> Config.ENABLE_REDUCED_FOG = value);
 
     // Light level options
-    public static final SimpleOption<Boolean> lightLevel = SimpleOption.ofBoolean("option.dragonlite.config.enable_light_level",
-            true,
-            value -> Config.ENABLE_LIGHT_LEVEL = value);
-
     public static final SimpleOption<DyeColor> lightLevelColor = new SimpleOption<>("option.dragonlite.config.light_level_color",
             SimpleOption.emptyTooltip(),
             (optionText, value) -> Text.translatable("color.minecraft." + value.toString().toLowerCase()).setStyle(Style.EMPTY.withColor(value.getSignColor())),
@@ -83,13 +72,10 @@ public class Options {
             value -> Config.LIGHT_LEVEL_ALPHA = value);
 
     public static void Load() {
-        mobHealth.setValue(Config.ENABLE_MOB_HEALTH);
-        zoom.setValue(Config.ENABLE_ZOOM);
         reduceFog.setValue(Config.ENABLE_REDUCED_FOG);
         compass.setValue(Config.ENABLE_COMPASS);
         compassPlacement.setValue(HudPlacement.byId(Config.COMPASS_PLACEMENT));
         compassColor.setValue(DyeColor.byId(Config.COMPASS_COLOR));
-        lightLevel.setValue(Config.ENABLE_LIGHT_LEVEL);
         lightLevelColor.setValue(DyeColor.byId(Config.LIGHT_LEVEL_COLOR));
         smokeyFurnace.setValue(Config.ENABLE_SMOKEY_FURNACE);
         lightLevelAlpha.setValue(Config.LIGHT_LEVEL_ALPHA);

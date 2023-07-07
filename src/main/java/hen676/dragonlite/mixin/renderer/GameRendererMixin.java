@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class GameRendererMixin {
     @Inject(method = "getFov", at = @At("RETURN"), cancellable = true)
     public void getZoomLevel(CallbackInfoReturnable<Double> callbackInfo) {
-        if (ZoomKeybinding.isZooming() && Config.ENABLE_ZOOM)
+        if (ZoomKeybinding.isZooming())
             callbackInfo.setReturnValue(callbackInfo.getReturnValue() * Config.ZOOM_AMOUNT);
         ZoomKeybinding.manageSmoothCamera();
     }

@@ -30,7 +30,7 @@ public class LightLevelRenderer {
     private static final float size = 0.25f;
 
     private static void render(MatrixStack matrices, Camera camera, ClientWorld world, @Nullable VertexConsumerProvider consumers) {
-        if (!LightLevelKeybinding.toggle || !Config.ENABLE_LIGHT_LEVEL) return;
+        if (!LightLevelKeybinding.toggle) return;
 
         // Return if invalid instance
         MinecraftClient client = MinecraftClient.getInstance();

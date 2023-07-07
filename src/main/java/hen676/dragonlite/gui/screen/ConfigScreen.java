@@ -7,17 +7,21 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.OptionListWidget;
-import net.minecraft.client.option.SimpleOption;
+import net.minecraft.client.gui.widget.EmptyWidget;
+import net.minecraft.client.gui.widget.GridWidget;
+import net.minecraft.client.gui.widget.SimplePositioningWidget;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 
+import java.util.function.Supplier;
+
+@SuppressWarnings("ConstantConditions")
 @Environment(EnvType.CLIENT)
 public class ConfigScreen extends Screen {
-    private OptionListWidget list;
+    private static final Text HUD_TEXT = Text.translatable("options.dragonlite.hud");
+    private static final Text LIGHT_LEVEL_TEXT = Text.translatable("options.dragonlite.light_level");
     private final Screen parent;
-    private static final SimpleOption<?>[] OPTIONS;
 
     public ConfigScreen(Screen parent) {
         super(Text.translatable("screen.dragonlite.config.title"));
@@ -26,22 +30,27 @@ public class ConfigScreen extends Screen {
 
     @Override
     protected void init() {
-        this.list = new OptionListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
-        this.list.addAll(OPTIONS);
+        GridWidget gridWidget = new GridWidget();
+        gridWidget.getMainPositioner().marginX(5).marginBottom(4).alignHorizontalCenter();
+        GridWidget.Adder adder = gridWidget.createAdder(2);
 
-        this.addSelectableChild(this.list);
+        adder.add(EmptyWidget.ofHeight(5), 2);
+        adder.add(this.createButton(HUD_TEXT, () -> new HudConfigScreen(this)));
+        adder.add(this.createButton(LIGHT_LEVEL_TEXT, () -> new LightLevelConfigScreen(this)));
+        adder.add(EmptyWidget.ofHeight(26), 2);
+        adder.add(Options.reduceFog.createWidget(this.client.options, 0, 0, 150));
+        adder.add(Options.smokeyFurnace.createWidget(this.client.options, 0, 0, 150));
+        adder.add(Options.zoomLevel.createWidget(this.client.options, 0, 0, 150));
+        adder.add(ButtonWidget.builder(ScreenTexts.DONE, button -> this.client.setScreen(this.parent)).width(200).build(), 2, adder.copyPositioner().marginTop(6));
 
-        this.addDrawableChild(ButtonWidget.builder(ScreenTexts.DONE,button -> {
-            ConfigLoader.createOrSaveConfig();
-            if(this.client != null)
-                this.client.setScreen(this.parent);
-        }).dimensions(this.width / 2 - 100, this.height - 27, 200, 20).build());
+        gridWidget.refreshPositions();
+        SimplePositioningWidget.setPos(gridWidget, 0, this.height / 6 - 12, this.width, this.height, 0.5f, 0.0f);
+        gridWidget.forEachChild(this::addDrawableChild);
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         this.renderBackground(context);
-        this.list.render(context, mouseX, mouseY, delta);
         context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 20, DyeColor.LIGHT_BLUE.getSignColor());
         super.render(context, mouseX, mouseY, delta);
     }
@@ -51,24 +60,9 @@ public class ConfigScreen extends Screen {
         ConfigLoader.createOrSaveConfig();
     }
 
-    static {
-        OPTIONS = new SimpleOption[]{
-                Options.lightLevel,
-                Options.compass,
-
-                Options.lightLevelColor,
-                Options.compassColor,
-
-                Options.lightLevelAlpha,
-                Options.compassPlacement,
-
-                Options.zoom,
-                Options.zoomLevel,
-
-                Options.mobHealth,
-                Options.reduceFog,
-
-                Options.smokeyFurnace
-        };
+    private ButtonWidget createButton(Text message, Supplier<Screen> screenSupplier) {
+        return ButtonWidget.builder(message, button -> {
+            this.client.setScreen(screenSupplier.get());
+        }).build();
     }
 }

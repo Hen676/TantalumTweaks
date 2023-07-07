@@ -7,25 +7,27 @@
   "category.dragonlite.main": "Dragon Lite",
 
   "screen.dragonlite.config.title": "Dragon Lite Config",
+  "screen.dragonlite.hud_config.title": "Head-up Display Config",
+  "screen.dragonlite.light_level_config.title": "Light Level Config",
 
   "options.dragonlite.config": "DL",
-  "option.dragonlite.config.enable_reduce_fog": "Reduced Nether Fog",
 
-  "option.dragonlite.config.enable_mob_health": "Mob Health",
+  "options.dragonlite.light_level": "Light Level...",
+  "options.dragonlite.hud": "Head-up Display...",
 
-  "option.dragonlite.config.enable_light_level": "Light Level",
-  "option.dragonlite.config.light_level_color": "Light level color",
-  "option.dragonlite.config.light_level_alpha": "Light level alpha",
-  "option.dragonlite.config.light_level_alpha_amount": "Light level alpha",
+  "option.dragonlite.config.enable_reduce_fog": "Reduce Nether Fog",
 
-  "option.dragonlite.config.enable_zoom": "Zoom",
+  "option.dragonlite.config.light_level_color": "Color",
+  "option.dragonlite.config.light_level_alpha": "Alpha",
+  "option.dragonlite.config.light_level_alpha_amount": "Alpha",
+
   "option.dragonlite.config.zoom_amount": "Zoom Amount",
 
-  "option.dragonlite.config.enable_smokey_furnace": "Smokey Furnace",
+  "option.dragonlite.config.enable_smokey_furnace": "Enable Smokey Furnaces",
 
-  "option.dragonlite.config.enable_compass": "Hud",
-  "option.dragonlite.config.compass_color": "Hud Color",
-  "option.dragonlite.config.compass_placement": "Hud Placement",
+  "option.dragonlite.config.enable_compass": "Enable Head-up Display",
+  "option.dragonlite.config.compass_color": "Color",
+  "option.dragonlite.config.compass_placement": "Placement",
   "option.dragonlite.config.top_left": "Top Left",
   "option.dragonlite.config.top_right": "Top Right",
   "option.dragonlite.config.bottom_left": "Bottom Left",

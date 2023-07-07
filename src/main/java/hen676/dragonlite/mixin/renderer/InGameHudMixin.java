@@ -3,7 +3,6 @@ package hen676.dragonlite.mixin.renderer;
 import hen676.dragonlite.DragonLite;
 import hen676.dragonlite.config.Config;
 import hen676.dragonlite.util.HudPlacement;
-import it.unimi.dsi.fastutil.objects.ObjectLists;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -24,7 +23,6 @@ import java.util.List;
 
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
-
     @Inject(method = "render", at = @At("RETURN"))
     public void renderCompassHud(DrawContext context, float tickDelta, CallbackInfo ci) {
         if (!Config.ENABLE_COMPASS) return;
@@ -32,6 +30,7 @@ public abstract class InGameHudMixin {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.cameraEntity == null || client.options.debugEnabled) return;
         Entity camera = client.cameraEntity;
+
         Direction direction = camera.getHorizontalFacing();
         List<String> list = new ArrayList<>();
         String compass = switch (direction) {
