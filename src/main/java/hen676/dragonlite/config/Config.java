@@ -13,8 +13,10 @@ public class Config {
     public static boolean ENABLE_REDUCED_FOG = true;
 
     // Light level settings
-    public static int LIGHT_LEVEL_COLOR = 0;
     public static double LIGHT_LEVEL_ALPHA = 0.5D;
+    public static double LIGHT_LEVEL_COLOR_RED = 0.7D;
+    public static double LIGHT_LEVEL_COLOR_GREEN = 0.1D;
+    public static double LIGHT_LEVEL_COLOR_BLUE = 0.1D;
 
     // Smokey furnace settings
     public static boolean ENABLE_SMOKEY_FURNACE = true;

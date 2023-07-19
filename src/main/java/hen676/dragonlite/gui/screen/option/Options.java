@@ -5,7 +5,9 @@ import hen676.dragonlite.config.Config;
 import hen676.dragonlite.util.HudPlacement;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
+import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
@@ -54,16 +56,33 @@ public class Options {
             value -> Config.ENABLE_REDUCED_FOG = value);
 
     // Light level options
-    public static final SimpleOption<DyeColor> lightLevelColor = new SimpleOption<>("option.dragonlite.config.light_level_color",
+    public static final SimpleOption<Double> lightLevelColorRed = new SimpleOption<>("option.dragonlite.config.light_level_color_red",
             SimpleOption.emptyTooltip(),
-            (optionText, value) -> Text.translatable("color.minecraft." + value.toString().toLowerCase()).setStyle(Style.EMPTY.withColor(value.getSignColor())),
-            new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(DyeColor.values()), Codec.INT.xmap(DyeColor::byId, DyeColor::getId)),
-            DyeColor.RED,
-            value -> Config.LIGHT_LEVEL_COLOR = value.getId());
-
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.light_level_color_red"), (int) (value * 100.0D)),
+            (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
+                    (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
+                    (value) -> (int) (value * 100.0D)),
+            Codec.doubleRange(0.0D, 1.0D), 0.7D,
+            value -> Config.LIGHT_LEVEL_COLOR_RED = value);
+    public static final SimpleOption<Double> lightLevelColorGreen = new SimpleOption<>("option.dragonlite.config.light_level_color_green",
+            SimpleOption.emptyTooltip(),
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.light_level_color_green"), (int) (value * 100.0D)),
+            (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
+                    (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
+                    (value) -> (int) (value * 100.0D)),
+            Codec.doubleRange(0.0D, 1.0D), 0.1D,
+            value -> Config.LIGHT_LEVEL_COLOR_GREEN = value);
+    public static final SimpleOption<Double> lightLevelColorBlue = new SimpleOption<>("option.dragonlite.config.light_level_color_blue",
+            SimpleOption.emptyTooltip(),
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.light_level_color_blue"), (int) (value * 100.0D)),
+            (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
+                    (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
+                    (value) -> (int) (value * 100.0D)),
+            Codec.doubleRange(0.0D, 1.0D), 0.1D,
+            value -> Config.LIGHT_LEVEL_COLOR_BLUE = value);
     public static final SimpleOption<Double> lightLevelAlpha = new SimpleOption<>("option.dragonlite.config.light_level_alpha",
             SimpleOption.emptyTooltip(),
-            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.light_level_alpha_amount"), (int)(value * 100.0D)),
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.light_level_alpha"), (int)(value * 100.0D)),
             (new SimpleOption.ValidatingIntSliderCallbacks(10, 100)).withModifier(
                     (sliderProgressValue) -> (double)sliderProgressValue / 100.0D,
                     (value) -> (int) (value * 100.0D)),
@@ -73,11 +92,16 @@ public class Options {
 
     public static void Load() {
         reduceFog.setValue(Config.ENABLE_REDUCED_FOG);
+
         compass.setValue(Config.ENABLE_COMPASS);
         compassPlacement.setValue(HudPlacement.byId(Config.COMPASS_PLACEMENT));
         compassColor.setValue(DyeColor.byId(Config.COMPASS_COLOR));
-        lightLevelColor.setValue(DyeColor.byId(Config.LIGHT_LEVEL_COLOR));
-        smokeyFurnace.setValue(Config.ENABLE_SMOKEY_FURNACE);
+
+        lightLevelColorRed.setValue(Config.LIGHT_LEVEL_COLOR_RED);
+        lightLevelColorGreen.setValue(Config.LIGHT_LEVEL_COLOR_GREEN);
+        lightLevelColorBlue.setValue(Config.LIGHT_LEVEL_COLOR_BLUE);
         lightLevelAlpha.setValue(Config.LIGHT_LEVEL_ALPHA);
+
+        smokeyFurnace.setValue(Config.ENABLE_SMOKEY_FURNACE);
     }
 }

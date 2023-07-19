@@ -17,9 +17,10 @@
 
   "option.dragonlite.config.enable_reduce_fog": "Reduce Nether Fog",
 
-  "option.dragonlite.config.light_level_color": "Color",
+  "option.dragonlite.config.light_level_color_red": "Red",
+  "option.dragonlite.config.light_level_color_green": "Green",
+  "option.dragonlite.config.light_level_color_blue": "Blue",
   "option.dragonlite.config.light_level_alpha": "Alpha",
-  "option.dragonlite.config.light_level_alpha_amount": "Alpha",
 
   "option.dragonlite.config.zoom_amount": "Zoom Amount",
 

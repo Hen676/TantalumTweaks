@@ -53,8 +53,10 @@ public class LightLevelConfigScreen extends Screen {
 
     static {
         OPTIONS = new SimpleOption[]{
-                Options.lightLevelAlpha,
-                Options.lightLevelColor
+                Options.lightLevelColorRed,
+                Options.lightLevelColorGreen,
+                Options.lightLevelColorBlue,
+                Options.lightLevelAlpha
         };
     }
 }

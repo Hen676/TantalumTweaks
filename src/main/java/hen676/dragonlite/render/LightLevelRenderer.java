@@ -48,12 +48,6 @@ public class LightLevelRenderer {
         float j = (float) (playerBlockPos.getX() - pos.getX()) + 0.5f;
         float k = (float) (playerBlockPos.getZ() - pos.getZ()) + 0.5f;
 
-        // Setup color
-        DyeColor dyeColor = DyeColor.byId(Config.LIGHT_LEVEL_COLOR);
-        float red = dyeColor.getColorComponents()[0];
-        float green = dyeColor.getColorComponents()[1];
-        float blue = dyeColor.getColorComponents()[2];
-
         int range = 16;
         for (int x = -range; x < range; x++)
             for (int y = -range; y < 6; y++)
@@ -61,10 +55,10 @@ public class LightLevelRenderer {
                     BlockPos blockPos = playerBlockPos.add(x, y, z);
                     if (!world.isTopSolid(blockPos.down(), player) || world.isTopSolid(blockPos, player)) continue;
                     if (world.getLightLevel(LightType.BLOCK, blockPos) == 0) {
-                        vertexConsumer.vertex(matrix4f, j - size + x, i + y, k - size + z).color(red, green, blue, (float)Config.LIGHT_LEVEL_ALPHA).next();
-                        vertexConsumer.vertex(matrix4f, j - size + x, i + y, k + size + z).color(red, green, blue, (float)Config.LIGHT_LEVEL_ALPHA).next();
-                        vertexConsumer.vertex(matrix4f, j + size + x, i + y, k + size + z).color(red, green, blue, (float)Config.LIGHT_LEVEL_ALPHA).next();
-                        vertexConsumer.vertex(matrix4f, j + size + x, i + y, k - size + z).color(red, green, blue, (float)Config.LIGHT_LEVEL_ALPHA).next();
+                        vertexConsumer.vertex(matrix4f, j - size + x, i + y, k - size + z).color((float)Config.LIGHT_LEVEL_COLOR_RED, (float)Config.LIGHT_LEVEL_COLOR_GREEN, (float)Config.LIGHT_LEVEL_COLOR_BLUE, (float)Config.LIGHT_LEVEL_ALPHA).next();
+                        vertexConsumer.vertex(matrix4f, j - size + x, i + y, k + size + z).color((float)Config.LIGHT_LEVEL_COLOR_RED, (float)Config.LIGHT_LEVEL_COLOR_GREEN, (float)Config.LIGHT_LEVEL_COLOR_BLUE, (float)Config.LIGHT_LEVEL_ALPHA).next();
+                        vertexConsumer.vertex(matrix4f, j + size + x, i + y, k + size + z).color((float)Config.LIGHT_LEVEL_COLOR_RED, (float)Config.LIGHT_LEVEL_COLOR_GREEN, (float)Config.LIGHT_LEVEL_COLOR_BLUE, (float)Config.LIGHT_LEVEL_ALPHA).next();
+                        vertexConsumer.vertex(matrix4f, j + size + x, i + y, k - size + z).color((float)Config.LIGHT_LEVEL_COLOR_RED, (float)Config.LIGHT_LEVEL_COLOR_GREEN, (float)Config.LIGHT_LEVEL_COLOR_BLUE, (float)Config.LIGHT_LEVEL_ALPHA).next();
                     }
                 }
     }
