@@ -2,11 +2,13 @@ package hen676.dragonlite.mixin.renderer;
 
 import hen676.dragonlite.DragonLite;
 import hen676.dragonlite.config.Config;
-import hen676.dragonlite.util.HudPlacement;
+import hen676.dragonlite.gui.screen.option.HudPlacement;
+import hen676.dragonlite.gui.screen.option.Options;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
@@ -20,6 +22,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+/**
+ * Compass in-game overlay
+ *
+ * TODO:: Implement scaling
+ */
 
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
@@ -76,6 +84,6 @@ public abstract class InGameHudMixin {
         int k = textRenderer.getWidth(s);
         int x = (placement == HudPlacement.TOP_LEFT || placement ==  HudPlacement.BOTTOM_LEFT) ? 2 : context.getScaledWindowWidth() - (4 + k);
         context.fill(x, y, x + k + 2, y + 10, -1873784752);
-        context.drawText(textRenderer, s, x + 1, y + 1, DyeColor.byId(Config.COMPASS_COLOR).getSignColor(), true);
+        context.drawText(textRenderer, s, x + 1, y + 1, Options.getCompassColor(), true);
     }
 }

@@ -1,4 +1,4 @@
-package hen676.dragonlite.util;
+package hen676.dragonlite.mixin.block;
 
 import hen676.dragonlite.config.Config;
 import net.minecraft.block.AbstractFurnaceBlock;

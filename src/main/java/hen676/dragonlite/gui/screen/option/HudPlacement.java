@@ -1,4 +1,4 @@
-package hen676.dragonlite.util;
+package hen676.dragonlite.gui.screen.option;
 
 import net.minecraft.util.function.ValueLists;
 

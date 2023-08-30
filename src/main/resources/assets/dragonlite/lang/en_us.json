@@ -2,7 +2,7 @@
   "key.dragonlite.zoom": "Zoom",
   "key.dragonlite.config": "Config",
   "key.dragonlite.health_bar": "Health Bar",
-  "key.dragonlite.light_level": "Light level",
+  "key.dragonlite.light_level": "Light Level",
   "key.dragonlite.debug": "Debug",
   "category.dragonlite.main": "Dragon Lite",
 
@@ -13,7 +13,7 @@
   "options.dragonlite.config": "DL",
 
   "options.dragonlite.light_level": "Light Level...",
-  "options.dragonlite.hud": "Head-up Display...",
+  "options.dragonlite.hud": "HUD...",
 
   "option.dragonlite.config.enable_reduce_fog": "Reduce Nether Fog",
 
@@ -26,8 +26,11 @@
 
   "option.dragonlite.config.enable_smokey_furnace": "Enable Smokey Furnaces",
 
-  "option.dragonlite.config.enable_compass": "Enable Head-up Display",
-  "option.dragonlite.config.compass_color": "Color",
+  "option.dragonlite.config.enable_compass": "Enable Compass",
+  "option.dragonlite.config.compass_color_red": "Red",
+  "option.dragonlite.config.compass_color_green": "Green",
+  "option.dragonlite.config.compass_color_blue": "Blue",
+  "option.dragonlite.config.compass_scale": "Scale",
   "option.dragonlite.config.compass_placement": "Placement",
   "option.dragonlite.config.top_left": "Top Left",
   "option.dragonlite.config.top_right": "Top Right",

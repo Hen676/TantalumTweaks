@@ -2,37 +2,62 @@ package hen676.dragonlite.gui.screen.option;
 
 import com.mojang.serialization.Codec;
 import hen676.dragonlite.config.Config;
-import hen676.dragonlite.util.HudPlacement;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
-import net.minecraft.screen.ScreenTexts;
-import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.util.DyeColor;
 
+import java.awt.*;
 import java.util.Arrays;
 
 @Environment(EnvType.CLIENT)
 public class Options {
 
+
+
     // Compass options
     public static final SimpleOption<Boolean> compass = SimpleOption.ofBoolean("option.dragonlite.config.enable_compass",
             true,
             value -> Config.ENABLE_COMPASS = value);
-    public static final SimpleOption<DyeColor> compassColor = new SimpleOption<>("option.dragonlite.config.compass_color",
+    public static final SimpleOption<Double> compassColorRed = new SimpleOption<>("option.dragonlite.config.compass_color_red",
             SimpleOption.emptyTooltip(),
-            (optionText, value) -> Text.translatable("color.minecraft." + value.toString().toLowerCase()).setStyle(Style.EMPTY.withColor(value.getSignColor())),
-            new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(DyeColor.values()), Codec.INT.xmap(DyeColor::byId, DyeColor::getId)),
-            DyeColor.WHITE,
-            value -> Config.COMPASS_COLOR = value.getId());
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.compass_color_red"), (int) (value * 100.0D)),
+            (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
+                    (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
+                    (value) -> (int) (value * 100.0D)),
+            Codec.doubleRange(0.0D, 1.0D), 0.7D,
+            value -> Config.COMPASS_COLOR_RED = value);
+    public static final SimpleOption<Double> compassColorGreen = new SimpleOption<>("option.dragonlite.config.compass_color_green",
+            SimpleOption.emptyTooltip(),
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.compass_color_green"), (int) (value * 100.0D)),
+            (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
+                    (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
+                    (value) -> (int) (value * 100.0D)),
+            Codec.doubleRange(0.0D, 1.0D), 0.1D,
+            value -> Config.COMPASS_COLOR_GREEN = value);
+    public static final SimpleOption<Double> compassColorBlue = new SimpleOption<>("option.dragonlite.config.compass_color_blue",
+            SimpleOption.emptyTooltip(),
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.compass_color_blue"), (int) (value * 100.0D)),
+            (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
+                    (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
+                    (value) -> (int) (value * 100.0D)),
+            Codec.doubleRange(0.0D, 1.0D), 0.1D,
+            value -> Config.COMPASS_COLOR_BLUE = value);
     public static final SimpleOption<HudPlacement> compassPlacement = new SimpleOption<>("option.dragonlite.config.compass_placement",
             SimpleOption.emptyTooltip(),
             (optionText, value) -> Text.translatable("option.dragonlite.config." + value.toString().toLowerCase()),
             new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(HudPlacement.values()), Codec.INT.xmap(HudPlacement::byId, HudPlacement::getId)),
             HudPlacement.TOP_LEFT,
             value -> Config.COMPASS_PLACEMENT = value.getId());
+    public static final SimpleOption<Double> compassScale = new SimpleOption<>("option.dragonlite.config.compass_scale",
+            SimpleOption.emptyTooltip(),
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.compass_scale"), (int)(value * 100.0D)),
+            (new SimpleOption.ValidatingIntSliderCallbacks(10, 100)).withModifier(
+                    (sliderProgressValue) -> (double)sliderProgressValue / 50.0D,
+                    (value) -> (int) (value * 50.0D)),
+            Codec.doubleRange(0.2D, 2D),
+            1D,
+            value -> Config.COMPASS_SCALE = value);
 
     // Zoom options
     public static final SimpleOption<Double> zoomLevel = new SimpleOption<>("option.dragonlite.config.zoom_level",
@@ -95,7 +120,10 @@ public class Options {
 
         compass.setValue(Config.ENABLE_COMPASS);
         compassPlacement.setValue(HudPlacement.byId(Config.COMPASS_PLACEMENT));
-        compassColor.setValue(DyeColor.byId(Config.COMPASS_COLOR));
+        compassColorRed.setValue(Config.COMPASS_COLOR_RED);
+        compassColorGreen.setValue(Config.COMPASS_COLOR_GREEN);
+        compassColorBlue.setValue(Config.COMPASS_COLOR_BLUE);
+        compassScale.setValue(Config.COMPASS_SCALE);
 
         lightLevelColorRed.setValue(Config.LIGHT_LEVEL_COLOR_RED);
         lightLevelColorGreen.setValue(Config.LIGHT_LEVEL_COLOR_GREEN);
@@ -103,5 +131,13 @@ public class Options {
         lightLevelAlpha.setValue(Config.LIGHT_LEVEL_ALPHA);
 
         smokeyFurnace.setValue(Config.ENABLE_SMOKEY_FURNACE);
+    }
+
+    public static int getCompassColor() {
+        return new Color((float)Config.COMPASS_COLOR_RED, (float)Config.COMPASS_COLOR_GREEN, (float)Config.COMPASS_COLOR_BLUE).getRGB();
+    }
+
+    public static int getLightLevelColor() {
+        return new Color((float)Config.LIGHT_LEVEL_COLOR_RED, (float)Config.LIGHT_LEVEL_COLOR_GREEN, (float)Config.LIGHT_LEVEL_COLOR_BLUE).getRGB();
     }
 }

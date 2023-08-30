@@ -20,10 +20,13 @@ import org.apache.logging.log4j.Logger;
 public class DragonLite implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("Dragon Lite");
     public static final String MOD_ID = "dragonlite";
-    public static final boolean DEBUG = false;
+    public static boolean DEBUG = false;
 
     @Override
     public void onInitializeClient() {
+        // Check if debug
+        DEBUG = FabricLoader.getInstance().isDevelopmentEnvironment();
+
         // Config and Screen
         ConfigLoader.init();
         Options.Load();
@@ -47,5 +50,9 @@ public class DragonLite implements ClientModInitializer {
                         ResourcePackActivationType.DEFAULT_ENABLED))
                 .filter(success -> !success)
                 .ifPresent(success -> LOGGER.warn("Could not register built-in resource pack."));
+    }
+
+    public static Identifier makeId(String id) {
+        return new Identifier(MOD_ID, id);
     }
 }

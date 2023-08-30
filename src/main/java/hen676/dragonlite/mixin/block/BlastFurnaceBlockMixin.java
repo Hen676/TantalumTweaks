@@ -1,6 +1,5 @@
 package hen676.dragonlite.mixin.block;
 
-import hen676.dragonlite.util.AddParticles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlastFurnaceBlock;

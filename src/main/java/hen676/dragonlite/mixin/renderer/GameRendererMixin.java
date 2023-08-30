@@ -19,4 +19,6 @@ public abstract class GameRendererMixin {
             callbackInfo.setReturnValue(callbackInfo.getReturnValue() * Config.ZOOM_AMOUNT);
         ZoomKeybinding.manageSmoothCamera();
     }
+
+
 }

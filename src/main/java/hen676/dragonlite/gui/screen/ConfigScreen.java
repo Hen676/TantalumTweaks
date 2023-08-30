@@ -34,7 +34,6 @@ public class ConfigScreen extends Screen {
         gridWidget.getMainPositioner().marginX(5).marginBottom(4).alignHorizontalCenter();
         GridWidget.Adder adder = gridWidget.createAdder(2);
 
-        adder.add(EmptyWidget.ofHeight(5), 2);
         adder.add(this.createButton(HUD_TEXT, () -> new HudConfigScreen(this)));
         adder.add(this.createButton(LIGHT_LEVEL_TEXT, () -> new LightLevelConfigScreen(this)));
         adder.add(EmptyWidget.ofHeight(26), 2);

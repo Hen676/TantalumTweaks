@@ -3,8 +3,11 @@ package hen676.dragonlite.config;
 public class Config {
     // Compass settings
     public static boolean ENABLE_COMPASS = true;
-    public static int COMPASS_COLOR = 0;
+    public static double COMPASS_COLOR_RED = 0.7D;
+    public static double COMPASS_COLOR_GREEN = 0.1D;
+    public static double COMPASS_COLOR_BLUE = 0.1D;
     public static int COMPASS_PLACEMENT = 0;
+    public static double COMPASS_SCALE = 1.0D;
 
     // Zoom config settings
     public static double ZOOM_AMOUNT = 0.35D;
