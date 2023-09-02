@@ -27,7 +27,7 @@ public class DragonLite implements ClientModInitializer {
         // Check if debug
         DEBUG = FabricLoader.getInstance().isDevelopmentEnvironment();
 
-        // Config and Screen
+        // Config and options screen
         ConfigLoader.init();
         Options.Load();
 

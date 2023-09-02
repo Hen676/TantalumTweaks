@@ -13,8 +13,6 @@ import java.util.Arrays;
 @Environment(EnvType.CLIENT)
 public class Options {
 
-
-
     // Compass options
     public static final SimpleOption<Boolean> compass = SimpleOption.ofBoolean("option.dragonlite.config.enable_compass",
             true,
