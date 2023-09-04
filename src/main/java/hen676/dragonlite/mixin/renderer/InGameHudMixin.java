@@ -27,6 +27,7 @@ import java.util.List;
  * Compass in-game overlay
  *
  * TODO:: Implement scaling
+ * TODO:: Add option to turn of text background
  */
 
 @Mixin(InGameHud.class)
@@ -42,10 +43,10 @@ public abstract class InGameHudMixin {
         Direction direction = camera.getHorizontalFacing();
         List<String> list = new ArrayList<>();
         String compass = switch (direction) {
-            case NORTH -> "Direction: North (-Z)";
-            case SOUTH -> "Direction: South (+Z)";
-            case WEST -> "Direction: West (-X)";
-            case EAST -> "Direction: East (+X)";
+            case NORTH -> "Facing: North (-Z)";
+            case SOUTH -> "Facing: South (+Z)";
+            case WEST -> "Facing: West (-X)";
+            case EAST -> "Facing: East (+X)";
             default -> "Invalid direction";
         };
 

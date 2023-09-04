@@ -22,6 +22,10 @@ import net.minecraft.world.LightType;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 
+/**
+ * TODO:: Add light level adjustment option
+ * TODO:: Add option to adjust square render size
+ */
 @Environment(EnvType.CLIENT)
 public class LightLevelRenderer {
     private static boolean lastWasFrameDebug = false;
