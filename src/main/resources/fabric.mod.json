@@ -3,11 +3,12 @@
   "id": "dragonlite",
   "version": "${version}",
   "name": "Dragon Lite",
-  "description": "",
-  "authors": [
-    "Hen676"
-  ],
-  "contact": {},
+  "description": "Minecraft addon mod with Freecam, Light level, Zoom and More!",
+  "authors": ["Hen676"],
+  "contact": {
+    "sources": "https://github.com/Hen676/DragonLiteMC",
+    "issues": "https://github.com/Hen676/DragonLiteMC/issues"
+  },
   "license": "MIT",
   "icon": "assets/dragonlite/icon.png",
   "environment": "client",
