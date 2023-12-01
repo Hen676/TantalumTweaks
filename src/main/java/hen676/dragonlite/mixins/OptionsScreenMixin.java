@@ -1,4 +1,4 @@
-package hen676.dragonlite.mixin;
+package hen676.dragonlite.mixins;
 
 import hen676.dragonlite.gui.screen.ConfigScreen;
 import net.fabricmc.api.EnvType;

@@ -34,7 +34,7 @@ public class LightLevelRenderer {
     private static final float size = 0.25f;
 
     private static void render(MatrixStack matrices, Camera camera, ClientWorld world, @Nullable VertexConsumerProvider consumers) {
-        if (!LightLevelKeybinding.toggle) return;
+        if (!LightLevelKeybinding.isLightLevel()) return;
 
         // Return if invalid instance
         MinecraftClient client = MinecraftClient.getInstance();
@@ -68,7 +68,7 @@ public class LightLevelRenderer {
     }
 
     public static void render(WorldRenderContext worldRenderContext) {
-        if (DebugKeybinding.toggle) {
+        if (DebugKeybinding.isDebug()) {
             long startTime = System.nanoTime();
             render(worldRenderContext.matrixStack(), worldRenderContext.camera(), worldRenderContext.world(), worldRenderContext.consumers());
             long endTime = System.nanoTime();

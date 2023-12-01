@@ -1,6 +1,7 @@
-package hen676.dragonlite.mixin.renderer;
+package hen676.dragonlite.mixins.render;
 
 import hen676.dragonlite.config.Config;
+import hen676.dragonlite.keybinds.FreecamKeybinding;
 import hen676.dragonlite.keybinds.ZoomKeybinding;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -13,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Environment(EnvType.CLIENT)
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin {
+    // Change fov to zoom in
     @Inject(method = "getFov", at = @At("RETURN"), cancellable = true)
     public void getZoomLevel(CallbackInfoReturnable<Double> callbackInfo) {
         if (ZoomKeybinding.isZooming())
@@ -20,5 +22,10 @@ public abstract class GameRendererMixin {
         ZoomKeybinding.manageSmoothCamera();
     }
 
-
+    // Disable block outline in freecam
+    @Inject(method = "shouldRenderBlockOutline", at = @At("HEAD"), cancellable = true)
+    private void removeRenderBlockOutlineOnFreecam(CallbackInfoReturnable<Boolean> cir) {
+        if (FreecamKeybinding.isFreecam())
+            cir.setReturnValue(false);
+    }
 }

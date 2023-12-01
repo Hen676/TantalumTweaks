@@ -13,8 +13,6 @@ import java.util.function.Supplier;
 
 /**
  * Colour widget to display currently configured colour
- *
- * TODO:: Implement
  */
 @Environment(EnvType.CLIENT)
 public class ColorWidget extends ClickableWidget {

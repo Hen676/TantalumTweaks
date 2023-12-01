@@ -1,16 +1,19 @@
-package hen676.dragonlite.mixin.renderer;
+package hen676.dragonlite.mixins.gui;
 
 import hen676.dragonlite.DragonLite;
 import hen676.dragonlite.config.Config;
 import hen676.dragonlite.gui.screen.option.HudPlacement;
 import hen676.dragonlite.gui.screen.option.Options;
+import hen676.dragonlite.keybinds.FreecamKeybinding;
+import hen676.dragonlite.util.CallbackUtil;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.DyeColor;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
@@ -18,23 +21,40 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Compass in-game overlay
- *
- * TODO:: Implement scaling
- * TODO:: Add option to turn of text background
- */
+import static hen676.dragonlite.DragonLite.MC;
 
+@Environment(EnvType.CLIENT)
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
+
+    // Freecam
+
+    @Inject(method = "renderStatusBars", at = @At("HEAD"), cancellable = true)
+    private void preventStatusBarRenderOnFreecam(DrawContext context, CallbackInfo ci) {
+        CallbackUtil.FreecamCancel(ci);
+    }
+
+    @Inject(method = "renderHotbar", at = @At("HEAD"), cancellable = true)
+    private void preventHotbarRenderOnFreecam(float tickDelta, DrawContext context, CallbackInfo ci) {
+        CallbackUtil.FreecamCancel(ci);
+    }
+
+    @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
+    private void preventCrosshairRenderOnFreecam(DrawContext context, CallbackInfo ci) {
+        CallbackUtil.FreecamCancel(ci);
+    }
+
+
+    // Compass
     @Inject(method = "render", at = @At("RETURN"))
     public void renderCompassHud(DrawContext context, float tickDelta, CallbackInfo ci) {
-        if (!Config.ENABLE_COMPASS) return;
+        if (!Config.ENABLE_COMPASS || FreecamKeybinding.isFreecam()) return;
 
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.cameraEntity == null || client.options.debugEnabled) return;
@@ -82,6 +102,8 @@ public abstract class InGameHudMixin {
 
     private void draw(DrawContext context, TextRenderer textRenderer, String s, int y, HudPlacement placement)
     {
+        //stack.scale((float) Config.COMPASS_SCALE, (float)Config.COMPASS_SCALE, 1);
+
         int k = textRenderer.getWidth(s);
         int x = (placement == HudPlacement.TOP_LEFT || placement ==  HudPlacement.BOTTOM_LEFT) ? 2 : context.getScaledWindowWidth() - (4 + k);
         context.fill(x, y, x + k + 2, y + 10, -1873784752);

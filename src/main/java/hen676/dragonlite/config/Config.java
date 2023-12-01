@@ -23,4 +23,10 @@ public class Config {
 
     // Smokey furnace settings
     public static boolean ENABLE_SMOKEY_FURNACE = true;
+
+    // Freecam settings
+    public static double FREECAM_FLIGHT_SPEED = 0.5D;
+
+    // Full bright settings
+    public static boolean ENABLE_FULL_BRIGHT_ON_FREECAM = true;
 }

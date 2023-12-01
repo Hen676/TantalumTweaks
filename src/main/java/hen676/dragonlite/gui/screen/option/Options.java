@@ -113,6 +113,23 @@ public class Options {
             0.5D,
             value -> Config.LIGHT_LEVEL_ALPHA = value);
 
+    // Freecam options
+    public static final SimpleOption<Double> freecamFlightSpeed = new SimpleOption<>("option.dragonlite.config.freecam_flight_speed",
+            SimpleOption.emptyTooltip(),
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.freecam_flight_speed"), (int)(value * 100.0D)),
+            (new SimpleOption.ValidatingIntSliderCallbacks(10, 100)).withModifier(
+                    (sliderProgressValue) -> (double)sliderProgressValue / 100.0D,
+                    (value) -> (int) (value * 100.0D)),
+            Codec.doubleRange(0.1D, 1.0D),
+            0.5D,
+            value -> Config.FREECAM_FLIGHT_SPEED = value);
+
+    // Full Bright options
+    public static final SimpleOption<Boolean> fullBrightOnFreecam = SimpleOption.ofBoolean("option.dragonlite.config.full_bright_on_freecam",
+            true,
+            value -> Config.ENABLE_FULL_BRIGHT_ON_FREECAM = value);
+
+
     public static void Load() {
         reduceFog.setValue(Config.ENABLE_REDUCED_FOG);
 
@@ -129,6 +146,10 @@ public class Options {
         lightLevelAlpha.setValue(Config.LIGHT_LEVEL_ALPHA);
 
         smokeyFurnace.setValue(Config.ENABLE_SMOKEY_FURNACE);
+
+        freecamFlightSpeed.setValue(Config.FREECAM_FLIGHT_SPEED);
+
+        fullBrightOnFreecam.setValue(Config.ENABLE_FULL_BRIGHT_ON_FREECAM);
     }
 
     public static int getCompassColor() {

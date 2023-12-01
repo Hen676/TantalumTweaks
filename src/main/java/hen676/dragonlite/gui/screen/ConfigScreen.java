@@ -40,6 +40,8 @@ public class ConfigScreen extends Screen {
         adder.add(Options.reduceFog.createWidget(this.client.options, 0, 0, 150));
         adder.add(Options.smokeyFurnace.createWidget(this.client.options, 0, 0, 150));
         adder.add(Options.zoomLevel.createWidget(this.client.options, 0, 0, 150));
+        adder.add(Options.fullBrightOnFreecam.createWidget(this.client.options, 0, 0, 150));
+        adder.add(Options.freecamFlightSpeed.createWidget(this.client.options, 0, 0, 150));
         adder.add(ButtonWidget.builder(ScreenTexts.DONE, button -> this.client.setScreen(this.parent)).width(200).build(), 2, adder.copyPositioner().marginTop(6));
 
         gridWidget.refreshPositions();

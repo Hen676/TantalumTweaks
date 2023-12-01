@@ -1,4 +1,4 @@
-package hen676.dragonlite.mixin.block;
+package hen676.dragonlite.mixins.block;
 
 import hen676.dragonlite.config.Config;
 import net.fabricmc.api.EnvType;
@@ -7,9 +7,7 @@ import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SmokerBlock;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.util.math.random.Random;
 import org.spongepowered.asm.mixin.Mixin;

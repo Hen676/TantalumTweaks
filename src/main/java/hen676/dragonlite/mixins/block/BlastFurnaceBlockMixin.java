@@ -1,11 +1,11 @@
-package hen676.dragonlite.mixin.block;
+package hen676.dragonlite.mixins.block;
 
 import hen676.dragonlite.config.Config;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.BlastFurnaceBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FurnaceBlock;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
@@ -17,9 +17,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(FurnaceBlock.class)
+@Mixin(BlastFurnaceBlock.class)
 @Environment(EnvType.CLIENT)
-public abstract class FurnaceBlockMixin {
+public abstract class BlastFurnaceBlockMixin {
     @Inject(method = "randomDisplayTick", at=@At(value = "RETURN"))
     private void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random, CallbackInfo ci) {
         addFurnaceParticles(state, world, pos, random);

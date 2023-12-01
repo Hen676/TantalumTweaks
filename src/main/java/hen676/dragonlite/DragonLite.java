@@ -2,16 +2,14 @@ package hen676.dragonlite;
 
 import hen676.dragonlite.config.ConfigLoader;
 import hen676.dragonlite.gui.screen.option.Options;
-import hen676.dragonlite.keybinds.DebugKeybinding;
-import hen676.dragonlite.keybinds.HealthBarKeybinding;
-import hen676.dragonlite.keybinds.LightLevelKeybinding;
-import hen676.dragonlite.keybinds.ZoomKeybinding;
+import hen676.dragonlite.keybinds.*;
 import hen676.dragonlite.render.LightLevelRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
@@ -20,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 public class DragonLite implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("Dragon Lite");
     public static final String MOD_ID = "dragonlite";
+    public static final MinecraftClient MC = MinecraftClient.getInstance();
     public static boolean DEBUG = false;
 
     @Override
@@ -38,6 +37,8 @@ public class DragonLite implements ClientModInitializer {
         ZoomKeybinding.init();
         LightLevelKeybinding.init();
         HealthBarKeybinding.init();
+        FreecamKeybinding.init();
+        FullBrightKeybinding.init();
         if (DEBUG)
             DebugKeybinding.init();
 

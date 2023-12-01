@@ -14,7 +14,7 @@ import org.lwjgl.glfw.GLFW;
 @Environment(EnvType.CLIENT)
 public class LightLevelKeybinding {
     private static KeyBinding keyBindingLightLevel;
-    public static boolean toggle = false;
+    private static boolean toggle = false;
 
     public static void init() {
         keyBindingLightLevel = new KeyBinding(
@@ -40,5 +40,9 @@ public class LightLevelKeybinding {
                 }
             }
         });
+    }
+
+    public static boolean isLightLevel() {
+        return toggle;
     }
 }

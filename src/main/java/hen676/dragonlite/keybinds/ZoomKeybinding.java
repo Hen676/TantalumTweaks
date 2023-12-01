@@ -41,7 +41,6 @@ public class ZoomKeybinding {
         }
     }
 
-
     private static boolean zoomStarting() {
         return isZooming() && !currentlyZoomed;
     }

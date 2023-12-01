@@ -4,6 +4,8 @@
   "key.dragonlite.health_bar": "Health Bar",
   "key.dragonlite.light_level": "Light Level",
   "key.dragonlite.debug": "Debug",
+  "key.dragonlite.freecam": "Freecam",
+  "key.dragonlite.full_bright": "Full Bright",
   "category.dragonlite.main": "Dragon Lite",
 
   "screen.dragonlite.config.title": "Dragon Lite Config",
@@ -37,10 +39,16 @@
   "option.dragonlite.config.bottom_left": "Bottom Left",
   "option.dragonlite.config.bottom_right": "Bottom Right",
 
+  "option.dragonlite.config.freecam_flight_speed": "Freecam Flight Speed",
+
+  "option.dragonlite.config.full_bright_on_freecam": "Toggle Full Bright With Freecam",
+
   "message.dragonlite.on": "ON",
   "message.dragonlite.off": "OFF",
   "message.dragonlite.health_bar": "Mob Health",
   "message.dragonlite.light_level": "Light Level",
+  "message.dragonlite.freecam": "Freecam",
+  "message.dragonlite.full_bright": "Full Bright",
 
   "pack.name.dragonlite": "Dragon Lite: Lowered shields",
   "pack.source.dragonlite": "Dragon Lite"

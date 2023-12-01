@@ -1,4 +1,4 @@
-package hen676.dragonlite.mixin.renderer;
+package hen676.dragonlite.mixins.render;
 
 import hen676.dragonlite.config.Config;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -6,14 +6,13 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
-import net.minecraft.client.render.FogShape;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(BackgroundRenderer.class)
 @Environment(EnvType.CLIENT)
+@Mixin(BackgroundRenderer.class)
 public abstract class BackgroundRendererMixin {
     @Inject(method = "applyFog", at=@At(value = "RETURN"))
     private static void setFogRenderDistance(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci) {

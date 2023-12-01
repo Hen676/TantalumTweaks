@@ -1,6 +1,5 @@
-package hen676.dragonlite.mixin.renderer;
+package hen676.dragonlite.mixins.render;
 
-import hen676.dragonlite.config.Config;
 import hen676.dragonlite.keybinds.HealthBarKeybinding;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -19,8 +18,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(LivingEntityRenderer.class)
 @Environment(EnvType.CLIENT)
+@Mixin(LivingEntityRenderer.class)
 public abstract class LivingEntityRenderMixin<T extends LivingEntity, M extends EntityModel<T>> extends EntityRenderer<T> implements FeatureRendererContext<T, M> {
     protected LivingEntityRenderMixin(EntityRendererFactory.Context ctx) {
         super(ctx);
@@ -28,7 +27,7 @@ public abstract class LivingEntityRenderMixin<T extends LivingEntity, M extends 
 
     @Inject(method = "render*", at=@At(value = "RETURN"))
     private void render(T livingEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, CallbackInfo ci) {
-        if (!HealthBarKeybinding.toggle) return;
+        if (!HealthBarKeybinding.isHealthBar()) return;
         double d = this.dispatcher.getSquaredDistanceToCamera(livingEntity);
         if (d <= 128.0D) {
             matrixStack.push();

@@ -11,7 +11,7 @@ import org.lwjgl.glfw.GLFW;
 @Environment(EnvType.CLIENT)
 public class DebugKeybinding {
     private static KeyBinding keyBindingDebug;
-    public static boolean toggle = false;
+    private static boolean toggle = false;
 
     public static void init() {
         keyBindingDebug = new KeyBinding(
@@ -29,5 +29,9 @@ public class DebugKeybinding {
                 toggle = !toggle;
             }
         });
+    }
+
+    public static boolean isDebug() {
+        return toggle;
     }
 }
