@@ -15,7 +15,7 @@ public class Options {
 
     // Compass options
     public static final SimpleOption<Boolean> compass = SimpleOption.ofBoolean("option.dragonlite.config.enable_compass",
-            true,
+            false,
             value -> Config.ENABLE_COMPASS = value);
     public static final SimpleOption<Double> compassColorRed = new SimpleOption<>("option.dragonlite.config.compass_color_red",
             SimpleOption.emptyTooltip(),

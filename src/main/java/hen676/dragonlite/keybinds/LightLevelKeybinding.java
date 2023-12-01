@@ -20,7 +20,7 @@ public class LightLevelKeybinding {
         keyBindingLightLevel = new KeyBinding(
                 "key.dragonlite.light_level",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_M,
+                GLFW.GLFW_KEY_KP_1,
                 "category.dragonlite.main");
 
         KeyBindingHelper.registerKeyBinding(keyBindingLightLevel);

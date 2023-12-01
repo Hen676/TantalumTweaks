@@ -11,6 +11,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 import org.lwjgl.glfw.GLFW;
 
+/**
+ * TODO:: Add support for shaders
+ */
 @Environment(EnvType.CLIENT)
 public class FullBrightKeybinding {
     private static KeyBinding keyBindingFullBright;
@@ -20,7 +23,7 @@ public class FullBrightKeybinding {
         keyBindingFullBright = new KeyBinding(
                 "key.dragonlite.full_bright",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_I,
+                GLFW.GLFW_KEY_KP_3,
                 "category.dragonlite.main");
 
         KeyBindingHelper.registerKeyBinding(keyBindingFullBright);

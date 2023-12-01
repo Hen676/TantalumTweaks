@@ -1,6 +1,7 @@
 package hen676.dragonlite.entity;
 
 import com.mojang.authlib.GameProfile;
+import hen676.dragonlite.DragonLite;
 import hen676.dragonlite.config.Config;
 import hen676.dragonlite.util.PositionUtil;
 import net.minecraft.block.piston.PistonBehavior;
@@ -13,18 +14,16 @@ import net.minecraft.network.packet.Packet;
 import java.util.Objects;
 import java.util.UUID;
 
-import static hen676.dragonlite.DragonLite.MC;
-
 public class FreecamEntity extends ClientPlayerEntity {
 
     // Cancel sending packets to the server in freecam
     private static final ClientPlayNetworkHandler NETWORK_HANDLER = new ClientPlayNetworkHandler(
-            MC,
-            MC.currentScreen,
-            Objects.requireNonNull(MC.getNetworkHandler()).getConnection(),
-            MC.getCurrentServerEntry(),
+            DragonLite.MC,
+            DragonLite.MC.currentScreen,
+            Objects.requireNonNull(DragonLite.MC.getNetworkHandler()).getConnection(),
+            DragonLite.MC.getCurrentServerEntry(),
             new GameProfile(UUID.randomUUID(), "Freecam"),
-            MC.getTelemetryManager().createWorldSession(false, null, null)) {
+            DragonLite.MC.getTelemetryManager().createWorldSession(false, null, null)) {
 
         @Override
         public void sendPacket(Packet<?> packet) {
@@ -32,17 +31,17 @@ public class FreecamEntity extends ClientPlayerEntity {
     };
 
     public FreecamEntity(int id, PositionUtil position) {
-        super(MC,
-                Objects.requireNonNull(MC.world),
+        super(DragonLite.MC,
+                Objects.requireNonNull(DragonLite.MC.world),
                 NETWORK_HANDLER,
-                Objects.requireNonNull(MC.player).getStatHandler(),
-                MC.player.getRecipeBook(),
+                Objects.requireNonNull(DragonLite.MC.player).getStatHandler(),
+                DragonLite.MC.player.getRecipeBook(),
                 false,
                 false);
         setId(id);
         applyPosition(position);
         getAbilities().flying = true;
-        input = new KeyboardInput(MC.options);
+        input = new KeyboardInput(DragonLite.MC.options);
     }
 
     public void applyPosition(PositionUtil position) {

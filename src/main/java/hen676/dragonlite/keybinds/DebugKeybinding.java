@@ -17,7 +17,7 @@ public class DebugKeybinding {
         keyBindingDebug = new KeyBinding(
                 "key.dragonlite.debug",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_L,
+                GLFW.GLFW_KEY_KP_0,
                 "category.dragonlite.main");
 
         KeyBindingHelper.registerKeyBinding(keyBindingDebug);

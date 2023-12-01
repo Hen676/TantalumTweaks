@@ -2,7 +2,7 @@ package hen676.dragonlite.config;
 
 public class Config {
     // Compass settings
-    public static boolean ENABLE_COMPASS = true;
+    public static boolean ENABLE_COMPASS = false;
     public static double COMPASS_COLOR_RED = 0.7D;
     public static double COMPASS_COLOR_GREEN = 0.1D;
     public static double COMPASS_COLOR_BLUE = 0.1D;

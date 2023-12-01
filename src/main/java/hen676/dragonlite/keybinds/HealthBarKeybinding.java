@@ -20,7 +20,7 @@ public class HealthBarKeybinding {
         keyBindingHealthBar = new KeyBinding(
                 "key.dragonlite.health_bar",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_H,
+                GLFW.GLFW_KEY_KP_2,
                 "category.dragonlite.main");
 
         KeyBindingHelper.registerKeyBinding(keyBindingHealthBar);

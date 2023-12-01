@@ -20,6 +20,7 @@ import org.lwjgl.glfw.GLFW;
 
 /**
  * TODO:: Close screens when entering Freecam. Maybe ignore [esc] screen?
+ * TODO:: Remove freecam entity model to not create shadow with shaders
  */
 @Environment(EnvType.CLIENT)
 public class FreecamKeybinding {

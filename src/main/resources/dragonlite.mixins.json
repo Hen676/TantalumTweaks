@@ -11,12 +11,14 @@
     "block.SmokerBlockMixin",
     "entity.EntityMixin",
     "entity.PlayerInventoryMixin",
+    "network.ClientConnectionMixin",
     "render.BackgroundRendererMixin",
     "render.LivingEntityRenderMixin"
   ],
   "client": [
     "MinecraftClientMixin",
     "gui.InGameHudMixin",
+    "network.ClientPlayNetworkHandlerMixin",
     "render.CameraMixin",
     "render.GameRendererMixin",
     "render.LightmapTextureManagerMixin",

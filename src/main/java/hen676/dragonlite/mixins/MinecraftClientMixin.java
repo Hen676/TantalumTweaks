@@ -7,27 +7,33 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.input.KeyboardInput;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.render.GameRenderer;
+import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static hen676.dragonlite.DragonLite.MC;
-
 @Environment(EnvType.CLIENT)
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {
 
-        @Inject(method = "tick", at = @At("HEAD"))
+    @Shadow @Nullable public ClientPlayerEntity player;
+    @Shadow @Final public GameRenderer gameRenderer;
+
+    @Inject(method = "tick", at = @At("HEAD"))
         private void preventPlayerControlOnFreecam(CallbackInfo ci) {
                 if (FreecamKeybinding.isFreecam()) {
-                        if (MC.player != null && MC.player.input instanceof KeyboardInput) {
+                        if (this.player != null && this.player.input instanceof KeyboardInput) {
                                 Input input = new Input();
-                                input.sneaking = MC.player.input.sneaking;
-                                MC.player.input = input;
+                                input.sneaking = this.player.input.sneaking;
+                                this.player.input = input;
                         }
-                        MC.gameRenderer.setRenderHand(false);
+                        this.gameRenderer.setRenderHand(false);
                 }
         }
 

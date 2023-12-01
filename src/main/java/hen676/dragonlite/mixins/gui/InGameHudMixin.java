@@ -13,7 +13,6 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
@@ -21,20 +20,16 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static hen676.dragonlite.DragonLite.MC;
 
 @Environment(EnvType.CLIENT)
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
 
     // Freecam
-
     @Inject(method = "renderStatusBars", at = @At("HEAD"), cancellable = true)
     private void preventStatusBarRenderOnFreecam(DrawContext context, CallbackInfo ci) {
         CallbackUtil.FreecamCancel(ci);
@@ -50,10 +45,14 @@ public abstract class InGameHudMixin {
         CallbackUtil.FreecamCancel(ci);
     }
 
+    @Inject(method = "renderExperienceBar", at =@At("HEAD"), cancellable = true)
+    private void preventExperienceBarRenderOnFreecam(DrawContext context, int x, CallbackInfo ci) {
+        CallbackUtil.FreecamCancel(ci);
+    }
 
     // Compass
     @Inject(method = "render", at = @At("RETURN"))
-    public void renderCompassHud(DrawContext context, float tickDelta, CallbackInfo ci) {
+    private void renderCompassHud(DrawContext context, float tickDelta, CallbackInfo ci) {
         if (!Config.ENABLE_COMPASS || FreecamKeybinding.isFreecam()) return;
 
         MinecraftClient client = MinecraftClient.getInstance();
