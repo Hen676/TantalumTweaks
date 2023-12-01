@@ -19,13 +19,10 @@ public class DragonLite implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("Dragon Lite");
     public static final String MOD_ID = "dragonlite";
     public static final MinecraftClient MC = MinecraftClient.getInstance();
-    public static boolean DEBUG = false;
+    public static boolean DEBUG = FabricLoader.getInstance().isDevelopmentEnvironment();
 
     @Override
     public void onInitializeClient() {
-        // Check if debug
-        DEBUG = FabricLoader.getInstance().isDevelopmentEnvironment();
-
         // Config and options screen
         ConfigLoader.init();
         Options.Load();
