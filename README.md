@@ -7,12 +7,25 @@
 Client-side Minecraft fabric mod with minor quality-of-life features. These features include:
 
 - Zoom
-- Mob health
-- Light-level overlay
+- Freecam
+- Full Bright
+- Mob Health
+- Light Level overlay
 - Reduced nether fog
 - Smokey furnaces
 - Compass hud
 - Lowered shields
+
+## Keybinds
+
+| Name         | Description                                                                                        | Default Bind |
+|--------------|----------------------------------------------------------------------------------------------------|--------------|
+| Zoom         | Zooms in the user field of view.                                                                   | `V`          |
+| Freecam      | Unbinds the camera from the player allowing free movement of the camera.                           | `F4`         |
+| Light Level  | Shows positions with block light level below level 0.                                              | `Numpad1`    |
+| Mob Health   | Shows the health of living entities around the player.                                             | `Numpad2`    |
+| Full Bright  | Causes the world to appear unlit (Does not work with shaders).                                     | `Numpad3`    |
+| Debug        | Only shows up in Minecraft development mode. For debugging and logging various parts of the mod.   | `Numpad0`    |
 
 ## Clips of some of the features
 <p align="center">
