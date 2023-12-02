@@ -6,7 +6,6 @@ import hen676.dragonlite.config.Config;
 import hen676.dragonlite.util.PositionUtil;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.client.input.KeyboardInput;
-import net.minecraft.client.network.ClientConnectionState;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
@@ -21,15 +20,11 @@ public class FreecamEntity extends ClientPlayerEntity {
     private static final ClientPlayNetworkHandler NETWORK_HANDLER = new ClientPlayNetworkHandler(
             DragonLite.MC,
             Objects.requireNonNull(DragonLite.MC.getNetworkHandler()).getConnection(),
-            new ClientConnectionState(
-                    new GameProfile(UUID.randomUUID(), "Freecam"),
-                    DragonLite.MC.getTelemetryManager().createWorldSession(false, null, null),
-                    DragonLite.MC.getNetworkHandler().getRegistryManager(),
-                    DragonLite.MC.getNetworkHandler().getEnabledFeatures(),
-                    DragonLite.MC.getNetworkHandler().getBrand(),
-                    DragonLite.MC.getNetworkHandler().getServerInfo(),
-                    DragonLite.MC.currentScreen
-            )) {
+            DragonLite.MC.)
+            /*
+            DragonLite.MC.getCurrentServerEntry(),
+            new GameProfile(UUID.randomUUID(), "Freecam"),
+            DragonLite.MC.getTelemetryManager().createWorldSession(false, null, null))*/ {
 
         @Override
         public void sendPacket(Packet<?> packet) {

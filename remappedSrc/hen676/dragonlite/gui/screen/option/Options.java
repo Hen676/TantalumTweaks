@@ -85,7 +85,7 @@ public class Options {
             (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
                     (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
                     (value) -> (int) (value * 100.0D)),
-            Codec.doubleRange(0.0D, 1.0D), 1.0D,
+            Codec.doubleRange(0.0D, 1.0D), 0.7D,
             value -> Config.LIGHT_LEVEL_COLOR_RED = value);
     public static final SimpleOption<Double> lightLevelColorGreen = new SimpleOption<>("option.dragonlite.config.light_level_color_green",
             SimpleOption.emptyTooltip(),
@@ -93,7 +93,7 @@ public class Options {
             (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
                     (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
                     (value) -> (int) (value * 100.0D)),
-            Codec.doubleRange(0.0D, 1.0D), 0.0D,
+            Codec.doubleRange(0.0D, 1.0D), 0.1D,
             value -> Config.LIGHT_LEVEL_COLOR_GREEN = value);
     public static final SimpleOption<Double> lightLevelColorBlue = new SimpleOption<>("option.dragonlite.config.light_level_color_blue",
             SimpleOption.emptyTooltip(),
@@ -101,7 +101,7 @@ public class Options {
             (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
                     (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
                     (value) -> (int) (value * 100.0D)),
-            Codec.doubleRange(0.0D, 1.0D), 0.0D,
+            Codec.doubleRange(0.0D, 1.0D), 0.1D,
             value -> Config.LIGHT_LEVEL_COLOR_BLUE = value);
     public static final SimpleOption<Double> lightLevelAlpha = new SimpleOption<>("option.dragonlite.config.light_level_alpha",
             SimpleOption.emptyTooltip(),
@@ -110,7 +110,7 @@ public class Options {
                     (sliderProgressValue) -> (double)sliderProgressValue / 100.0D,
                     (value) -> (int) (value * 100.0D)),
             Codec.doubleRange(0.1D, 1.0D),
-            0.3D,
+            0.5D,
             value -> Config.LIGHT_LEVEL_ALPHA = value);
 
     // Freecam options

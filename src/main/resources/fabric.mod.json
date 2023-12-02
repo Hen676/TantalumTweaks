@@ -21,8 +21,9 @@
     "dragonlite.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.5",
+    "fabricloader": ">=0.15.0",
     "fabric": "*",
-    "minecraft": ">=1.20.0"
+    "fabric-api": ">=0.91.1",
+    "minecraft": ">=1.20.2"
   }
 }
