@@ -44,8 +44,7 @@ public class LightLevelConfigScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context, mouseX, mouseY, delta);
-        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 20, DyeColor.LIGHT_BLUE.getSignColor());
+        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, DyeColor.LIGHT_BLUE.getSignColor());
         super.render(context, mouseX, mouseY, delta);
     }
 

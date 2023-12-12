@@ -14,6 +14,8 @@
 
   "options.dragonlite.config": "DL",
 
+  "option.dragonlite.config.toggle_preview": "Preview",
+
   "options.dragonlite.light_level": "Light Level...",
   "options.dragonlite.hud": "HUD...",
 
