@@ -9,7 +9,6 @@ import hen676.dragonlite.render.HudRenderer;
 import hen676.dragonlite.util.CallbackUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.Entity;

@@ -20,7 +20,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
-@SuppressWarnings("ConstantConditions")
+
 @Environment(EnvType.CLIENT)
 public class HudConfigScreen extends Screen {
     private final Screen parent;
@@ -36,6 +36,9 @@ public class HudConfigScreen extends Screen {
         GridWidget gridWidget = new GridWidget();
         gridWidget.getMainPositioner().marginX(5).marginBottom(4).alignHorizontalCenter();
         GridWidget.Adder adder = gridWidget.createAdder(2);
+
+        if(this.client == null)
+            return;
 
         adder.add(Options.compass.createWidget(this.client.options, 0, 0, 150));
         adder.add(Options.compassPlacement.createWidget(this.client.options, 0, 0, 150));

@@ -1,7 +1,7 @@
 package hen676.dragonlite.mixins.render;
 
-import hen676.dragonlite.config.Config;
 import com.mojang.blaze3d.systems.RenderSystem;
+import hen676.dragonlite.config.Config;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.BackgroundRenderer;

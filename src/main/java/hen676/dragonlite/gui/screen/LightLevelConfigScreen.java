@@ -14,7 +14,6 @@ import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 
-@SuppressWarnings("ConstantConditions")
 @Environment(EnvType.CLIENT)
 public class LightLevelConfigScreen extends Screen {
     private final Screen parent;
@@ -29,6 +28,9 @@ public class LightLevelConfigScreen extends Screen {
         GridWidget gridWidget = new GridWidget();
         gridWidget.getMainPositioner().marginX(5).marginBottom(4).alignHorizontalCenter();
         GridWidget.Adder adder = gridWidget.createAdder(2);
+
+        if(this.client == null)
+            return;
 
         adder.add(new ColorWidget(310,26, Options::getLightLevelColor), 2);
         adder.add(Options.lightLevelColorRed.createWidget(this.client.options, 0, 0, 150));

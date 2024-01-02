@@ -1,15 +1,9 @@
 package hen676.dragonlite.gui.screen;
 
-import hen676.dragonlite.DragonLite;
-import hen676.dragonlite.config.Config;
 import hen676.dragonlite.config.ConfigLoader;
-import hen676.dragonlite.gui.screen.option.HudPlacement;
 import hen676.dragonlite.gui.screen.option.Options;
-import hen676.dragonlite.mixins.gui.InGameHudMixin;
-import hen676.dragonlite.render.HudRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -19,12 +13,9 @@ import net.minecraft.client.gui.widget.SimplePositioningWidget;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 
 import java.util.function.Supplier;
 
-@SuppressWarnings("ConstantConditions")
 @Environment(EnvType.CLIENT)
 public class ConfigScreen extends Screen {
     private static final Text HUD_TEXT = Text.translatable("options.dragonlite.hud");
@@ -41,6 +32,9 @@ public class ConfigScreen extends Screen {
         GridWidget gridWidget = new GridWidget();
         gridWidget.getMainPositioner().marginX(5).marginBottom(4).alignHorizontalCenter();
         GridWidget.Adder adder = gridWidget.createAdder(2);
+
+        if(this.client == null)
+            return;
 
         adder.add(this.createButton(HUD_TEXT, () -> new HudConfigScreen(this)));
         adder.add(this.createButton(LIGHT_LEVEL_TEXT, () -> new LightLevelConfigScreen(this)));
