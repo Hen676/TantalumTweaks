@@ -37,6 +37,7 @@ public class LightLevelConfigScreen extends Screen {
         adder.add(Options.lightLevelColorGreen.createWidget(this.client.options, 0, 0, 150));
         adder.add(Options.lightLevelColorBlue.createWidget(this.client.options, 0, 0, 150));
         adder.add(Options.lightLevelAlpha.createWidget(this.client.options, 0, 0, 150));
+        adder.add(Options.lightLevelSquareSize.createWidget(this.client.options, 0, 0, 150));
         adder.add(ButtonWidget.builder(ScreenTexts.DONE, button -> this.client.setScreen(this.parent)).width(200).build(), 2, adder.copyPositioner().marginTop(6));
 
         gridWidget.refreshPositions();

@@ -20,6 +20,7 @@ public class Config {
     public static double LIGHT_LEVEL_COLOR_RED = 1.0D;
     public static double LIGHT_LEVEL_COLOR_GREEN = 0.0D;
     public static double LIGHT_LEVEL_COLOR_BLUE = 0.0D;
+    public static double LIGHT_LEVEL_SQUARE_SIZE = 0.25D;
 
     // Smokey furnace settings
     public static boolean ENABLE_SMOKEY_FURNACE = true;

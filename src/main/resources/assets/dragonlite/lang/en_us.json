@@ -25,6 +25,7 @@
   "option.dragonlite.config.light_level_color_green": "Green",
   "option.dragonlite.config.light_level_color_blue": "Blue",
   "option.dragonlite.config.light_level_alpha": "Alpha",
+  "option.dragonlite.config.light_level_square_size": "Square Size",
 
   "option.dragonlite.config.zoom_amount": "Zoom Amount",
 

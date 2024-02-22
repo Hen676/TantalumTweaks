@@ -112,11 +112,21 @@ public class Options {
             Codec.doubleRange(0.1D, 1.0D),
             0.3D,
             value -> Config.LIGHT_LEVEL_ALPHA = value);
+    public static final SimpleOption<Double> lightLevelSquareSize = new SimpleOption<>("option.dragonlite.config.light_level_square_size",
+            SimpleOption.emptyTooltip(),
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.light_level_square_size"), (int)(value * 200.0D)),
+            (new SimpleOption.ValidatingIntSliderCallbacks(5, 45)).withModifier(
+                    (sliderProgressValue) -> (double)sliderProgressValue / 100.0D,
+                    (value) -> (int) (value * 100.0D)),
+            Codec.doubleRange(0.05D, 0.45D),
+            0.25D,
+            value -> Config.LIGHT_LEVEL_SQUARE_SIZE = value);
+
 
     // Freecam options
     public static final SimpleOption<Double> freecamFlightSpeed = new SimpleOption<>("option.dragonlite.config.freecam_flight_speed",
             SimpleOption.emptyTooltip(),
-            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.freecam_flight_speed"), (int)(value * 100.0D)),
+            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.freecam_flight_speed"), (int)(value * 200.0D)),
             (new SimpleOption.ValidatingIntSliderCallbacks(10, 100)).withModifier(
                     (sliderProgressValue) -> (double)sliderProgressValue / 100.0D,
                     (value) -> (int) (value * 100.0D)),
@@ -144,6 +154,7 @@ public class Options {
         lightLevelColorGreen.setValue(Config.LIGHT_LEVEL_COLOR_GREEN);
         lightLevelColorBlue.setValue(Config.LIGHT_LEVEL_COLOR_BLUE);
         lightLevelAlpha.setValue(Config.LIGHT_LEVEL_ALPHA);
+        lightLevelSquareSize.setValue(Config.LIGHT_LEVEL_SQUARE_SIZE);
 
         smokeyFurnace.setValue(Config.ENABLE_SMOKEY_FURNACE);
 

@@ -28,7 +28,7 @@ public class DragonLite implements ClientModInitializer {
         Options.Load();
 
         // World render event
-        WorldRenderEvents.AFTER_TRANSLUCENT.register(LightLevelRenderer::render);
+        WorldRenderEvents.BEFORE_DEBUG_RENDER.register(LightLevelRenderer::render);
 
         // Keybindings
         ZoomKeybinding.init();
@@ -48,9 +48,5 @@ public class DragonLite implements ClientModInitializer {
                         ResourcePackActivationType.DEFAULT_ENABLED))
                 .filter(success -> !success)
                 .ifPresent(success -> LOGGER.warn("Could not register built-in resource pack."));
-    }
-
-    public static Identifier makeId(String id) {
-        return new Identifier(MOD_ID, id);
     }
 }

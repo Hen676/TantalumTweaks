@@ -15,6 +15,9 @@
   "entrypoints": {
     "client": [
       "hen676.dragonlite.DragonLite"
+    ],
+    "modmenu": [
+      "hen676.dragonlite.gui.screen.ModMenu"
     ]
   },
   "mixins": [
