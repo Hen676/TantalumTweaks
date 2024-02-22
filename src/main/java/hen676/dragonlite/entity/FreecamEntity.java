@@ -6,6 +6,7 @@ import hen676.dragonlite.config.Config;
 import hen676.dragonlite.util.PositionUtil;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.client.input.KeyboardInput;
+import net.minecraft.client.network.ClientConnectionState;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
@@ -19,11 +20,16 @@ public class FreecamEntity extends ClientPlayerEntity {
     // Cancel sending packets to the server in freecam
     private static final ClientPlayNetworkHandler NETWORK_HANDLER = new ClientPlayNetworkHandler(
             DragonLite.MC,
-            DragonLite.MC.currentScreen,
             Objects.requireNonNull(DragonLite.MC.getNetworkHandler()).getConnection(),
-            DragonLite.MC.getCurrentServerEntry(),
-            new GameProfile(UUID.randomUUID(), "Freecam"),
-            DragonLite.MC.getTelemetryManager().createWorldSession(false, null, null)) {
+            new ClientConnectionState(
+                    new GameProfile(UUID.randomUUID(), "Freecam"),
+                    DragonLite.MC.getTelemetryManager().createWorldSession(false, null, null),
+                    DragonLite.MC.getNetworkHandler().getRegistryManager(),
+                    DragonLite.MC.getNetworkHandler().getEnabledFeatures(),
+                    DragonLite.MC.getNetworkHandler().getBrand(),
+                    DragonLite.MC.getNetworkHandler().getServerInfo(),
+                    DragonLite.MC.currentScreen
+            )) {
 
         @Override
         public void sendPacket(Packet<?> packet) {
@@ -93,6 +99,6 @@ public class FreecamEntity extends ClientPlayerEntity {
     // Add freecam entity to the world
     public void create() {
         if(clientWorld != null)
-            clientWorld.addEntity(getId(), this);
+            clientWorld.addEntity(this);
     }
 }

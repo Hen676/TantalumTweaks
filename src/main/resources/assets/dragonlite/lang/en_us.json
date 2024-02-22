@@ -14,6 +14,8 @@
 
   "options.dragonlite.config": "DL",
 
+  "option.dragonlite.config.toggle_preview": "Preview",
+
   "options.dragonlite.light_level": "Light Level...",
   "options.dragonlite.hud": "HUD...",
 
@@ -23,6 +25,7 @@
   "option.dragonlite.config.light_level_color_green": "Green",
   "option.dragonlite.config.light_level_color_blue": "Blue",
   "option.dragonlite.config.light_level_alpha": "Alpha",
+  "option.dragonlite.config.light_level_square_size": "Square Size",
 
   "option.dragonlite.config.zoom_amount": "Zoom Amount",
 
@@ -50,6 +53,6 @@
   "message.dragonlite.freecam": "Freecam",
   "message.dragonlite.full_bright": "Full Bright",
 
-  "pack.name.dragonlite": "Dragon Lite: Lowered shields",
+  "pack.name.dragonlite": "Dragon Lite: Resource Pack",
   "pack.source.dragonlite": "Dragon Lite"
 }

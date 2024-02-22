@@ -14,7 +14,6 @@ import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 
-@SuppressWarnings("ConstantConditions")
 @Environment(EnvType.CLIENT)
 public class LightLevelConfigScreen extends Screen {
     private final Screen parent;
@@ -30,11 +29,15 @@ public class LightLevelConfigScreen extends Screen {
         gridWidget.getMainPositioner().marginX(5).marginBottom(4).alignHorizontalCenter();
         GridWidget.Adder adder = gridWidget.createAdder(2);
 
+        if(this.client == null)
+            return;
+
         adder.add(new ColorWidget(310,26, Options::getLightLevelColor), 2);
         adder.add(Options.lightLevelColorRed.createWidget(this.client.options, 0, 0, 150));
         adder.add(Options.lightLevelColorGreen.createWidget(this.client.options, 0, 0, 150));
         adder.add(Options.lightLevelColorBlue.createWidget(this.client.options, 0, 0, 150));
         adder.add(Options.lightLevelAlpha.createWidget(this.client.options, 0, 0, 150));
+        adder.add(Options.lightLevelSquareSize.createWidget(this.client.options, 0, 0, 150));
         adder.add(ButtonWidget.builder(ScreenTexts.DONE, button -> this.client.setScreen(this.parent)).width(200).build(), 2, adder.copyPositioner().marginTop(6));
 
         gridWidget.refreshPositions();
@@ -44,8 +47,7 @@ public class LightLevelConfigScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context);
-        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 20, DyeColor.LIGHT_BLUE.getSignColor());
+        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, DyeColor.LIGHT_BLUE.getSignColor());
         super.render(context, mouseX, mouseY, delta);
     }
 

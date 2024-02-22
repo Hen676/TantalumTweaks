@@ -16,7 +16,6 @@ import net.minecraft.util.DyeColor;
 
 import java.util.function.Supplier;
 
-@SuppressWarnings("ConstantConditions")
 @Environment(EnvType.CLIENT)
 public class ConfigScreen extends Screen {
     private static final Text HUD_TEXT = Text.translatable("options.dragonlite.hud");
@@ -33,6 +32,9 @@ public class ConfigScreen extends Screen {
         GridWidget gridWidget = new GridWidget();
         gridWidget.getMainPositioner().marginX(5).marginBottom(4).alignHorizontalCenter();
         GridWidget.Adder adder = gridWidget.createAdder(2);
+
+        if(this.client == null)
+            return;
 
         adder.add(this.createButton(HUD_TEXT, () -> new HudConfigScreen(this)));
         adder.add(this.createButton(LIGHT_LEVEL_TEXT, () -> new LightLevelConfigScreen(this)));
@@ -51,8 +53,7 @@ public class ConfigScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context);
-        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 20, DyeColor.LIGHT_BLUE.getSignColor());
+        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, DyeColor.LIGHT_BLUE.getSignColor());
         super.render(context, mouseX, mouseY, delta);
     }
 
