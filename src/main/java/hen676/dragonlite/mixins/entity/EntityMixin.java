@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
-
     @Inject(method = "changeLookDirection", at = @At("HEAD"), cancellable = true)
     private void updateFreecamLookDirectionThenCancel(double x, double y, CallbackInfo ci) {
         if (FreecamKeybinding.isFreecam() && this.equals(DragonLite.MC.player)) {

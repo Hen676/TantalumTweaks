@@ -36,14 +36,6 @@ public class ColorWidget extends ClickableWidget {
     }
 
     @Override
-    protected void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
-        int x2 = this.x + this.width;
-        int y2 = this.y + this.height;
-        context.fill(this.x, this.y, x2, y2, Color.BLACK.getRGB());
-        context.fill(this.x + 1, this.y + 1, x2 - 1, y2 - 1, this.getColor.get());
-    }
-
-    @Override
     public void setX(int x) {
         this.x = x;
     }
@@ -71,6 +63,14 @@ public class ColorWidget extends ClickableWidget {
     @Override
     public int getHeight() {
         return this.height;
+    }
+
+    @Override
+    protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
+        int x2 = this.x + this.width;
+        int y2 = this.y + this.height;
+        context.fill(this.x, this.y, x2, y2, Color.BLACK.getRGB());
+        context.fill(this.x + 1, this.y + 1, x2 - 1, y2 - 1, this.getColor.get());
     }
 
     @Override

@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -23,6 +24,7 @@ public abstract class SmokerBlockMixin {
         addFurnaceParticles(state, world, pos, random);
     }
 
+    @Unique
     public void addFurnaceParticles(BlockState state, World world, BlockPos pos, Random random) {
         if (state.get(AbstractFurnaceBlock.LIT) && random.nextInt(2) == 0 && Config.ENABLE_SMOKEY_FURNACE) {
             world.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,

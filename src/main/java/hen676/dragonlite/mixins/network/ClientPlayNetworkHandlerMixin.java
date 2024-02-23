@@ -11,7 +11,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayNetworkHandler.class)
 public abstract class ClientPlayNetworkHandlerMixin {
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     // Respawn includes death and changing dimension
     @Inject(method = "onPlayerRespawn", at = @At("HEAD"))
     private void turnOffFreecamOnPlayerRespawn(PlayerRespawnS2CPacket packet, CallbackInfo ci) {

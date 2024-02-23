@@ -13,6 +13,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -20,7 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Environment(EnvType.CLIENT)
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
-
     // Freecam
     @Inject(method = "renderStatusBars", at = @At("HEAD"), cancellable = true)
     private void preventStatusBarRenderOnFreecam(DrawContext context, CallbackInfo ci) {
@@ -47,9 +47,66 @@ public abstract class InGameHudMixin {
     private void renderCompassHud(DrawContext context, float tickDelta, CallbackInfo ci) {
         if (!Config.ENABLE_COMPASS || FreecamKeybinding.isFreecam()) return;
 
+<<<<<<< Updated upstream
         if (DragonLite.MC.cameraEntity == null || DragonLite.MC.options.hudHidden || DragonLite.MC.currentScreen instanceof HudConfigScreen) return;
         Entity camera = DragonLite.MC.cameraEntity;
 
         HudRenderer.draw(DragonLite.MC, camera.getHorizontalFacing(), camera.getBlockPos(), context, HudPlacement.byId(Config.COMPASS_PLACEMENT));
+=======
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client.cameraEntity == null || client.getDebugHud().shouldShowDebugHud()) return;
+        Entity camera = client.cameraEntity;
+
+        Direction direction = camera.getHorizontalFacing();
+        List<String> list = new ArrayList<>();
+        String compass = switch (direction) {
+            case NORTH -> "Facing: North (-Z)";
+            case SOUTH -> "Facing: South (+Z)";
+            case WEST -> "Facing: West (-X)";
+            case EAST -> "Facing: East (+X)";
+            default -> "Invalid direction";
+        };
+
+        if (DragonLite.DEBUG) {
+            float degrees = MathHelper.wrapDegrees(camera.getYaw());
+            compass += " (" + degrees + ")";
+        }
+        BlockPos pos = camera.getBlockPos();
+        list.add(String.format("XYZ: %s, %s, %s",pos.getX(),pos.getY(),pos.getZ()));
+        list.add(compass);
+
+        draw(context, client.textRenderer, list, HudPlacement.byId(Config.COMPASS_PLACEMENT));
+    }
+
+    @Unique
+    private void draw(DrawContext context, TextRenderer textRenderer, List<String> list, HudPlacement placement)
+    {
+        if (placement == HudPlacement.TOP_RIGHT || placement == HudPlacement.TOP_LEFT) {
+            int y = 2;
+            for (String s : list) {
+                draw(context, textRenderer, s, y, placement);
+                y += 10;
+            }
+        }
+        else {
+            Collections.reverse(list);
+            int y = context.getScaledWindowHeight() - 12;
+            for (String s : list) {
+                draw(context, textRenderer, s, y, placement);
+                y -= 10;
+            }
+        }
+    }
+
+    @Unique
+    private void draw(DrawContext context, TextRenderer textRenderer, String s, int y, HudPlacement placement)
+    {
+        //stack.scale((float) Config.COMPASS_SCALE, (float)Config.COMPASS_SCALE, 1);
+
+        int k = textRenderer.getWidth(s);
+        int x = (placement == HudPlacement.TOP_LEFT || placement ==  HudPlacement.BOTTOM_LEFT) ? 2 : context.getScaledWindowWidth() - (4 + k);
+        context.fill(x, y, x + k + 2, y + 10, -1873784752);
+        context.drawText(textRenderer, s, x + 1, y + 1, Options.getCompassColor(), true);
+>>>>>>> Stashed changes
     }
 }
