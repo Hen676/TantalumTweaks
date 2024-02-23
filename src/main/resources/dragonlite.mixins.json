@@ -18,7 +18,6 @@
   "client": [
     "MinecraftClientMixin",
     "gui.InGameHudMixin",
-    "network.ClientCommonNetworkHandlerMixin",
     "network.ClientPlayNetworkHandlerMixin",
     "render.CameraMixin",
     "render.GameRendererMixin",

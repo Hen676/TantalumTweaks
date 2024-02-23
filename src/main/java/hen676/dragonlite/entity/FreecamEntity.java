@@ -17,17 +17,8 @@ import java.util.UUID;
 
 public class FreecamEntity extends ClientPlayerEntity {
 
-    // Cancel sending packets to the server in freecam
-    /*
     private static final ClientPlayNetworkHandler NETWORK_HANDLER = new ClientPlayNetworkHandler(
             DragonLite.MC,
-<<<<<<< Updated upstream
-=======
-            Objects.requireNonNull(DragonLite.MC.getNetworkHandler()).getConnection(),
-            new ClientConnectionState(
-                    new GameProfile(UUID.randomUUID(), "Freecam"),
-            DragonLite.MC.currentScreen,
->>>>>>> Stashed changes
             Objects.requireNonNull(DragonLite.MC.getNetworkHandler()).getConnection(),
             new ClientConnectionState(
                     new GameProfile(UUID.randomUUID(), "Freecam"),
@@ -42,12 +33,12 @@ public class FreecamEntity extends ClientPlayerEntity {
         @Override
         public void sendPacket(Packet<?> packet) {
         }
-    };*/
+    };
 
     public FreecamEntity(int id, PositionUtil position) {
         super(DragonLite.MC,
                 Objects.requireNonNull(DragonLite.MC.world),
-                Objects.requireNonNull(DragonLite.MC.getNetworkHandler()),
+                NETWORK_HANDLER,
                 Objects.requireNonNull(DragonLite.MC.player).getStatHandler(),
                 DragonLite.MC.player.getRecipeBook(),
                 false,
@@ -106,7 +97,7 @@ public class FreecamEntity extends ClientPlayerEntity {
 
     // Add freecam entity to the world
     public void create() {
-        if(clientWorld != null)
+        if (clientWorld != null)
             clientWorld.addEntity(this);
     }
 }

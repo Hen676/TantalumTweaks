@@ -53,12 +53,8 @@ public class ConfigScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-<<<<<<< Updated upstream
-        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, DyeColor.LIGHT_BLUE.getSignColor());
-=======
         this.renderBackground(context, mouseX, mouseY, delta);
         context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 20, DyeColor.LIGHT_BLUE.getSignColor());
->>>>>>> Stashed changes
         super.render(context, mouseX, mouseY, delta);
     }
 

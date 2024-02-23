@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientConnection.class)
 public abstract class ClientConnectionMixin {
-
     @Inject(method = "handleDisconnection", at = @At("HEAD"))
     private void turnOffFreecamOnDisconnection(CallbackInfo ci) {
         if(FreecamKeybinding.isFreecam())
