@@ -1,10 +1,12 @@
 package hen676.dragonlite;
 
+import hen676.dragonlite.command.Commands;
 import hen676.dragonlite.config.ConfigLoader;
 import hen676.dragonlite.gui.screen.option.Options;
 import hen676.dragonlite.keybinds.*;
 import hen676.dragonlite.render.LightLevelRenderer;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
@@ -29,6 +31,9 @@ public class DragonLite implements ClientModInitializer {
 
         // World render event
         WorldRenderEvents.BEFORE_DEBUG_RENDER.register(LightLevelRenderer::render);
+
+        // Commands
+        ClientCommandRegistrationCallback.EVENT.register(Commands::init);
 
         // Keybindings
         ZoomKeybinding.init();
