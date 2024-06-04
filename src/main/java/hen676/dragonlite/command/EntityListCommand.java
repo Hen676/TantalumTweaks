@@ -50,9 +50,7 @@ public class EntityListCommand {
 
 
         source.sendFeedback(Text.literal("List of entities from %s distance from player".formatted(distance)));
-        entityNames.forEach((text, amount) -> {
-            source.sendFeedback(text.copy().append(" - ").append(String.valueOf(amount)));
-        });
+        entityNames.forEach((text, amount) -> source.sendFeedback(text.copy().append(" - ").append(String.valueOf(amount))));
         return 1;
     }
 }
