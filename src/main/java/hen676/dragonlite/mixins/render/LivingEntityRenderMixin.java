@@ -25,6 +25,7 @@ public abstract class LivingEntityRenderMixin<T extends LivingEntity, M extends 
         super(ctx);
     }
 
+    // TODO fix
     @Inject(method = "render*", at=@At(value = "RETURN"))
     private void render(T livingEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, CallbackInfo ci) {
         if (!HealthBarKeybinding.isHealthBar()) return;

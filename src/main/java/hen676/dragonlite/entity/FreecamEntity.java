@@ -13,6 +13,8 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.packet.Packet;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -29,9 +31,11 @@ public class FreecamEntity extends ClientPlayerEntity {
                     DragonLite.MC.getNetworkHandler().getBrand(),
                     DragonLite.MC.getNetworkHandler().getServerInfo(),
                     DragonLite.MC.currentScreen,
-                    null, //TODO:: Is this fine to stay null??
+                    new HashMap<>(), //TODO:: Check this is fine (serverCookies)
                     DragonLite.MC.inGameHud.getChatHud().toChatState(),
-                    false //TODO:: OK if this stays false??
+                    false,
+                    Map.of(), //TODO:: Check this is fine (customReportDetails)
+                    DragonLite.MC.getNetworkHandler().getServerLinks()
             )) {
 
         @Override

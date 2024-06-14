@@ -87,7 +87,7 @@ public class LightLevelRenderer {
                 .color((float)Config.LIGHT_LEVEL_COLOR_RED,
                         (float)Config.LIGHT_LEVEL_COLOR_GREEN,
                         (float)Config.LIGHT_LEVEL_COLOR_BLUE,
-                        (float)Config.LIGHT_LEVEL_ALPHA).next();
+                        (float)Config.LIGHT_LEVEL_ALPHA);
     }
 
     public static void render(WorldRenderContext worldRenderContext) {

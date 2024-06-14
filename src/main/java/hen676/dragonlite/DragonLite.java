@@ -47,7 +47,7 @@ public class DragonLite implements ClientModInitializer {
         // Built-in resource pack
         FabricLoader.getInstance().getModContainer(MOD_ID)
                 .map(modContainer -> ResourceManagerHelper.registerBuiltinResourcePack(
-                        new Identifier(MOD_ID, MOD_ID),
+                        Identifier.of(MOD_ID, MOD_ID),
                         modContainer,
                         Text.translatable("pack.name.dragonlite"),
                         ResourcePackActivationType.DEFAULT_ENABLED))
