@@ -33,6 +33,7 @@ public class FullBrightKeybinding {
                 if (client.world == null)
                     return;
                 toggle = !toggle;
+                FreecamKeybinding.wasFullBrightOn = toggle;
                 if (client.player != null) {
                     Text text = Text.translatable("message.dragonlite.full_bright").append(": ");
                     if (toggle)

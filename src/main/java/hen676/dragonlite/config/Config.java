@@ -30,4 +30,9 @@ public class Config {
 
     // Full bright settings
     public static boolean ENABLE_FULL_BRIGHT_ON_FREECAM = true;
+
+    // Recipe Book settings
+    public static boolean ON_INIT_OPEN_RECIPE_BOOK_FOR_CRAFTING = true;
+    public static boolean ON_INIT_OPEN_RECIPE_BOOK_FOR_INVENTORY = false;
+    public static boolean ENABLE_CUSTOM_SPLIT_RECIPE_BOOK_FOR_CRAFTING = true;
 }

@@ -57,11 +57,10 @@ public class HudConfigScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        super.render(context, mouseX, mouseY, delta);
         if(EnablePreview)
             HudRenderer.draw(DragonLite.MC, Direction.NORTH, BlockPos.ORIGIN, context, HudPlacement.byId(Config.COMPASS_PLACEMENT));
-        this.renderBackground(context, mouseX, mouseY, delta);
         context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 20, DyeColor.LIGHT_BLUE.getSignColor());
-        super.render(context, mouseX, mouseY, delta);
     }
 
     @Override

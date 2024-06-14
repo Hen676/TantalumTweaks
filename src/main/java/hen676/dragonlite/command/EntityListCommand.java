@@ -2,25 +2,32 @@ package hen676.dragonlite.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.argument.ItemPredicateArgumentType;
+import net.minecraft.server.command.ClearCommand;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class EntityListCommand {
 
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandRegistryAccess commandRegistryAccess) {
-        dispatcher
-                .register(ClientCommandManager.literal("list_entities")
-                        .executes(context -> listEntitiesAroundPlayer(context.getSource(), 5))
-                        .then(ClientCommandManager.argument("distance", IntegerArgumentType.integer()))
-                        .executes(context -> listEntitiesAroundPlayer(context.getSource(), IntegerArgumentType.getInteger(context, "distance"))));
+        dispatcher.register(ClientCommandManager.literal("list_entities")
+                .executes(context -> listEntitiesAroundPlayer(context.getSource(), 5))
+                .then(ClientCommandManager.argument("distance", IntegerArgumentType.integer()))
+                .executes(context -> listEntitiesAroundPlayer(context.getSource(), IntegerArgumentType.getInteger(context, "distance"))));
     }
 
     public static int listEntitiesAroundPlayer(FabricClientCommandSource source, int distance) {

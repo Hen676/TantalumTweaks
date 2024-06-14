@@ -5,6 +5,7 @@ import hen676.dragonlite.DragonLite;
 import hen676.dragonlite.config.Config;
 import hen676.dragonlite.util.PositionUtil;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.input.KeyboardInput;
 import net.minecraft.client.network.ClientConnectionState;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -27,7 +28,10 @@ public class FreecamEntity extends ClientPlayerEntity {
                     DragonLite.MC.getNetworkHandler().getEnabledFeatures(),
                     DragonLite.MC.getNetworkHandler().getBrand(),
                     DragonLite.MC.getNetworkHandler().getServerInfo(),
-                    DragonLite.MC.currentScreen
+                    DragonLite.MC.currentScreen,
+                    null, //TODO:: Is this fine to stay null??
+                    DragonLite.MC.inGameHud.getChatHud().toChatState(),
+                    false //TODO:: OK if this stays false??
             )) {
 
         @Override

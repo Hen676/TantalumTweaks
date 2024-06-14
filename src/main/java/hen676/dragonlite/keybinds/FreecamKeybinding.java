@@ -26,7 +26,7 @@ import org.lwjgl.glfw.GLFW;
 public class FreecamKeybinding {
     private static KeyBinding keyBindingFreecam;
     private static boolean toggle = false;
-    private static boolean wasFullBrightOn = false;
+    public static boolean wasFullBrightOn = false;
     private static FreecamEntity freecamEntity;
     private static Perspective orignalPerspective;
 
@@ -46,11 +46,11 @@ public class FreecamKeybinding {
     }
 
     public static void toggleFreecam(MinecraftClient client) {
-        wasFullBrightOn = FullBrightKeybinding.toggle;
         toggle = !toggle;
-
-        if(toggle)
+        if(toggle) {
+            wasFullBrightOn = FullBrightKeybinding.toggle;
             onEnableFreeCamera(client);
+        }
         else
             onDisableFreeCamera(client);
     }
