@@ -26,39 +26,39 @@ public abstract class MinecraftClientMixin {
     @Shadow @Final public GameRenderer gameRenderer;
 
     @Inject(method = "tick", at = @At("HEAD"))
-        private void preventPlayerControlOnFreecam(CallbackInfo ci) {
-                if (FreecamKeybinding.isFreecam()) {
-                        if (this.player != null && this.player.input instanceof KeyboardInput) {
-                                Input input = new Input();
-                                input.sneaking = this.player.input.sneaking;
-                                this.player.input = input;
-                        }
-                        this.gameRenderer.setRenderHand(false);
-                }
-        }
+    private void preventPlayerControlOnFreecam(CallbackInfo ci) {
+            if (FreecamKeybinding.isFreecam()) {
+                    if (this.player != null && this.player.input instanceof KeyboardInput) {
+                            Input input = new Input();
+                            input.sneaking = this.player.input.sneaking;
+                            this.player.input = input;
+                    }
+                    this.gameRenderer.setRenderHand(false);
+            }
+    }
 
-        @Inject(method = "doAttack", at = @At("HEAD"), cancellable = true)
-        private void preventAttackOnFreecam(CallbackInfoReturnable<Boolean> cir) {
-                CallbackUtil.FreecamCancel(cir);
-        }
+    @Inject(method = "doAttack", at = @At("HEAD"), cancellable = true)
+    private void preventAttackOnFreecam(CallbackInfoReturnable<Boolean> cir) {
+            CallbackUtil.FreecamCancel(cir);
+    }
 
-        @Inject(method = "doItemPick", at = @At("HEAD"), cancellable = true)
-        private void preventItemPickOnFreecam(CallbackInfo ci) {
-                CallbackUtil.FreecamCancel(ci);
-        }
+    @Inject(method = "doItemPick", at = @At("HEAD"), cancellable = true)
+    private void preventItemPickOnFreecam(CallbackInfo ci) {
+            CallbackUtil.FreecamCancel(ci);
+    }
 
-        @Inject(method = "handleBlockBreaking", at = @At("HEAD"), cancellable = true)
-        private void preventBreakBlocksOnFreecam(CallbackInfo ci) {
-                CallbackUtil.FreecamCancel(ci);
-        }
+    @Inject(method = "handleBlockBreaking", at = @At("HEAD"), cancellable = true)
+    private void preventBreakBlocksOnFreecam(CallbackInfo ci) {
+            CallbackUtil.FreecamCancel(ci);
+    }
 
-        @Inject(method = "handleInputEvents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/KeyBinding;wasPressed()Z", ordinal = 2), cancellable = true)
-        private void preventHotbarKeysOnFreecam(CallbackInfo ci) {
-                CallbackUtil.FreecamCancel(ci);
-        }
+    @Inject(method = "handleInputEvents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/KeyBinding;wasPressed()Z", ordinal = 2), cancellable = true)
+    private void preventHotbarKeysOnFreecam(CallbackInfo ci) {
+            CallbackUtil.FreecamCancel(ci);
+    }
 
-        @Inject(method = "handleInputEvents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/KeyBinding;wasPressed()Z", ordinal = 0), cancellable = true)
-        private void preventPerspectiveChangeOnFreecam(CallbackInfo ci) {
+    @Inject(method = "handleInputEvents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/KeyBinding;wasPressed()Z", ordinal = 0), cancellable = true)
+    private void preventPerspectiveChangeOnFreecam(CallbackInfo ci) {
                 CallbackUtil.FreecamCancel(ci);
         }
 }

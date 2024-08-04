@@ -5,18 +5,18 @@ import hen676.dragonlite.DragonLite;
 import hen676.dragonlite.config.Config;
 import hen676.dragonlite.util.PositionUtil;
 import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.input.KeyboardInput;
 import net.minecraft.client.network.ClientConnectionState;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.network.DisconnectionInfo;
+import net.minecraft.network.NetworkPhase;
+import net.minecraft.network.listener.ClientPacketListener;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.server.ServerLinks;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class FreecamEntity extends ClientPlayerEntity {
 
@@ -29,13 +29,13 @@ public class FreecamEntity extends ClientPlayerEntity {
                     DragonLite.MC.getNetworkHandler().getRegistryManager(),
                     DragonLite.MC.getNetworkHandler().getEnabledFeatures(),
                     DragonLite.MC.getNetworkHandler().getBrand(),
-                    DragonLite.MC.getNetworkHandler().getServerInfo(),
+                    DragonLite.MC.getCurrentServerEntry(),
                     DragonLite.MC.currentScreen,
-                    new HashMap<>(), //TODO:: Check this is fine (serverCookies)
+                    Collections.emptyMap(),
                     DragonLite.MC.inGameHud.getChatHud().toChatState(),
                     false,
-                    Map.of(), //TODO:: Check this is fine (customReportDetails)
-                    DragonLite.MC.getNetworkHandler().getServerLinks()
+                    Collections.emptyMap(),
+                    ServerLinks.EMPTY
             )) {
 
         @Override

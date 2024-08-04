@@ -1,5 +1,4 @@
 package hen676.dragonlite.gui.screen;
-/* TODO Re-add mod menu
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import net.fabricmc.api.EnvType;
@@ -12,4 +11,4 @@ public class ModMenu implements ModMenuApi {
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return ConfigScreen::new;
     }
-}*/
+}

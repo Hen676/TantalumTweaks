@@ -17,7 +17,7 @@ public class PositionUtil {
 
     public PositionUtil(Camera camera) {
         x = camera.getPos().x;
-        y = camera.getPos().y; //TODO:: Add height to make camera not clip in character model
+        y = camera.getPos().y;
         z = camera.getPos().z;
         setRotation(camera.getYaw(), camera.getPitch());
     }

@@ -27,7 +27,7 @@ public abstract class WorldRendererMixin {
     private void renderPlayerOnFreecam(RenderTickCounter tickCounter, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, Matrix4f matrix4f2, CallbackInfo ci) {
         if (FreecamKeybinding.isFreecam()) {
             Vec3d cameraPos = camera.getPos();
-            renderEntity(client.player, cameraPos.x, cameraPos.y, cameraPos.z, tickCounter.getTickDelta(false), new MatrixStack(), bufferBuilders.getEntityVertexConsumers());//TODO:: Pull matrix stack????
+            renderEntity(client.player, cameraPos.x, cameraPos.y, cameraPos.z, tickCounter.getTickDelta(false), new MatrixStack(), bufferBuilders.getEntityVertexConsumers());
         }
     }
 

@@ -6,6 +6,6 @@ import net.minecraft.command.CommandRegistryAccess;
 
 public class Commands {
     public static void init(CommandDispatcher<FabricClientCommandSource> fabricClientCommandSourceCommandDispatcher, CommandRegistryAccess commandRegistryAccess) {
-        EntityListCommand.register(fabricClientCommandSourceCommandDispatcher, commandRegistryAccess);
+        EntityListCommand.register(fabricClientCommandSourceCommandDispatcher);
     }
 }

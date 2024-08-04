@@ -4,7 +4,7 @@
   "package": "hen676.dragonlite.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "OptionsScreenMixin",
+    "gui.screen.OptionsScreenMixin",
     "block.AbstractBlockStateMixin",
     "block.BlastFurnaceBlockMixin",
     "block.FurnaceBlockMixin",
