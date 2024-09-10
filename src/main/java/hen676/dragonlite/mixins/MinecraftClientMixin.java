@@ -39,26 +39,26 @@ public abstract class MinecraftClientMixin {
 
     @Inject(method = "doAttack", at = @At("HEAD"), cancellable = true)
     private void preventAttackOnFreecam(CallbackInfoReturnable<Boolean> cir) {
-            CallbackUtil.FreecamCancel(cir);
+            CallbackUtil.CancelIfFreecamOn(cir);
     }
 
     @Inject(method = "doItemPick", at = @At("HEAD"), cancellable = true)
     private void preventItemPickOnFreecam(CallbackInfo ci) {
-            CallbackUtil.FreecamCancel(ci);
+            CallbackUtil.CancelIfFreecamOn(ci);
     }
 
     @Inject(method = "handleBlockBreaking", at = @At("HEAD"), cancellable = true)
     private void preventBreakBlocksOnFreecam(CallbackInfo ci) {
-            CallbackUtil.FreecamCancel(ci);
+            CallbackUtil.CancelIfFreecamOn(ci);
     }
 
     @Inject(method = "handleInputEvents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/KeyBinding;wasPressed()Z", ordinal = 2), cancellable = true)
     private void preventHotbarKeysOnFreecam(CallbackInfo ci) {
-            CallbackUtil.FreecamCancel(ci);
+            CallbackUtil.CancelIfFreecamOn(ci);
     }
 
     @Inject(method = "handleInputEvents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/KeyBinding;wasPressed()Z", ordinal = 0), cancellable = true)
     private void preventPerspectiveChangeOnFreecam(CallbackInfo ci) {
-                CallbackUtil.FreecamCancel(ci);
+                CallbackUtil.CancelIfFreecamOn(ci);
         }
 }

@@ -17,30 +17,12 @@ public class Options {
     public static final SimpleOption<Boolean> compass = SimpleOption.ofBoolean("option.dragonlite.config.enable_compass",
             false,
             value -> Config.ENABLE_COMPASS = value);
-    public static final SimpleOption<Double> compassColorRed = new SimpleOption<>("option.dragonlite.config.compass_color_red",
-            SimpleOption.emptyTooltip(),
-            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.compass_color_red"), (int) (value * 100.0D)),
-            (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
-                    (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
-                    (value) -> (int) (value * 100.0D)),
-            Codec.doubleRange(0.0D, 1.0D), 0.7D,
-            value -> Config.COMPASS_COLOR_RED = value);
-    public static final SimpleOption<Double> compassColorGreen = new SimpleOption<>("option.dragonlite.config.compass_color_green",
-            SimpleOption.emptyTooltip(),
-            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.compass_color_green"), (int) (value * 100.0D)),
-            (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
-                    (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
-                    (value) -> (int) (value * 100.0D)),
-            Codec.doubleRange(0.0D, 1.0D), 0.1D,
-            value -> Config.COMPASS_COLOR_GREEN = value);
-    public static final SimpleOption<Double> compassColorBlue = new SimpleOption<>("option.dragonlite.config.compass_color_blue",
-            SimpleOption.emptyTooltip(),
-            (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.compass_color_blue"), (int) (value * 100.0D)),
-            (new SimpleOption.ValidatingIntSliderCallbacks(0, 100)).withModifier(
-                    (sliderProgressValue) -> (double) sliderProgressValue / 100.0D,
-                    (value) -> (int) (value * 100.0D)),
-            Codec.doubleRange(0.0D, 1.0D), 0.1D,
-            value -> Config.COMPASS_COLOR_BLUE = value);
+    public static final SimpleOption<Boolean> compassBackground = SimpleOption.ofBoolean("option.dragonlite.config.compass_background",
+            false,
+            value -> Config.COMPASS_BACKGROUND = value);
+    public static final SimpleOption<Boolean> compassShadow = SimpleOption.ofBoolean("option.dragonlite.config.compass_shadow",
+            true,
+            value -> Config.COMPASS_SHADOW = value);
     public static final SimpleOption<HudPlacement> compassPlacement = new SimpleOption<>("option.dragonlite.config.compass_placement",
             SimpleOption.emptyTooltip(),
             (optionText, value) -> Text.translatable("option.dragonlite.config." + value.toString().toLowerCase()),
@@ -70,6 +52,7 @@ public class Options {
 
     // Smokey furnace option
     public static final SimpleOption<Boolean> smokeyFurnace = SimpleOption.ofBoolean("option.dragonlite.config.enable_smokey_furnace",
+            SimpleOption.constantTooltip(Text.translatable("option.dragonlite.config.enable_smokey_furnace.tooltip")),
             true,
             value -> Config.ENABLE_SMOKEY_FURNACE = value);
 
@@ -113,7 +96,7 @@ public class Options {
             0.3D,
             value -> Config.LIGHT_LEVEL_ALPHA = value);
     public static final SimpleOption<Double> lightLevelSquareSize = new SimpleOption<>("option.dragonlite.config.light_level_square_size",
-            SimpleOption.emptyTooltip(),
+            SimpleOption.constantTooltip(Text.translatable("option.dragonlite.config.light_level_square_size.tooltip")),
             (optionText, value) -> Text.translatable("options.percent_value", Text.translatable("option.dragonlite.config.light_level_square_size"), (int)(value * 200.0D)),
             (new SimpleOption.ValidatingIntSliderCallbacks(5, 45)).withModifier(
                     (sliderProgressValue) -> (double)sliderProgressValue / 100.0D,
@@ -139,32 +122,29 @@ public class Options {
             true,
             value -> Config.ENABLE_FULL_BRIGHT_ON_FREECAM = value);
 
+    // Tooltip durability
+    public static final SimpleOption<Boolean> durabilityTooltip = SimpleOption.ofBoolean("option.dragonlite.config.durability_tooltip",
+            SimpleOption.constantTooltip(Text.translatable("option.dragonlite.config.durability_tooltip.tooltip")),
+            true,
+            value -> Config.ENABLE_DURABILITY_TOOLTIP = value);
+
 
     public static void Load() {
         reduceFog.setValue(Config.ENABLE_REDUCED_FOG);
-
         compass.setValue(Config.ENABLE_COMPASS);
         compassPlacement.setValue(HudPlacement.byId(Config.COMPASS_PLACEMENT));
-        compassColorRed.setValue(Config.COMPASS_COLOR_RED);
-        compassColorGreen.setValue(Config.COMPASS_COLOR_GREEN);
-        compassColorBlue.setValue(Config.COMPASS_COLOR_BLUE);
+        compassShadow.setValue(Config.COMPASS_SHADOW);
+        compassBackground.setValue(Config.COMPASS_BACKGROUND);
         compassScale.setValue(Config.COMPASS_SCALE);
-
         lightLevelColorRed.setValue(Config.LIGHT_LEVEL_COLOR_RED);
         lightLevelColorGreen.setValue(Config.LIGHT_LEVEL_COLOR_GREEN);
         lightLevelColorBlue.setValue(Config.LIGHT_LEVEL_COLOR_BLUE);
         lightLevelAlpha.setValue(Config.LIGHT_LEVEL_ALPHA);
         lightLevelSquareSize.setValue(Config.LIGHT_LEVEL_SQUARE_SIZE);
-
         smokeyFurnace.setValue(Config.ENABLE_SMOKEY_FURNACE);
-
         freecamFlightSpeed.setValue(Config.FREECAM_FLIGHT_SPEED);
-
         fullBrightOnFreecam.setValue(Config.ENABLE_FULL_BRIGHT_ON_FREECAM);
-    }
-
-    public static int getCompassColor() {
-        return new Color((float)Config.COMPASS_COLOR_RED, (float)Config.COMPASS_COLOR_GREEN, (float)Config.COMPASS_COLOR_BLUE).getRGB();
+        durabilityTooltip.setValue(Config.ENABLE_DURABILITY_TOOLTIP);
     }
 
     public static int getLightLevelColor() {

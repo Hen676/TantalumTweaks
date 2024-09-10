@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PlayerInventoryMixin {
     @Inject(method = "scrollInHotbar", at = @At("HEAD"), cancellable = true)
     private void preventScrollInHotbarOnFreecam(double scrollAmount, CallbackInfo ci) {
-        CallbackUtil.FreecamCancel(ci);
+        CallbackUtil.CancelIfFreecamOn(ci);
     }
 }

@@ -1,26 +1,31 @@
 package hen676.dragonlite.gui.screen;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import hen676.dragonlite.DragonLite;
 import hen676.dragonlite.config.ConfigLoader;
 import hen676.dragonlite.gui.screen.option.Options;
+import hen676.dragonlite.gui.widget.ColorWidget;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.ScreenRect;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.EmptyWidget;
-import net.minecraft.client.gui.widget.GridWidget;
-import net.minecraft.client.gui.widget.SimplePositioningWidget;
+import net.minecraft.client.gui.screen.world.CreateWorldScreen;
+import net.minecraft.client.gui.tab.GridScreenTab;
+import net.minecraft.client.gui.tab.TabManager;
+import net.minecraft.client.gui.widget.*;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
-import net.minecraft.util.DyeColor;
 
-import java.util.function.Supplier;
-
-@Environment(EnvType.CLIENT)
 public class ConfigScreen extends Screen {
-    private static final Text HUD_TEXT = Text.translatable("options.dragonlite.hud");
-    private static final Text LIGHT_LEVEL_TEXT = Text.translatable("options.dragonlite.light_level");
     private final Screen parent;
+    private final TabManager tabManager = new TabManager(this::addDrawableChild, this::remove);
+    private TabNavigationWidget tabNavigation;
+    private final ThreePartsLayoutWidget layout = new ThreePartsLayoutWidget(this);
+    private static final int BUTTON_WIDTH_COL_1 = 210;
+    @SuppressWarnings("unused")
+    private static final int BUTTON_WIDTH_COL_2 = 150;
+    private static final int BUTTON_WIDTH_COL_3 = 100;
 
     public ConfigScreen(Screen parent) {
         super(Text.translatable("screen.dragonlite.config.title"));
@@ -29,32 +34,44 @@ public class ConfigScreen extends Screen {
 
     @Override
     protected void init() {
-        GridWidget gridWidget = new GridWidget();
-        gridWidget.getMainPositioner().marginX(5).marginBottom(4).alignHorizontalCenter();
-        GridWidget.Adder adder = gridWidget.createAdder(2);
+        this.tabNavigation = TabNavigationWidget.builder(this.tabManager, this.width).tabs(new GeneralTab(), new HudTab(), new LightLevelTab()).build();
+        this.addDrawableChild(this.tabNavigation);
+        DirectionalLayoutWidget directionalLayoutWidget = this.layout.addFooter(DirectionalLayoutWidget.horizontal().spacing(8));
+        directionalLayoutWidget.add(ButtonWidget.builder(ScreenTexts.DONE, button -> this.close()).build());
+        this.layout.forEachChild(child -> {
+            child.setNavigationOrder(1);
+            this.addDrawableChild(child);
+        });
+        this.tabNavigation.selectTab(0, false);
+        this.initTabNavigation();
+    }
 
-        if(this.client == null)
+    @Override
+    protected void initTabNavigation() {
+        if (this.tabNavigation == null) {
             return;
-
-        adder.add(this.createButton(HUD_TEXT, () -> new HudConfigScreen(this)));
-        adder.add(this.createButton(LIGHT_LEVEL_TEXT, () -> new LightLevelConfigScreen(this)));
-        adder.add(EmptyWidget.ofHeight(26), 2);
-        adder.add(Options.reduceFog.createWidget(this.client.options, 0, 0, 150));
-        adder.add(Options.smokeyFurnace.createWidget(this.client.options, 0, 0, 150));
-        adder.add(Options.zoomLevel.createWidget(this.client.options, 0, 0, 150));
-        adder.add(Options.fullBrightOnFreecam.createWidget(this.client.options, 0, 0, 150));
-        adder.add(Options.freecamFlightSpeed.createWidget(this.client.options, 0, 0, 150));
-        adder.add(ButtonWidget.builder(ScreenTexts.DONE, button -> this.client.setScreen(this.parent)).width(200).build(), 2, adder.copyPositioner().marginTop(6));
-
-        gridWidget.refreshPositions();
-        SimplePositioningWidget.setPos(gridWidget, 0, this.height / 6 - 12, this.width, this.height, 0.5f, 0.0f);
-        gridWidget.forEachChild(this::addDrawableChild);
+        }
+        this.tabNavigation.setWidth(this.width);
+        this.tabNavigation.init();
+        int i = this.tabNavigation.getNavigationFocus().getBottom();
+        ScreenRect screenRect = new ScreenRect(0, i, this.width, this.height - this.layout.getFooterHeight() - i);
+        this.tabManager.setTabArea(screenRect);
+        this.layout.setHeaderHeight(i);
+        this.layout.refreshPositions();
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
-        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 20, DyeColor.LIGHT_BLUE.getSignColor());
+        RenderSystem.enableBlend();
+        context.drawTexture(Screen.FOOTER_SEPARATOR_TEXTURE, 0, this.height - this.layout.getFooterHeight() - 2, 0.0f, 0.0f, this.width, 2, 32, 2);
+        RenderSystem.disableBlend();
+    }
+
+    @Override
+    protected void renderDarkening(DrawContext context) {
+        context.drawTexture(CreateWorldScreen.TAB_HEADER_BACKGROUND_TEXTURE, 0, 0, 0.0f, 0.0f, this.width, this.layout.getHeaderHeight(), 16, 16);
+        this.renderDarkening(context, 0, this.layout.getHeaderHeight(), this.width, this.height);
     }
 
     @Override
@@ -62,9 +79,50 @@ public class ConfigScreen extends Screen {
         ConfigLoader.createOrSaveConfig();
     }
 
-    private ButtonWidget createButton(Text message, Supplier<Screen> screenSupplier) {
-        return ButtonWidget.builder(message, button -> {
-            this.client.setScreen(screenSupplier.get());
-        }).build();
+    @Override
+    public void close() {
+        assert this.client != null;
+        this.client.setScreen(this.parent);
+    }
+
+    @Environment(value= EnvType.CLIENT)
+    public static class GeneralTab extends GridScreenTab {
+        public GeneralTab() {
+            super(Text.translatable("screen.dragonlite.config.title"));
+            GridWidget.Adder adder = this.grid.setColumnSpacing(8).setRowSpacing(4).createAdder(1);
+            adder.add(Options.reduceFog.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
+            adder.add(Options.smokeyFurnace.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
+            adder.add(Options.zoomLevel.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
+            adder.add(Options.fullBrightOnFreecam.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
+            adder.add(Options.freecamFlightSpeed.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
+            adder.add(Options.durabilityTooltip.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
+        }
+    }
+
+    @Environment(value=EnvType.CLIENT)
+    public static class HudTab extends GridScreenTab {
+        public HudTab() {
+            super(Text.translatable("screen.dragonlite.hud_config.title"));
+            GridWidget.Adder adder = this.grid.setColumnSpacing(8).setRowSpacing(4).createAdder(2);
+            adder.add(Options.compass.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.compassPlacement.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.compassScale.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.compassShadow.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.compassBackground.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+        }
+    }
+
+    @Environment(value=EnvType.CLIENT)
+    public static class LightLevelTab extends GridScreenTab {
+        public LightLevelTab() {
+            super(Text.translatable("screen.dragonlite.light_level_config.title"));
+            GridWidget.Adder adder = this.grid.setColumnSpacing(8).setRowSpacing(4).createAdder(3);
+            adder.add(Options.lightLevelAlpha.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
+            adder.add(Options.lightLevelSquareSize.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
+            adder.add(new ColorWidget(BUTTON_WIDTH_COL_3*3+16,10, Options::getLightLevelColor), 3);
+            adder.add(Options.lightLevelColorRed.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
+            adder.add(Options.lightLevelColorGreen.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
+            adder.add(Options.lightLevelColorBlue.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
+        }
     }
 }

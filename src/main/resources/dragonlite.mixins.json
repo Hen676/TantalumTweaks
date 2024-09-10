@@ -2,15 +2,15 @@
   "required": true,
   "minVersion": "0.8",
   "package": "hen676.dragonlite.mixins",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "gui.screen.OptionsScreenMixin",
     "block.AbstractBlockStateMixin",
     "block.BlastFurnaceBlockMixin",
     "block.FurnaceBlockMixin",
     "block.SmokerBlockMixin",
     "entity.EntityMixin",
     "entity.PlayerInventoryMixin",
+    "gui.screen.OptionsScreenMixin",
     "network.ClientConnectionMixin",
     "render.BackgroundRendererMixin",
     "render.LivingEntityRenderMixin"

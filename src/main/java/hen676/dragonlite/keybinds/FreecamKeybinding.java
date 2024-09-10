@@ -13,13 +13,13 @@ import net.minecraft.client.input.KeyboardInput;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.option.Perspective;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.util.DyeColor;
+import net.minecraft.util.Formatting;
 import org.lwjgl.glfw.GLFW;
 
 /**
  * TODO:: Close screens when entering Freecam. Maybe ignore [esc] screen?
+ * See line 70 for above
  * TODO:: Remove freecam entity model to not create shadow with shaders
  */
 @Environment(EnvType.CLIENT)
@@ -48,7 +48,7 @@ public class FreecamKeybinding {
     public static void toggleFreecam(MinecraftClient client) {
         toggle = !toggle;
         if(toggle) {
-            wasFullBrightOn = FullBrightKeybinding.toggle;
+            wasFullBrightOn = FullBrightKeybinding.isToggle();
             onEnableFreeCamera(client);
         }
         else
@@ -66,6 +66,7 @@ public class FreecamKeybinding {
     public static void onEnableFreeCamera(MinecraftClient client) {
         client.chunkCullingEnabled = false;
         client.gameRenderer.setRenderHand(false);
+        //client.currentScreen.close(); check if this is fine
         orignalPerspective = client.options.getPerspective();
         // Create freecam entity
         freecamEntity = new FreecamEntity(-420, new PositionUtil(client.gameRenderer.getCamera()));
@@ -76,15 +77,16 @@ public class FreecamKeybinding {
         client.setCameraEntity(freecamEntity);
 
         if(Config.ENABLE_FULL_BRIGHT_ON_FREECAM)
-            FullBrightKeybinding.toggle = true;
+            FullBrightKeybinding.setToggle(true);
 
         if (client.player != null)
             client.player.sendMessage(Text
                     .translatable("message.dragonlite.freecam")
-                    .append(": ")
+                    .styled(style -> style.withColor(Formatting.DARK_GRAY))
+                    .append(" ")
                     .append(Text
                             .translatable("message.dragonlite.on")
-                            .setStyle(Style.EMPTY.withColor(DyeColor.GREEN.getSignColor()))),true);
+                            .styled(style -> style.withColor(Formatting.GREEN))),true);
     }
 
     public static void onDisableFreeCamera(MinecraftClient client) {
@@ -97,7 +99,7 @@ public class FreecamKeybinding {
         freecamEntity = null;
 
         if(Config.ENABLE_FULL_BRIGHT_ON_FREECAM)
-            FullBrightKeybinding.toggle = wasFullBrightOn;
+            FullBrightKeybinding.setToggle(wasFullBrightOn);
 
         if (client.player != null) {
             client.player.input = new KeyboardInput(client.options);
@@ -106,9 +108,10 @@ public class FreecamKeybinding {
         if (client.player != null)
             client.player.sendMessage(Text
                     .translatable("message.dragonlite.freecam")
-                    .append(": ")
+                    .styled(style -> style.withColor(Formatting.DARK_GRAY))
+                    .append(" ")
                     .append(Text
                             .translatable("message.dragonlite.off")
-                            .setStyle(Style.EMPTY.withColor(DyeColor.RED.getSignColor()))), true);
+                            .styled(style -> style.withColor(Formatting.RED))), true);
     }
 }

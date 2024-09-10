@@ -8,7 +8,6 @@ import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.text.Text;
 
 import java.awt.*;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
@@ -20,7 +19,7 @@ public class ColorWidget extends ClickableWidget {
     private int y;
     private final int width;
     private final int height;
-    Supplier<Integer> getColor;
+    final Supplier<Integer> getColor;
 
     public ColorWidget(int width, int height, Supplier<Integer> getColor) {
         this(0, 0, width, height, getColor);
@@ -61,6 +60,9 @@ public class ColorWidget extends ClickableWidget {
     }
 
     @Override
+    protected void appendClickableNarrations(NarrationMessageBuilder builder) { }
+
+    @Override
     public int getHeight() {
         return this.height;
     }
@@ -73,11 +75,4 @@ public class ColorWidget extends ClickableWidget {
         context.fill(this.x + 1, this.y + 1, x2 - 1, y2 - 1, this.getColor.get());
     }
 
-    @Override
-    protected void appendClickableNarrations(NarrationMessageBuilder builder) { }
-
-    @Override
-    public void forEachChild(Consumer<ClickableWidget> consumer) {
-        consumer.accept(this);
-    }
 }

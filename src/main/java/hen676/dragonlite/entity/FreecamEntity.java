@@ -10,9 +10,6 @@ import net.minecraft.client.network.ClientConnectionState;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.network.DisconnectionInfo;
-import net.minecraft.network.NetworkPhase;
-import net.minecraft.network.listener.ClientPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.server.ServerLinks;
 

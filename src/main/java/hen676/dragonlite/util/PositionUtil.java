@@ -5,9 +5,9 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public class PositionUtil {
-    public double x;
-    public double y;
-    public double z;
+    public final double x;
+    public final double y;
+    public final double z;
     public float pitch;
     public float yaw;
     private final Quaternionf rotation = new Quaternionf(0.0F, 0.0F, 0.0F, 1.0F);

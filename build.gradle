@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.6-SNAPSHOT'
+    id 'fabric-loom' version '1.7-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -49,7 +49,7 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
     // 1.20.6 needs java 21
-    it.options.release.set(21)
+    it.options.release = 21
 }
 
 java {

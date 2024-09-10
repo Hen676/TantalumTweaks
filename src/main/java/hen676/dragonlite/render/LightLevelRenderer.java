@@ -25,6 +25,7 @@ import org.joml.Matrix4f;
 
 /**
  * TODO:: Add light level adjustment option
+ *
  */
 @Environment(EnvType.CLIENT)
 public class LightLevelRenderer {
@@ -52,7 +53,7 @@ public class LightLevelRenderer {
         float j = (float) (playerBlockPos.getX() - pos.getX()) + 0.5f;
         float k = (float) (playerBlockPos.getZ() - pos.getZ()) + 0.5f;
 
-        matrices.push(); //TODO:: Test if this is needed
+        matrices.push();
         int range = 16;
         for (int x = -range; x < range; x++)
             for (int y = -range; y < 6; y++)
@@ -101,7 +102,7 @@ public class LightLevelRenderer {
             return;
         }
         if (lastWasFrameDebug && frames != 0) {
-            DragonLite.LOGGER.info(String.format("Average time for light level function during debug was: %,d", time / frames));
+            DragonLite.LOGGER.info("Average time for light level function during debug was: {}", time / frames);
             time = 0;
             frames = 0;
             lastWasFrameDebug = false;

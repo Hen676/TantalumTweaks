@@ -14,7 +14,7 @@ public abstract class LightmapTextureManagerMixin {
 
     @ModifyArg(method = "update", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/texture/NativeImage;setColor(III)V"), index = 2)
     private int fullBright(int color) {
-        if (FullBrightKeybinding.toggle) {
+        if (FullBrightKeybinding.isToggle()) {
             return 0xFFFFFFFF;
         }
         return color;

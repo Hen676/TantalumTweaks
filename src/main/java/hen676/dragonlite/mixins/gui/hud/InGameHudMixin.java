@@ -2,7 +2,6 @@ package hen676.dragonlite.mixins.gui.hud;
 
 import hen676.dragonlite.DragonLite;
 import hen676.dragonlite.config.Config;
-import hen676.dragonlite.gui.screen.HudConfigScreen;
 import hen676.dragonlite.gui.screen.option.HudPlacement;
 import hen676.dragonlite.keybinds.FreecamKeybinding;
 import hen676.dragonlite.render.HudRenderer;
@@ -24,22 +23,22 @@ public abstract class InGameHudMixin {
     // Freecam
     @Inject(method = "renderStatusBars", at = @At("HEAD"), cancellable = true)
     private void preventStatusBarRenderOnFreecam(DrawContext context, CallbackInfo ci) {
-        CallbackUtil.FreecamCancel(ci);
+        CallbackUtil.CancelIfFreecamOn(ci);
     }
 
     @Inject(method = "renderHotbar", at = @At("HEAD"), cancellable = true)
     private void preventHotbarRenderOnFreecam(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
-        CallbackUtil.FreecamCancel(ci);
+        CallbackUtil.CancelIfFreecamOn(ci);
     }
 
     @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
     private void preventCrosshairRenderOnFreecam(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
-        CallbackUtil.FreecamCancel(ci);
+        CallbackUtil.CancelIfFreecamOn(ci);
     }
 
     @Inject(method = "renderExperienceBar", at =@At("HEAD"), cancellable = true)
     private void preventExperienceBarRenderOnFreecam(DrawContext context, int x, CallbackInfo ci) {
-        CallbackUtil.FreecamCancel(ci);
+        CallbackUtil.CancelIfFreecamOn(ci);
     }
 
     // Compass
@@ -47,7 +46,7 @@ public abstract class InGameHudMixin {
     private void renderCompassHud(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
         if (!Config.ENABLE_COMPASS || FreecamKeybinding.isFreecam()) return;
 
-        if (DragonLite.MC.cameraEntity == null || DragonLite.MC.options.hudHidden || DragonLite.MC.currentScreen instanceof HudConfigScreen) return;
+        if (DragonLite.MC.cameraEntity == null || DragonLite.MC.options.hudHidden) return;
         Entity camera = DragonLite.MC.cameraEntity;
         HudRenderer.draw(DragonLite.MC, camera.getHorizontalFacing(), camera.getBlockPos(), context, HudPlacement.byId(Config.COMPASS_PLACEMENT));
     }

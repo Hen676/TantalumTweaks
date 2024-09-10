@@ -8,43 +8,44 @@
   "key.dragonlite.full_bright": "Full Bright",
   "category.dragonlite.main": "Dragon Lite",
 
-  "screen.dragonlite.config.title": "Dragon Lite Config",
-  "screen.dragonlite.hud_config.title": "Head-up Display Config",
-  "screen.dragonlite.light_level_config.title": "Light Level Config",
+  "gui.dragonlite.compass.north": "North (-Z)",
+  "gui.dragonlite.compass.south": "South (+Z)",
+  "gui.dragonlite.compass.west": "West (-X)",
+  "gui.dragonlite.compass.east": "East (+X)",
+  "gui.dragonlite.compass.error": "Error, you should never see this!",
+  "gui.dragonlite.compass.number": "%s",
+  "gui.dragonlite.compass.x": "X ",
+  "gui.dragonlite.compass.y": "Y ",
+  "gui.dragonlite.compass.z": "Z ",
+
+  "screen.dragonlite.config.title": "General",
+  "screen.dragonlite.hud_config.title": "HUD",
+  "screen.dragonlite.light_level_config.title": "Light Level",
 
   "options.dragonlite.config": "DL",
-
-  "option.dragonlite.config.toggle_preview": "Preview",
-
-  "options.dragonlite.light_level": "Light Level...",
-  "options.dragonlite.hud": "HUD...",
-
-  "option.dragonlite.config.enable_reduce_fog": "Reduce Nether Fog",
-
+  "option.dragonlite.config.enable_reduce_fog": "Remove Nether Fog",
   "option.dragonlite.config.light_level_color_red": "Red",
   "option.dragonlite.config.light_level_color_green": "Green",
   "option.dragonlite.config.light_level_color_blue": "Blue",
   "option.dragonlite.config.light_level_alpha": "Alpha",
   "option.dragonlite.config.light_level_square_size": "Square Size",
-
+  "option.dragonlite.config.light_level_square_size.tooltip": "Adjusts the size of the squares that render on each block.",
   "option.dragonlite.config.zoom_amount": "Zoom Amount",
-
   "option.dragonlite.config.enable_smokey_furnace": "Smokey Furnaces",
-
-  "option.dragonlite.config.enable_compass": "Enable Compass",
-  "option.dragonlite.config.compass_color_red": "Red",
-  "option.dragonlite.config.compass_color_green": "Green",
-  "option.dragonlite.config.compass_color_blue": "Blue",
+  "option.dragonlite.config.enable_smokey_furnace.tooltip": "Makes any furnace block (Furnace, Blast Furnace and Smoker) emit more particles.",
+  "option.dragonlite.config.enable_compass": "Render Compass",
   "option.dragonlite.config.compass_scale": "Scale",
   "option.dragonlite.config.compass_placement": "Placement",
+  "option.dragonlite.config.compass_background": "Text Background",
+  "option.dragonlite.config.compass_shadow": "Text Shadow",
   "option.dragonlite.config.top_left": "Top Left",
   "option.dragonlite.config.top_right": "Top Right",
   "option.dragonlite.config.bottom_left": "Bottom Left",
   "option.dragonlite.config.bottom_right": "Bottom Right",
-
   "option.dragonlite.config.freecam_flight_speed": "Freecam Flight Speed",
-
-  "option.dragonlite.config.full_bright_on_freecam": "Toggle Full Bright With Freecam",
+  "option.dragonlite.config.full_bright_on_freecam": "Enable Full Bright With Freecam",
+  "option.dragonlite.config.durability_tooltip": "Durability Tooltip",
+  "option.dragonlite.config.durability_tooltip.tooltip": "Shows the item's durability on the tooltip. Shows tools effective durability with Unbreaking and flight time with Elytra's.",
 
   "message.dragonlite.on": "ON",
   "message.dragonlite.off": "OFF",
@@ -54,5 +55,10 @@
   "message.dragonlite.full_bright": "Full Bright",
 
   "pack.name.dragonlite": "Dragon Lite: Resource Pack",
-  "pack.source.dragonlite": "Dragon Lite"
+  "pack.source.dragonlite": "Dragon Lite",
+
+  "tooltip.dragonlite.durability": "%s/%s",
+  "tooltip.dragonlite.durability_with_unbreaking": " ~%s",
+  "tooltip.dragonlite.durability_elytra_m_and_s": " ~%sm %ss",
+  "tooltip.dragonlite.durability_elytra_s": " ~%ss"
 }

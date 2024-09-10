@@ -30,7 +30,7 @@ public abstract class BlastFurnaceBlockMixin {
     public void addFurnaceParticles(BlockState state, World world, BlockPos pos, Random random) {
         if (state.get(AbstractFurnaceBlock.LIT) && random.nextInt(2) == 0 && Config.ENABLE_SMOKEY_FURNACE) {
             Direction direction = state.get(Properties.HORIZONTAL_FACING);
-            double x = 0, z = 0;
+            double x, z;
             switch (direction) {
                 case EAST -> {
                     x = pos.getX() + 1.1D;

@@ -6,7 +6,9 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.HashMap;
@@ -14,14 +16,16 @@ import java.util.Map;
 
 public class EntityListCommand {
 
-    public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
+    public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandRegistryAccess ignoredCommandRegistryAccess) {
         dispatcher.register(ClientCommandManager.literal("list_entities")
-                .then(ClientCommandManager.argument("radius", IntegerArgumentType.integer(0,128)))
-                    .executes(context -> listEntitiesAroundPlayer(context.getSource(), IntegerArgumentType.getInteger(context, "radius"))));
+                .executes(context -> listEntitiesAroundPlayer(context.getSource(), 10)) // Default case with area_size = 10
+                .then(ClientCommandManager.argument("area_size", IntegerArgumentType.integer(0, 128))
+                        .executes(context -> listEntitiesAroundPlayer(context.getSource(), IntegerArgumentType.getInteger(context, "area_size")))
+                )
+        );
     }
 
-    // TODO:: fix
-    public static int listEntitiesAroundPlayer(FabricClientCommandSource source, int radius) {
+    private static int listEntitiesAroundPlayer(FabricClientCommandSource source, int areaSize) {
         ClientPlayerEntity player = source.getClient().player;
         ClientWorld world = source.getClient().world;
         if (world == null || player == null) return 0;
@@ -32,7 +36,7 @@ public class EntityListCommand {
 
         world.getEntities().forEach((entity -> {
             if (entity.isPlayer()) return;
-            if (entity.getBlockPos().isWithinDistance(playerPos,radius)) {
+            if (entity.getBlockPos().isWithinDistance(playerPos,areaSize)) {
                 Text name = entity.getName();
                 if (entityNames.containsKey(name))
                     entityNames.put(name, entityNames.get(name) + 1);
@@ -42,13 +46,17 @@ public class EntityListCommand {
         }));
 
         if (entityNames.isEmpty()) {
-            source.sendFeedback(Text.literal("No entities nearby!"));
+            source.sendFeedback(Text.literal("No entities %s distance from player!".formatted(areaSize))
+                    .styled(style -> style.withColor(Formatting.RED)));
             return 1;
         }
 
 
-        source.sendFeedback(Text.literal("List of entities from %s distance from player".formatted(radius)));
-        entityNames.forEach((text, amount) -> source.sendFeedback(text.copy().append(" - ").append(String.valueOf(amount))));
+        source.sendFeedback(Text.literal("List of entities from %s distance from player".formatted(areaSize))
+                .styled(style -> style.withColor(Formatting.GREEN)));
+        entityNames.forEach((text, amount) -> source.sendFeedback(text.copy()
+                .append(" - ")
+                .append(String.valueOf(amount)).styled(style -> style.withColor(Formatting.GRAY))));
         return 1;
     }
 }

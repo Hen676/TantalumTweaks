@@ -31,6 +31,7 @@ public abstract class WorldRendererMixin {
         }
     }
 
+    @SuppressWarnings("EmptyMethod")
     @Shadow
     private void renderEntity(Entity entity, double cameraX, double cameraY, double cameraZ, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
     }

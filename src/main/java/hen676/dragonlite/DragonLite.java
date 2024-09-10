@@ -1,10 +1,14 @@
 package hen676.dragonlite;
 
+import hen676.dragonlite.command.Commands;
 import hen676.dragonlite.config.ConfigLoader;
 import hen676.dragonlite.gui.screen.option.Options;
+import hen676.dragonlite.gui.tooltip.TooltipDurability;
 import hen676.dragonlite.keybinds.*;
 import hen676.dragonlite.render.LightLevelRenderer;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
@@ -19,7 +23,7 @@ public class DragonLite implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("Dragon Lite");
     public static final String MOD_ID = "dragonlite";
     public static final MinecraftClient MC = MinecraftClient.getInstance();
-    public static boolean DEBUG = FabricLoader.getInstance().isDevelopmentEnvironment();
+    public static final boolean DEBUG = FabricLoader.getInstance().isDevelopmentEnvironment();
 
     @Override
     public void onInitializeClient() {
@@ -29,9 +33,10 @@ public class DragonLite implements ClientModInitializer {
 
         // World render event
         WorldRenderEvents.BEFORE_DEBUG_RENDER.register(LightLevelRenderer::render);
+        ItemTooltipCallback.EVENT.register(TooltipDurability::onItemTooltip);
 
         // Commands
-        // ClientCommandRegistrationCallback.EVENT.register(Commands::init);
+        ClientCommandRegistrationCallback.EVENT.register(Commands::init);
 
         // Keybindings
         ZoomKeybinding.init();

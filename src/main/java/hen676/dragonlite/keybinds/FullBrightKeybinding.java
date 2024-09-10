@@ -6,9 +6,9 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.Style;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.DyeColor;
+import net.minecraft.util.Formatting;
 import org.lwjgl.glfw.GLFW;
 
 /**
@@ -17,7 +17,7 @@ import org.lwjgl.glfw.GLFW;
 @Environment(EnvType.CLIENT)
 public class FullBrightKeybinding {
     private static KeyBinding keyBindingFullBright;
-    public static boolean toggle = false;
+    private static boolean toggle = false;
 
     public static void init() {
         keyBindingFullBright = new KeyBinding(
@@ -35,14 +35,24 @@ public class FullBrightKeybinding {
                 toggle = !toggle;
                 FreecamKeybinding.wasFullBrightOn = toggle;
                 if (client.player != null) {
-                    Text text = Text.translatable("message.dragonlite.full_bright").append(": ");
+                    MutableText text = Text.translatable("message.dragonlite.full_bright")
+                            .styled(style -> style.withColor(Formatting.DARK_GRAY))
+                            .append(" ");
                     if (toggle)
-                        text = text.copy().append(Text.translatable("message.dragonlite.on").setStyle(Style.EMPTY.withColor(DyeColor.GREEN.getSignColor())));
+                        text.append(Text.translatable("message.dragonlite.on").styled(style -> style.withColor(Formatting.GREEN)));
                     else
-                        text = text.copy().append(Text.translatable("message.dragonlite.off").setStyle(Style.EMPTY.withColor(DyeColor.RED.getSignColor())));
+                        text.append(Text.translatable("message.dragonlite.off").styled(style -> style.withColor(Formatting.RED)));
                     client.player.sendMessage(text,true);
                 }
             }
         });
+    }
+
+    public static boolean isToggle() {
+        return toggle;
+    }
+
+    public static void setToggle(boolean toggle) {
+        FullBrightKeybinding.toggle = toggle;
     }
 }
