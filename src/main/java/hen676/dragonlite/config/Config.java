@@ -32,9 +32,6 @@ public class Config {
 
     // Tooltip durability
     public static boolean ENABLE_DURABILITY_TOOLTIP = true;
-
-    // Recipe Book settings
-    public static final boolean ON_INIT_OPEN_RECIPE_BOOK_FOR_CRAFTING = true;
-    public static final boolean ON_INIT_OPEN_RECIPE_BOOK_FOR_INVENTORY = false;
-    public static final boolean ENABLE_CUSTOM_SPLIT_RECIPE_BOOK_FOR_CRAFTING = true;
+    public static boolean ENABLE_FOOD_TOOLTIP = true;
+    public static boolean ENABLE_FUEL_TOOLTIP = true;
 }

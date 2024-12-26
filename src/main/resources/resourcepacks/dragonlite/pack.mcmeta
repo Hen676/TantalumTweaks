@@ -1,6 +1,6 @@
 {
-	"pack": {
-		"pack_format": 34,
-		"description": "Dragon Lite Official Resource Pack"
-	}
+  "pack": {
+    "description": "Dragon Lite Official Resource Pack",
+    "pack_format": 42
+  }
 }

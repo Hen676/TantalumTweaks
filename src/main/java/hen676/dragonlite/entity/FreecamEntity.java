@@ -30,7 +30,6 @@ public class FreecamEntity extends ClientPlayerEntity {
                     DragonLite.MC.currentScreen,
                     Collections.emptyMap(),
                     DragonLite.MC.inGameHud.getChatHud().toChatState(),
-                    false,
                     Collections.emptyMap(),
                     ServerLinks.EMPTY
             )) {

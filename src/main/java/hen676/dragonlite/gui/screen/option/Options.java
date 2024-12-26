@@ -122,12 +122,17 @@ public class Options {
             true,
             value -> Config.ENABLE_FULL_BRIGHT_ON_FREECAM = value);
 
-    // Tooltip durability
+    // Tooltip options
     public static final SimpleOption<Boolean> durabilityTooltip = SimpleOption.ofBoolean("option.dragonlite.config.durability_tooltip",
             SimpleOption.constantTooltip(Text.translatable("option.dragonlite.config.durability_tooltip.tooltip")),
             true,
             value -> Config.ENABLE_DURABILITY_TOOLTIP = value);
-
+    public static final SimpleOption<Boolean> foodTooltip = SimpleOption.ofBoolean("option.dragonlite.config.food_tooltip",
+            true,
+            value -> Config.ENABLE_FOOD_TOOLTIP = value);
+    public static final SimpleOption<Boolean> fuelTooltip = SimpleOption.ofBoolean("option.dragonlite.config.fuel_tooltip",
+            true,
+            value -> Config.ENABLE_FUEL_TOOLTIP = value);
 
     public static void Load() {
         reduceFog.setValue(Config.ENABLE_REDUCED_FOG);
@@ -145,6 +150,8 @@ public class Options {
         freecamFlightSpeed.setValue(Config.FREECAM_FLIGHT_SPEED);
         fullBrightOnFreecam.setValue(Config.ENABLE_FULL_BRIGHT_ON_FREECAM);
         durabilityTooltip.setValue(Config.ENABLE_DURABILITY_TOOLTIP);
+        foodTooltip.setValue(Config.ENABLE_FOOD_TOOLTIP);
+        fuelTooltip.setValue(Config.ENABLE_FUEL_TOOLTIP);
     }
 
     public static int getLightLevelColor() {
