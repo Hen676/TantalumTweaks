@@ -14,6 +14,7 @@ import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.gui.tab.GridScreenTab;
 import net.minecraft.client.gui.tab.TabManager;
 import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
@@ -22,8 +23,7 @@ public class ConfigScreen extends Screen {
     private final TabManager tabManager = new TabManager(this::addDrawableChild, this::remove);
     private TabNavigationWidget tabNavigation;
     private final ThreePartsLayoutWidget layout = new ThreePartsLayoutWidget(this);
-    private static final int BUTTON_WIDTH_COL_1 = 210;
-    @SuppressWarnings("unused")
+    //private static final int BUTTON_WIDTH_COL_1 = 210;
     private static final int BUTTON_WIDTH_COL_2 = 150;
     private static final int BUTTON_WIDTH_COL_3 = 100;
 
@@ -46,7 +46,6 @@ public class ConfigScreen extends Screen {
         this.initTabNavigation();
     }
 
-    @Override
     protected void initTabNavigation() {
         if (this.tabNavigation == null) {
             return;
@@ -64,13 +63,13 @@ public class ConfigScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
         RenderSystem.enableBlend();
-        context.drawTexture(Screen.FOOTER_SEPARATOR_TEXTURE, 0, this.height - this.layout.getFooterHeight() - 2, 0.0f, 0.0f, this.width, 2, 32, 2);
+        context.drawTexture(RenderLayer::getGuiTextured, Screen.FOOTER_SEPARATOR_TEXTURE, 0, this.height - this.layout.getFooterHeight() - 2, 0.0f, 0.0f, this.width, 2, 32, 2);
         RenderSystem.disableBlend();
     }
 
     @Override
     protected void renderDarkening(DrawContext context) {
-        context.drawTexture(CreateWorldScreen.TAB_HEADER_BACKGROUND_TEXTURE, 0, 0, 0.0f, 0.0f, this.width, this.layout.getHeaderHeight(), 16, 16);
+        context.drawTexture(RenderLayer::getGuiTextured, CreateWorldScreen.TAB_HEADER_BACKGROUND_TEXTURE, 0, 0, 0.0f, 0.0f, this.width, this.layout.getHeaderHeight(), 16, 16);
         this.renderDarkening(context, 0, this.layout.getHeaderHeight(), this.width, this.height);
     }
 
@@ -89,13 +88,15 @@ public class ConfigScreen extends Screen {
     public static class GeneralTab extends GridScreenTab {
         public GeneralTab() {
             super(Text.translatable("screen.dragonlite.config.title"));
-            GridWidget.Adder adder = this.grid.setColumnSpacing(8).setRowSpacing(4).createAdder(1);
-            adder.add(Options.reduceFog.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
-            adder.add(Options.smokeyFurnace.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
-            adder.add(Options.zoomLevel.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
-            adder.add(Options.fullBrightOnFreecam.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
-            adder.add(Options.freecamFlightSpeed.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
-            adder.add(Options.durabilityTooltip.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1));
+            GridWidget.Adder adder = this.grid.setColumnSpacing(8).setRowSpacing(4).createAdder(2);
+            adder.add(Options.reduceFog.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.smokeyFurnace.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.zoomLevel.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.fullBrightOnFreecam.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.freecamFlightSpeed.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.durabilityTooltip.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.foodTooltip.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.fuelTooltip.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
         }
     }
 

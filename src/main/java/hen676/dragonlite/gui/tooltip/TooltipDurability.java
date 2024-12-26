@@ -28,7 +28,7 @@ public class TooltipDurability {
 
         assert DragonLite.MC.world != null;
         RegistryEntry.Reference<Enchantment> key = DragonLite.MC.world.getRegistryManager()
-                .getWrapperOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(Enchantments.UNBREAKING);
+                .getOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(Enchantments.UNBREAKING);
 
         MutableText text = Text.translatable("tooltip.dragonlite.durability", durability, maxDurability)
                 .styled(style -> style.withColor(Formatting.DARK_GRAY));

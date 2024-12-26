@@ -12,18 +12,14 @@
     "entity.PlayerInventoryMixin",
     "gui.screen.OptionsScreenMixin",
     "network.ClientConnectionMixin",
-    "render.BackgroundRendererMixin",
-    "render.LivingEntityRenderMixin"
+    "render.BackgroundRendererMixin"
   ],
   "client": [
     "MinecraftClientMixin",
     "gui.hud.InGameHudMixin",
-    "gui.screen.CraftingScreenMixin",
-    "gui.screen.InventoryScreenMixin",
     "network.ClientPlayNetworkHandlerMixin",
     "render.CameraMixin",
     "render.GameRendererMixin",
-    "render.LightmapTextureManagerMixin",
     "render.WorldRendererMixin"
   ],
   "injectors": {

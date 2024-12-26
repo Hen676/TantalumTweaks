@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerInventory.class)
 public abstract class PlayerInventoryMixin {
-    @Inject(method = "scrollInHotbar", at = @At("HEAD"), cancellable = true)
-    private void preventScrollInHotbarOnFreecam(double scrollAmount, CallbackInfo ci) {
+    @Inject(method = "setSelectedSlot", at = @At("HEAD"), cancellable = true)
+    private void preventScrollInHotbarOnFreecam(int slot, CallbackInfo ci) {
         CallbackUtil.CancelIfFreecamOn(ci);
     }
 }

@@ -9,6 +9,7 @@ import net.minecraft.client.input.Input;
 import net.minecraft.client.input.KeyboardInput;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.GameRenderer;
+import net.minecraft.util.PlayerInput;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,9 +30,7 @@ public abstract class MinecraftClientMixin {
     private void preventPlayerControlOnFreecam(CallbackInfo ci) {
             if (FreecamKeybinding.isFreecam()) {
                     if (this.player != null && this.player.input instanceof KeyboardInput) {
-                            Input input = new Input();
-                            input.sneaking = this.player.input.sneaking;
-                            this.player.input = input;
+                        this.player.input.playerInput = PlayerInput.DEFAULT;
                     }
                     this.gameRenderer.setRenderHand(false);
             }
