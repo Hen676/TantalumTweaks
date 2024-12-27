@@ -17,7 +17,7 @@ import net.minecraft.util.Formatting;
 
 import java.util.List;
 
-public class TooltipDurability {
+public class DurabilityTooltip {
 
     public static void onItemTooltip(ItemStack itemStack, Item.TooltipContext ignoredTooltipContext, TooltipType tooltipType, List<Text> texts) {
         if (!Config.ENABLE_DURABILITY_TOOLTIP) return;
@@ -51,9 +51,9 @@ public class TooltipDurability {
 
         if (minutes == 0) {
             return Text.translatable("tooltip.dragonlite.durability_elytra_s", seconds)
-                    .styled(style -> style.withColor(Formatting.DARK_PURPLE));
+                    .styled(style -> style.withColor(Formatting.LIGHT_PURPLE));
         }
         return Text.translatable("tooltip.dragonlite.durability_elytra_m_and_s", minutes, seconds)
-                .styled(style -> style.withColor(Formatting.DARK_PURPLE));
+                .styled(style -> style.withColor(Formatting.LIGHT_PURPLE));
     }
 }

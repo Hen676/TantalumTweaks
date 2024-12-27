@@ -26,7 +26,6 @@ import org.lwjgl.glfw.GLFW;
 public class FreecamKeybinding {
     private static KeyBinding keyBindingFreecam;
     private static boolean toggle = false;
-    public static boolean wasFullBrightOn = false;
     private static FreecamEntity freecamEntity;
     private static Perspective orignalPerspective;
 
@@ -47,10 +46,8 @@ public class FreecamKeybinding {
 
     public static void toggleFreecam(MinecraftClient client) {
         toggle = !toggle;
-        if(toggle) {
-            wasFullBrightOn = FullBrightKeybinding.isToggle();
+        if(toggle)
             onEnableFreeCamera(client);
-        }
         else
             onDisableFreeCamera(client);
     }
@@ -76,9 +73,6 @@ public class FreecamKeybinding {
         // Then create the entity so camera does inherit the wrong perspective
         client.setCameraEntity(freecamEntity);
 
-        if(Config.ENABLE_FULL_BRIGHT_ON_FREECAM)
-            FullBrightKeybinding.setToggle(true);
-
         if (client.player != null)
             client.player.sendMessage(Text
                     .translatable("message.dragonlite.freecam")
@@ -97,9 +91,6 @@ public class FreecamKeybinding {
         freecamEntity.delete();
         freecamEntity.input = new Input();
         freecamEntity = null;
-
-        if(Config.ENABLE_FULL_BRIGHT_ON_FREECAM)
-            FullBrightKeybinding.setToggle(wasFullBrightOn);
 
         if (client.player != null) {
             client.player.input = new KeyboardInput(client.options);

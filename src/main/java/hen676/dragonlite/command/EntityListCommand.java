@@ -31,7 +31,6 @@ public class EntityListCommand {
         if (world == null || player == null) return 0;
 
         BlockPos playerPos = player.getBlockPos();
-
         Map<Text, Integer> entityNames = new HashMap<>();
 
         world.getEntities().forEach((entity -> {
@@ -50,7 +49,6 @@ public class EntityListCommand {
                     .styled(style -> style.withColor(Formatting.RED)));
             return 1;
         }
-
 
         source.sendFeedback(Text.literal("List of entities from %s distance from player".formatted(areaSize))
                 .styled(style -> style.withColor(Formatting.GREEN)));

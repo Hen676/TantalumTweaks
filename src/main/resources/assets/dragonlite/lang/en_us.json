@@ -5,7 +5,6 @@
   "key.dragonlite.light_level": "Light Level",
   "key.dragonlite.debug": "Debug",
   "key.dragonlite.freecam": "Freecam",
-  "key.dragonlite.full_bright": "Full Bright",
   "category.dragonlite.main": "Dragon Lite",
 
   "gui.dragonlite.compass.north": "North (-Z)",
@@ -43,18 +42,17 @@
   "option.dragonlite.config.bottom_left": "Bottom Left",
   "option.dragonlite.config.bottom_right": "Bottom Right",
   "option.dragonlite.config.freecam_flight_speed": "Freecam Flight Speed",
-  "option.dragonlite.config.full_bright_on_freecam": "Enable Full Bright With Freecam",
   "option.dragonlite.config.durability_tooltip": "Durability Tooltip",
   "option.dragonlite.config.durability_tooltip.tooltip": "Shows the item's durability on the tooltip. Shows tools effective durability with Unbreaking and flight time with Elytra's.",
   "option.dragonlite.config.food_tooltip": "Food Tooltip",
   "option.dragonlite.config.fuel_tooltip": "Fuel Tooltip",
+  "option.dragonlite.config.compost_tooltip": "Compost Tooltip",
 
   "message.dragonlite.on": "ON",
   "message.dragonlite.off": "OFF",
   "message.dragonlite.health_bar": "Mob Health",
   "message.dragonlite.light_level": "Light Level",
   "message.dragonlite.freecam": "Freecam",
-  "message.dragonlite.full_bright": "Full Bright",
 
   "pack.name.dragonlite": "Dragon Lite: Resource Pack",
   "pack.source.dragonlite": "Dragon Lite",
@@ -64,7 +62,10 @@
   "tooltip.dragonlite.durability_elytra_m_and_s": " ~%sm %ss",
   "tooltip.dragonlite.durability_elytra_s": " ~%ss",
 
-  "tooltip.dragonlite.food_nutrition": "%sx\uD83C\uDF56",
-  "tooltip.dragonlite.food_saturation": " ~%sx\u25B2",
-  "tooltip.dragonlite.fuel" : "\uD83D\uDD25%s"
+  "tooltip.dragonlite.food_nutrition": "\uD83C\uDF56 x%s",
+  "tooltip.dragonlite.food_saturation": " ~\u25B2 x%s",
+  "tooltip.dragonlite.fuel" : "\uD83D\uDD25 %s (%s)",
+
+  "tooltip.dragonlite.compost" : "\u267B %s",
+  "tooltip.dragonlite.percent": "%"
 }

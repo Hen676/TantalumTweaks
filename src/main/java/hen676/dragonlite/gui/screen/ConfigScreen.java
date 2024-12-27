@@ -92,11 +92,11 @@ public class ConfigScreen extends Screen {
             adder.add(Options.reduceFog.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
             adder.add(Options.smokeyFurnace.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
             adder.add(Options.zoomLevel.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
-            adder.add(Options.fullBrightOnFreecam.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
             adder.add(Options.freecamFlightSpeed.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
             adder.add(Options.durabilityTooltip.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
             adder.add(Options.foodTooltip.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
             adder.add(Options.fuelTooltip.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
+            adder.add(Options.compostTooltip.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
         }
     }
 

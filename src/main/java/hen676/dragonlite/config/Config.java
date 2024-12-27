@@ -1,6 +1,7 @@
 package hen676.dragonlite.config;
 
 public class Config {
+
     // Compass settings
     public static boolean ENABLE_COMPASS = false;
     public static int COMPASS_PLACEMENT = 0;
@@ -27,11 +28,9 @@ public class Config {
     // Freecam settings
     public static double FREECAM_FLIGHT_SPEED = 0.5D;
 
-    // Full bright settings
-    public static boolean ENABLE_FULL_BRIGHT_ON_FREECAM = true;
-
     // Tooltip durability
     public static boolean ENABLE_DURABILITY_TOOLTIP = true;
     public static boolean ENABLE_FOOD_TOOLTIP = true;
     public static boolean ENABLE_FUEL_TOOLTIP = true;
+    public static boolean ENABLE_COMPOST_TOOLTIP = true;
 }

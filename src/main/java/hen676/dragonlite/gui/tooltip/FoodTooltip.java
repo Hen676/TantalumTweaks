@@ -12,7 +12,7 @@ import net.minecraft.util.Formatting;
 
 import java.util.List;
 
-public class TooltipFood {
+public class FoodTooltip {
     public static void onItemTooltip(ItemStack itemStack, Item.TooltipContext tooltipContext, TooltipType tooltipType, List<Text> texts) {
         if (!Config.ENABLE_FOOD_TOOLTIP) return;
         FoodComponent foodComponent = itemStack.get(DataComponentTypes.FOOD);

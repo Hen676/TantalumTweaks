@@ -117,11 +117,6 @@ public class Options {
             0.5D,
             value -> Config.FREECAM_FLIGHT_SPEED = value);
 
-    // Full Bright options
-    public static final SimpleOption<Boolean> fullBrightOnFreecam = SimpleOption.ofBoolean("option.dragonlite.config.full_bright_on_freecam",
-            true,
-            value -> Config.ENABLE_FULL_BRIGHT_ON_FREECAM = value);
-
     // Tooltip options
     public static final SimpleOption<Boolean> durabilityTooltip = SimpleOption.ofBoolean("option.dragonlite.config.durability_tooltip",
             SimpleOption.constantTooltip(Text.translatable("option.dragonlite.config.durability_tooltip.tooltip")),
@@ -133,6 +128,9 @@ public class Options {
     public static final SimpleOption<Boolean> fuelTooltip = SimpleOption.ofBoolean("option.dragonlite.config.fuel_tooltip",
             true,
             value -> Config.ENABLE_FUEL_TOOLTIP = value);
+    public static final SimpleOption<Boolean> compostTooltip = SimpleOption.ofBoolean("option.dragonlite.config.compost_tooltip",
+            true,
+            value -> Config.ENABLE_COMPOST_TOOLTIP = value);
 
     public static void Load() {
         reduceFog.setValue(Config.ENABLE_REDUCED_FOG);
@@ -148,10 +146,10 @@ public class Options {
         lightLevelSquareSize.setValue(Config.LIGHT_LEVEL_SQUARE_SIZE);
         smokeyFurnace.setValue(Config.ENABLE_SMOKEY_FURNACE);
         freecamFlightSpeed.setValue(Config.FREECAM_FLIGHT_SPEED);
-        fullBrightOnFreecam.setValue(Config.ENABLE_FULL_BRIGHT_ON_FREECAM);
         durabilityTooltip.setValue(Config.ENABLE_DURABILITY_TOOLTIP);
         foodTooltip.setValue(Config.ENABLE_FOOD_TOOLTIP);
         fuelTooltip.setValue(Config.ENABLE_FUEL_TOOLTIP);
+        compostTooltip.setValue(Config.ENABLE_COMPOST_TOOLTIP);
     }
 
     public static int getLightLevelColor() {
