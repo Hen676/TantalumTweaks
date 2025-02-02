@@ -2,16 +2,21 @@ package hen676.dragonlite.render;
 
 import hen676.dragonlite.config.Config;
 import hen676.dragonlite.gui.screen.option.HudPlacement;
+import hen676.dragonlite.gui.screen.option.Options;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
+import java.awt.*;
 import java.text.NumberFormat;
+import java.util.Arrays;
+import java.util.List;
 
 public class HudRenderer {
     public static final Text NORTH_TEXT = Text.translatable("gui.dragonlite.compass.north");
@@ -20,48 +25,40 @@ public class HudRenderer {
     public static final Text EAST_TEXT = Text.translatable("gui.dragonlite.compass.east");
     public static final Text ERORR_TEXT = Text.translatable("gui.dragonlite.compass.error");
 
-    // TODO Improve - Config colors per number
     public static void draw(MinecraftClient client, Direction direction, BlockPos pos, DrawContext context, HudPlacement placement) {
-        MutableText compassText = getCompassText(pos, direction);
+        List<Pair<MutableText, Integer>> compassText = getCompassText(pos, direction);
         MatrixStack stack = context.getMatrices();
-        int length = client.textRenderer.getWidth(compassText);
+        int length = Config.COMPASS_GAP * 3;
+        for (Pair<MutableText, Integer> pair : compassText) {
+            length += client.textRenderer.getWidth(pair.getLeft());
+        }
         stack.push();
         stack.translate(
                 getWidthTranslate(context.getScaledWindowWidth(), placement),
                 getHeightTranslate(context.getScaledWindowHeight(), placement),
                 0D);
         stack.scale((float) Config.COMPASS_SCALE, (float)Config.COMPASS_SCALE, 1);
-
         switch (placement) {
             case TOP_RIGHT -> stack.translate(-length - 4, 0, 0);
             case BOTTOM_RIGHT -> stack.translate(-length - 4, -12, 0);
             case BOTTOM_LEFT -> stack.translate(0, -12, 0);
             case null, default -> { }
         }
-
-        if (Config.COMPASS_BACKGROUND)
-            context.fill(0, 0, length + (Config.COMPASS_SHADOW ? 4 : 2), (Config.COMPASS_SHADOW ? 12 : 10), -1873784752);
-        context.drawText(client.textRenderer, compassText, 2, 2, 0, Config.COMPASS_SHADOW);
+        int currentLength = 0;
+        for (Pair<MutableText, Integer> pair : compassText) {
+            context.drawText(client.textRenderer, pair.getLeft(), currentLength, 0, pair.getRight(), Config.COMPASS_SHADOW);
+            currentLength += client.textRenderer.getWidth(pair.getLeft()) + Config.COMPASS_GAP;
+        }
         stack.pop();
     }
 
-    private static MutableText getCompassText(BlockPos pos, Direction direction) {
-        return Text.translatable("gui.dragonlite.compass.number",
-                        formatPosition(pos.getX()))
-                .styled(style -> style.withColor(Formatting.DARK_GRAY))
-                .append(Text.translatable("gui.dragonlite.compass.x")
-                        .styled(style -> style.withColor(Formatting.RED)))
-                .append(Text.translatable("gui.dragonlite.compass.number", formatPosition(pos.getY()))
-                        .styled(style -> style.withColor(Formatting.DARK_GRAY)))
-                .append(Text.translatable("gui.dragonlite.compass.y")
-                        .styled(style -> style.withColor(Formatting.GREEN)))
-                .append(Text.translatable("gui.dragonlite.compass.number", formatPosition(pos.getZ()))
-                        .styled(style -> style.withColor(Formatting.DARK_GRAY)))
-                .append(Text.translatable("gui.dragonlite.compass.z")
-                        .styled(style -> style.withColor(Formatting.BLUE)))
-                .append("| ").styled(style -> style.withColor(Formatting.DARK_GRAY))
-                .append(getTextFromDirection(direction).copy()
-                        .styled(style -> style.withColor(Formatting.GOLD)));
+    private static List<Pair<MutableText, Integer>> getCompassText(BlockPos pos, Direction direction) {
+        return Arrays.asList(
+                new Pair<>(Text.translatable("gui.dragonlite.compass.x", formatPosition(pos.getX())),Options.getCompassXColorWithAlpha()),
+                new Pair<>(Text.translatable("gui.dragonlite.compass.y", formatPosition(pos.getY())),Options.getCompassYColorWithAlpha()),
+                new Pair<>(Text.translatable("gui.dragonlite.compass.z", formatPosition(pos.getZ())),Options.getCompassZColorWithAlpha()),
+                new Pair<>(getTextFromDirection(direction).copy(),Options.getCompassDirectionColorWithAlpha())
+        );
     }
 
     private static String formatPosition(int pos) {
@@ -79,10 +76,10 @@ public class HudRenderer {
     }
 
     private static double getWidthTranslate(int width, HudPlacement placement) {
-        return placement == HudPlacement.TOP_LEFT || placement == HudPlacement.BOTTOM_LEFT ? 3D : width - 3D;
+        return placement == HudPlacement.TOP_LEFT || placement == HudPlacement.BOTTOM_LEFT ? Config.COMPASS_X_OFFSET : width - Config.COMPASS_X_OFFSET;
     }
 
     private static double getHeightTranslate(int height, HudPlacement placement) {
-        return placement == HudPlacement.TOP_LEFT || placement == HudPlacement.TOP_RIGHT ? 3D : height - 3D;
+        return placement == HudPlacement.TOP_LEFT || placement == HudPlacement.TOP_RIGHT ? Config.COMPASS_Y_OFFSET : height - Config.COMPASS_Y_OFFSET;
     }
 }

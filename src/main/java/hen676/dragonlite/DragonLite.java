@@ -7,6 +7,7 @@ import hen676.dragonlite.gui.tooltip.CompostTooltip;
 import hen676.dragonlite.gui.tooltip.DurabilityTooltip;
 import hen676.dragonlite.gui.tooltip.FuelTooltip;
 import hen676.dragonlite.gui.tooltip.FoodTooltip;
+import hen676.dragonlite.gui.tooltip.EffectTooltip;
 import hen676.dragonlite.keybinds.*;
 import hen676.dragonlite.render.LightLevelRenderer;
 import net.fabricmc.api.ClientModInitializer;
@@ -36,10 +37,13 @@ public class DragonLite implements ClientModInitializer {
 
         // World render event
         WorldRenderEvents.BEFORE_DEBUG_RENDER.register(LightLevelRenderer::render);
+
+        // Tooltip events TODO:: make one event call
         ItemTooltipCallback.EVENT.register(DurabilityTooltip::onItemTooltip);
         ItemTooltipCallback.EVENT.register(FoodTooltip::onItemTooltip);
         ItemTooltipCallback.EVENT.register(FuelTooltip::onItemTooltip);
         ItemTooltipCallback.EVENT.register(CompostTooltip::onItemTooltip);
+        ItemTooltipCallback.EVENT.register(EffectTooltip::onItemTooltip);
 
         // Commands
         ClientCommandRegistrationCallback.EVENT.register(Commands::init);

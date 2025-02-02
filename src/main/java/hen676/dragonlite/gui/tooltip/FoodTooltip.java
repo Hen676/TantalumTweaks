@@ -18,10 +18,8 @@ public class FoodTooltip {
         FoodComponent foodComponent = itemStack.get(DataComponentTypes.FOOD);
         if (foodComponent == null) return;
         double saturation = (double) (Math.round(foodComponent.saturation() * 10))/10;
-        MutableText text = Text.translatable("tooltip.dragonlite.food_nutrition", foodComponent.nutrition())
+        MutableText text = Text.translatable("tooltip.dragonlite.food", foodComponent.nutrition(), saturation)
                 .styled(style -> style.withColor(Formatting.DARK_GRAY));
-        text.append(Text.translatable("tooltip.dragonlite.food_saturation", saturation)
-                .styled(style -> style.withColor(Formatting.GOLD)));
         texts.add(1, text);
     }
 }

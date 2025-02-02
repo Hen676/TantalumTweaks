@@ -19,7 +19,6 @@ public class CompostTooltip {
         float compostChance = ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.getFloat(itemStack.getItem());
         MutableText text = Text.translatable("tooltip.dragonlite.compost", Math.round(compostChance*100))
                 .styled(style -> style.withColor(Formatting.DARK_GRAY));
-        text.append(Text.translatable("tooltip.dragonlite.percent"));
         texts.add(1, text);
     }
 }
