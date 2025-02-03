@@ -3,9 +3,11 @@ package hen676.dragonlite;
 import hen676.dragonlite.command.Commands;
 import hen676.dragonlite.config.ConfigLoader;
 import hen676.dragonlite.gui.screen.option.Options;
-import hen676.dragonlite.gui.tooltip.TooltipDurability;
-import hen676.dragonlite.gui.tooltip.TooltipFuel;
-import hen676.dragonlite.gui.tooltip.TooltipFood;
+import hen676.dragonlite.gui.tooltip.CompostTooltip;
+import hen676.dragonlite.gui.tooltip.DurabilityTooltip;
+import hen676.dragonlite.gui.tooltip.FuelTooltip;
+import hen676.dragonlite.gui.tooltip.FoodTooltip;
+import hen676.dragonlite.gui.tooltip.EffectTooltip;
 import hen676.dragonlite.keybinds.*;
 import hen676.dragonlite.render.LightLevelRenderer;
 import net.fabricmc.api.ClientModInitializer;
@@ -35,9 +37,13 @@ public class DragonLite implements ClientModInitializer {
 
         // World render event
         WorldRenderEvents.BEFORE_DEBUG_RENDER.register(LightLevelRenderer::render);
-        ItemTooltipCallback.EVENT.register(TooltipDurability::onItemTooltip);
-        ItemTooltipCallback.EVENT.register(TooltipFood::onItemTooltip);
-        ItemTooltipCallback.EVENT.register(TooltipFuel::onItemTooltip);
+
+        // Tooltip events TODO:: make one event call
+        ItemTooltipCallback.EVENT.register(DurabilityTooltip::onItemTooltip);
+        ItemTooltipCallback.EVENT.register(FoodTooltip::onItemTooltip);
+        ItemTooltipCallback.EVENT.register(FuelTooltip::onItemTooltip);
+        ItemTooltipCallback.EVENT.register(CompostTooltip::onItemTooltip);
+        ItemTooltipCallback.EVENT.register(EffectTooltip::onItemTooltip);
 
         // Commands
         ClientCommandRegistrationCallback.EVENT.register(Commands::init);
@@ -47,7 +53,6 @@ public class DragonLite implements ClientModInitializer {
         LightLevelKeybinding.init();
         HealthBarKeybinding.init();
         FreecamKeybinding.init();
-        FullBrightKeybinding.init();
         if (DEBUG)
             DebugKeybinding.init();
 

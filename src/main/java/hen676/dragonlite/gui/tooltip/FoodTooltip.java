@@ -12,16 +12,14 @@ import net.minecraft.util.Formatting;
 
 import java.util.List;
 
-public class TooltipFood {
+public class FoodTooltip {
     public static void onItemTooltip(ItemStack itemStack, Item.TooltipContext tooltipContext, TooltipType tooltipType, List<Text> texts) {
         if (!Config.ENABLE_FOOD_TOOLTIP) return;
         FoodComponent foodComponent = itemStack.get(DataComponentTypes.FOOD);
         if (foodComponent == null) return;
         double saturation = (double) (Math.round(foodComponent.saturation() * 10))/10;
-        MutableText text = Text.translatable("tooltip.dragonlite.food_nutrition", foodComponent.nutrition())
+        MutableText text = Text.translatable("tooltip.dragonlite.food", foodComponent.nutrition(), saturation)
                 .styled(style -> style.withColor(Formatting.DARK_GRAY));
-        text.append(Text.translatable("tooltip.dragonlite.food_saturation", saturation)
-                .styled(style -> style.withColor(Formatting.GOLD)));
         texts.add(1, text);
     }
 }
