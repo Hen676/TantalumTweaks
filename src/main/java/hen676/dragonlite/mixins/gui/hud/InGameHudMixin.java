@@ -2,9 +2,9 @@ package hen676.dragonlite.mixins.gui.hud;
 
 import hen676.dragonlite.DragonLite;
 import hen676.dragonlite.config.Config;
-import hen676.dragonlite.gui.screen.option.HudPlacement;
+import hen676.dragonlite.gui.screen.option.CompassPlacement;
 import hen676.dragonlite.keybinds.FreecamKeybinding;
-import hen676.dragonlite.render.HudRenderer;
+import hen676.dragonlite.render.CompassRenderer;
 import hen676.dragonlite.util.CallbackUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -48,6 +48,6 @@ public abstract class InGameHudMixin {
 
         if (DragonLite.MC.cameraEntity == null || DragonLite.MC.options.hudHidden) return;
         Entity camera = DragonLite.MC.cameraEntity;
-        HudRenderer.draw(DragonLite.MC, camera.getHorizontalFacing(), camera.getBlockPos(), context, HudPlacement.byId(Config.COMPASS_PLACEMENT));
+        CompassRenderer.draw(DragonLite.MC, camera.getHorizontalFacing(), camera.getBlockPos(), context, CompassPlacement.byId(Config.COMPASS_PLACEMENT));
     }
 }

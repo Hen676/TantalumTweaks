@@ -20,11 +20,11 @@ public class Options {
     public static final SimpleOption<Boolean> compassShadow = SimpleOption.ofBoolean("option.dragonlite.config.compass_shadow",
             true,
             value -> Config.COMPASS_SHADOW = value);
-    public static final SimpleOption<HudPlacement> compassPlacement = new SimpleOption<>("option.dragonlite.config.compass_placement",
+    public static final SimpleOption<CompassPlacement> compassPlacement = new SimpleOption<>("option.dragonlite.config.compass_placement",
             SimpleOption.emptyTooltip(),
             (optionText, value) -> Text.translatable("option.dragonlite.config." + value.toString().toLowerCase()),
-            new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(HudPlacement.values()), Codec.INT.xmap(HudPlacement::byId, HudPlacement::getId)),
-            HudPlacement.TOP_LEFT,
+            new SimpleOption.PotentialValuesBasedCallbacks<>(Arrays.asList(CompassPlacement.values()), Codec.INT.xmap(CompassPlacement::byId, CompassPlacement::getId)),
+            CompassPlacement.TOP_LEFT,
             value -> Config.COMPASS_PLACEMENT = value.getId());
     public static final SimpleOption<Double> compassScale = new SimpleOption<>("option.dragonlite.config.compass_scale",
             SimpleOption.emptyTooltip(),
@@ -264,7 +264,7 @@ public class Options {
     public static void Load() {
         reduceFog.setValue(Config.ENABLE_REDUCED_FOG);
         compass.setValue(Config.ENABLE_COMPASS);
-        compassPlacement.setValue(HudPlacement.byId(Config.COMPASS_PLACEMENT));
+        compassPlacement.setValue(CompassPlacement.byId(Config.COMPASS_PLACEMENT));
         compassShadow.setValue(Config.COMPASS_SHADOW);
         compassScale.setValue(Config.COMPASS_SCALE);
         compassAlpha.setValue(Config.COMPASS_ALPHA);

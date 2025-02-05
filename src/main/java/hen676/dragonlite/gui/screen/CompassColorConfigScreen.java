@@ -13,7 +13,7 @@ import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class HudColorConfigScreen extends Screen {
+public class CompassColorConfigScreen extends Screen {
     private final Screen parent;
     private final ThreePartsLayoutWidget layout = new ThreePartsLayoutWidget(this);
     private static final int BUTTON_WIDTH_COL_3 = 100;
@@ -22,8 +22,8 @@ public class HudColorConfigScreen extends Screen {
     private static final int DEFAULT_COLOR_HEIGHT = 10;
     private static final int COLOR_WIDGET_WIDTH_COL_3 = 208;
 
-    public HudColorConfigScreen(Screen parent) {
-        super(Text.translatable("screen.dragonlite.hud_color_config.title"));
+    public CompassColorConfigScreen(Screen parent) {
+        super(Text.translatable("screen.dragonlite.compass_color_config.title"));
         this.parent = parent;
     }
 
@@ -55,22 +55,22 @@ public class HudColorConfigScreen extends Screen {
     protected void initBody() {
         GridWidget gridWidget = new GridWidget();
         GridWidget.Adder adder = gridWidget.setColumnSpacing(8).setRowSpacing(4).createAdder(3);
-        adder.add(getTextWidgetForGrid("options.dragonlite.hud_color_config.x"), 1);
+        adder.add(getTextWidgetForGrid("options.dragonlite.compass_color_config.x"), 1);
         adder.add(new ColorWidget(COLOR_WIDGET_WIDTH_COL_3,DEFAULT_COLOR_HEIGHT, Options::getCompassXColor), 2);
         adder.add(Options.compassColorRedX.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
         adder.add(Options.compassColorGreenX.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
         adder.add(Options.compassColorBlueX.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
-        adder.add(getTextWidgetForGrid("options.dragonlite.hud_color_config.y"), 1);
+        adder.add(getTextWidgetForGrid("options.dragonlite.compass_color_config.y"), 1);
         adder.add(new ColorWidget(COLOR_WIDGET_WIDTH_COL_3,DEFAULT_COLOR_HEIGHT, Options::getCompassYColor), 2);
         adder.add(Options.compassColorRedY.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
         adder.add(Options.compassColorGreenY.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
         adder.add(Options.compassColorBlueY.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
-        adder.add(getTextWidgetForGrid("options.dragonlite.hud_color_config.z"), 1);
+        adder.add(getTextWidgetForGrid("options.dragonlite.compass_color_config.z"), 1);
         adder.add(new ColorWidget(COLOR_WIDGET_WIDTH_COL_3,DEFAULT_COLOR_HEIGHT, Options::getCompassZColor), 2);
         adder.add(Options.compassColorRedZ.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
         adder.add(Options.compassColorGreenZ.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
         adder.add(Options.compassColorBlueZ.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
-        adder.add(getTextWidgetForGrid("options.dragonlite.hud_color_config.rotation"), 1);
+        adder.add(getTextWidgetForGrid("options.dragonlite.compass_color_config.rotation"), 1);
         adder.add(new ColorWidget(COLOR_WIDGET_WIDTH_COL_3,DEFAULT_COLOR_HEIGHT, Options::getCompassDirectionColor), 2);
         adder.add(Options.compassColorRedRotation.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));
         adder.add(Options.compassColorGreenRotation.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_3));

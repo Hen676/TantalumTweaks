@@ -17,7 +17,6 @@ import net.minecraft.client.gui.widget.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 
 public class ConfigScreen extends Screen {
     private final Screen parent;
@@ -37,7 +36,7 @@ public class ConfigScreen extends Screen {
     @Override
     protected void init() {
         this.tabNavigation = TabNavigationWidget.builder(this.tabManager, this.width)
-                .tabs(new GeneralTab(), new HudTab(), new LightLevelTab()).build();
+                .tabs(new GeneralTab(), new CompassTab(), new LightLevelTab()).build();
         this.addDrawableChild(this.tabNavigation);
         DirectionalLayoutWidget directionalLayoutWidget = this.layout.addFooter(
                 DirectionalLayoutWidget.horizontal().spacing(8));
@@ -131,9 +130,9 @@ public class ConfigScreen extends Screen {
     }
 
     @Environment(value=EnvType.CLIENT)
-    class HudTab extends GridScreenTab {
-        public HudTab() {
-            super(Text.translatable("screen.dragonlite.hud_config.title"));
+    class CompassTab extends GridScreenTab {
+        public CompassTab() {
+            super(Text.translatable("screen.dragonlite.compass_config.title"));
             GridWidget.Adder adder = this.grid.setColumnSpacing(8).setRowSpacing(4).createAdder(2);
             adder.add(
                     Options.compass.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_1),
@@ -146,10 +145,10 @@ public class ConfigScreen extends Screen {
             adder.add(Options.compassXOffset.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
             adder.add(Options.compassYOffset.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
             adder.add(ButtonWidget.builder(
-                    Text.translatable("options.dragonlite.hud_color_config"), button ->
+                    Text.translatable("options.dragonlite.compass_color_config"), button ->
                     {
                         if (ConfigScreen.this.client != null)
-                            ConfigScreen.this.client.setScreen(new HudColorConfigScreen(ConfigScreen.this));
+                            ConfigScreen.this.client.setScreen(new CompassColorConfigScreen(ConfigScreen.this));
                     }).width(BUTTON_WIDTH_COL_2).build());
             adder.add(Options.compassAlpha.createWidget(DragonLite.MC.options, 0, 0, BUTTON_WIDTH_COL_2));
         }
