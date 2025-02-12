@@ -5,6 +5,9 @@
   "key.dragonlite.light_level": "Light Level",
   "key.dragonlite.debug": "Debug",
   "key.dragonlite.freecam": "Freecam",
+  "key.dragonlite.auto_use": "Auto Use",
+  "key.dragonlite.auto_attack": "Auto Attack",
+  "key.dragonlite.auto_forward": "Auto Forward",
   "category.dragonlite.main": "Dragon Lite",
 
   "gui.dragonlite.compass.north": "-z",
@@ -47,6 +50,7 @@
   "option.dragonlite.config.compass_gap.tooltip": "The pixel gap between each coordinate and direction.",
   "option.dragonlite.config.compass_alpha": "Alpha",
   "option.dragonlite.config.top_left": "Top Left",
+  "option.dragonlite.config.top_middle": "Top Center",
   "option.dragonlite.config.top_right": "Top Right",
   "option.dragonlite.config.bottom_left": "Bottom Left",
   "option.dragonlite.config.bottom_right": "Bottom Right",
@@ -63,6 +67,9 @@
   "message.dragonlite.health_bar": "Mob Health",
   "message.dragonlite.light_level": "Light Level",
   "message.dragonlite.freecam": "Freecam",
+  "message.dragonlite.auto_attack": "Auto Attack",
+  "message.dragonlite.auto_use": "Auto Use",
+  "message.dragonlite.auto_forward": "Auto Forward",
 
   "pack.name.dragonlite": "Dragon Lite: Resource Pack",
   "pack.source.dragonlite": "Dragon Lite",

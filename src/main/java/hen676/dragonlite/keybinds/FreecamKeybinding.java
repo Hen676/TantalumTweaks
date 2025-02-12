@@ -1,20 +1,16 @@
 package hen676.dragonlite.keybinds;
 
-import hen676.dragonlite.config.Config;
 import hen676.dragonlite.entity.FreecamEntity;
 import hen676.dragonlite.util.PositionUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.input.KeyboardInput;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.option.Perspective;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import org.lwjgl.glfw.GLFW;
 
 /**
@@ -23,23 +19,17 @@ import org.lwjgl.glfw.GLFW;
  * TODO:: Remove freecam entity model to not create shadow with shaders
  */
 @Environment(EnvType.CLIENT)
-public class FreecamKeybinding {
-    private static KeyBinding keyBindingFreecam;
+public class FreecamKeybinding extends DragonLiteKeybinding {
+    private static KeyBinding keyBinding;
     private static boolean toggle = false;
     private static FreecamEntity freecamEntity;
     private static Perspective orignalPerspective;
 
     public static void init() {
-        keyBindingFreecam = new KeyBinding(
-                "key.dragonlite.freecam",
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_F4,
-                "category.dragonlite.main");
-
-        KeyBindingHelper.registerKeyBinding(keyBindingFreecam);
+        keyBinding = register("key.dragonlite.freecam", GLFW.GLFW_KEY_F4);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (keyBindingFreecam.wasPressed())
+            while (keyBinding.wasPressed())
                 toggleFreecam(client);
         });
     }
@@ -63,10 +53,11 @@ public class FreecamKeybinding {
     public static void onEnableFreeCamera(MinecraftClient client) {
         client.chunkCullingEnabled = false;
         client.gameRenderer.setRenderHand(false);
-        //client.currentScreen.close(); check if this is fine
+        if (client.currentScreen != null)
+            client.currentScreen.close();
         orignalPerspective = client.options.getPerspective();
         // Create freecam entity
-        freecamEntity = new FreecamEntity(-420, new PositionUtil(client.gameRenderer.getCamera()));
+        freecamEntity = new FreecamEntity(-666, new PositionUtil(client.gameRenderer.getCamera()));
         freecamEntity.create();
         // Then set perspective
         client.options.setPerspective(Perspective.FIRST_PERSON);
@@ -76,11 +67,9 @@ public class FreecamKeybinding {
         if (client.player != null)
             client.player.sendMessage(Text
                     .translatable("message.dragonlite.freecam")
-                    .styled(style -> style.withColor(Formatting.DARK_GRAY))
+                    .styled(style -> style.withColor(TEXT_COLOR))
                     .append(" ")
-                    .append(Text
-                            .translatable("message.dragonlite.on")
-                            .styled(style -> style.withColor(Formatting.GREEN))),true);
+                    .append(ON),true);
     }
 
     public static void onDisableFreeCamera(MinecraftClient client) {
@@ -99,10 +88,8 @@ public class FreecamKeybinding {
         if (client.player != null)
             client.player.sendMessage(Text
                     .translatable("message.dragonlite.freecam")
-                    .styled(style -> style.withColor(Formatting.DARK_GRAY))
+                    .styled(style -> style.withColor(TEXT_COLOR))
                     .append(" ")
-                    .append(Text
-                            .translatable("message.dragonlite.off")
-                            .styled(style -> style.withColor(Formatting.RED))), true);
+                    .append(OFF), true);
     }
 }

@@ -91,6 +91,8 @@ public class FreecamEntity extends ClientPlayerEntity {
         super.tickMovement();
         getAbilities().flying = true;
         setOnGround(false);
+        if (DragonLite.DEBUG)
+            DragonLite.LOGGER.info("X:{} Y:{} Z:{}",getX(),getY(),getZ());
     }
 
     // Remove freecam entity to the world

@@ -49,6 +49,9 @@ public class DragonLite implements ClientModInitializer {
         ClientCommandRegistrationCallback.EVENT.register(Commands::init);
 
         // Keybindings
+        AutoAttackKeybinding.init();
+        AutoUseKeybinding.init();
+        AutoForwardKeybinding.init();
         ZoomKeybinding.init();
         LightLevelKeybinding.init();
         HealthBarKeybinding.init();

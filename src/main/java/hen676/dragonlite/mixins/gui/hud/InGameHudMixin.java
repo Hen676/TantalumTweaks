@@ -41,6 +41,11 @@ public abstract class InGameHudMixin {
         CallbackUtil.CancelIfFreecamOn(ci);
     }
 
+    @Inject(method = "renderExperienceLevel", at =@At("HEAD"), cancellable = true)
+    private void preventExperienceLevelRenderOnFreecam(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
+        CallbackUtil.CancelIfFreecamOn(ci);
+    }
+
     // Compass
     @Inject(method = "render", at = @At("RETURN"))
     private void renderCompassHud(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {

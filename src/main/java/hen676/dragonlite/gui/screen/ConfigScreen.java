@@ -17,6 +17,7 @@ import net.minecraft.client.gui.widget.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
+import org.jetbrains.annotations.NotNull;
 
 public class ConfigScreen extends Screen {
     private final Screen parent;
@@ -86,7 +87,7 @@ public class ConfigScreen extends Screen {
     }
 
     @Override
-    protected void renderDarkening(DrawContext context) {
+    protected void renderDarkening(@NotNull DrawContext context) {
         context.drawTexture(
                 RenderLayer::getGuiTextured,
                 CreateWorldScreen.TAB_HEADER_BACKGROUND_TEXTURE,

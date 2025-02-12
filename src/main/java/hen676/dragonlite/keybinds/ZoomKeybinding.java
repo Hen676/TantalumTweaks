@@ -2,31 +2,23 @@ package hen676.dragonlite.keybinds;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
-public class ZoomKeybinding {
-    private static KeyBinding keyBindingZoom;
+public class ZoomKeybinding extends DragonLiteKeybinding {
+    private static KeyBinding keyBinding;
     private static boolean currentlyZoomed = false;
     private static boolean originalSettingSmoothCamera = false;
     private static final MinecraftClient mc = MinecraftClient.getInstance();
 
     public static void init() {
-        keyBindingZoom = new KeyBinding(
-                "key.dragonlite.zoom",
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_V,
-                "category.dragonlite.main");
-
-        KeyBindingHelper.registerKeyBinding(keyBindingZoom);
+        keyBinding = register("key.dragonlite.zoom", GLFW.GLFW_KEY_V);
     }
 
     public static boolean isZooming() {
-        return keyBindingZoom.isPressed();
+        return keyBinding.isPressed();
     }
 
     public static void manageSmoothCamera() {
