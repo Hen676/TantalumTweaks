@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "dragonlite",
+  "id": "tantalumtweaks",
   "version": "${version}",
-  "name": "Dragon Lite",
+  "name": "Tantalum Tweaks",
   "description": "Minecraft addon mod with Freecam, Light level, Zoom and More!",
   "authors": ["Hen676"],
   "contact": {
@@ -10,18 +10,18 @@
     "issues": "https://github.com/Hen676/DragonLiteMC/issues"
   },
   "license": "MIT",
-  "icon": "assets/dragonlite/icon.png",
+  "icon": "assets/tantalumtweaks/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "hen676.dragonlite.DragonLite"
+      "hen676.tantalumtweaks.TantalumTweaks"
     ],
     "modmenu": [
-      "hen676.dragonlite.gui.screen.ModMenu"
+      "hen676.tantalumtweaks.gui.screen.ModMenu"
     ]
   },
   "mixins": [
-    "dragonlite.mixins.json"
+    "tantalumtweaks.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.15.7",
