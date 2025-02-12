@@ -51,6 +51,7 @@ public class FreecamEntity extends ClientPlayerEntity {
         applyPosition(position);
         getAbilities().flying = true;
         input = new KeyboardInput(DragonLite.MC.options);
+        setLoaded(true); // Delay of 60 ticks on tick functions if not called
     }
 
     public void applyPosition(PositionUtil position) {
@@ -92,7 +93,7 @@ public class FreecamEntity extends ClientPlayerEntity {
         getAbilities().flying = true;
         setOnGround(false);
         if (DragonLite.DEBUG)
-            DragonLite.LOGGER.info("X:{} Y:{} Z:{}",getX(),getY(),getZ());
+            DragonLite.LOGGER.info("X:{} Y:{} Z:{}", getX(), getY(), getZ());
     }
 
     // Remove freecam entity to the world
