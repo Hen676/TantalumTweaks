@@ -14,8 +14,6 @@ import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
 /**
- * TODO:: Close screens when entering Freecam. Maybe ignore [esc] screen?
- * See line 70 for above
  * TODO:: Remove freecam entity model to not create shadow with shaders
  */
 @Environment(EnvType.CLIENT)
@@ -57,11 +55,9 @@ public class FreecamKeybinding extends TweakKeybinding {
             client.currentScreen.close();
         orignalPerspective = client.options.getPerspective();
         // Create freecam entity
-        freecamEntity = new FreecamEntity(-666, new PositionUtil(client.gameRenderer.getCamera()));
+        freecamEntity = new FreecamEntity(-676, new PositionUtil(client.gameRenderer.getCamera()));
         freecamEntity.create();
-        // Then set perspective
         client.options.setPerspective(Perspective.FIRST_PERSON);
-        // Then create the entity so camera does inherit the wrong perspective
         client.setCameraEntity(freecamEntity);
 
         if (client.player != null)
