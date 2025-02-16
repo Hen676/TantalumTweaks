@@ -5,39 +5,52 @@
 
 # TantalumTweaks
 
-Client-side Minecraft fabric mod with minor quality-of-life features. These features include:
+Client-side Minecraft fabric mod with minor quality-of-life features.
 
-- Zoom
-- Freecam
-- Full Bright
-- Mob Health
-- Light Level overlay
-- Reduced nether fog
-- Smokey furnaces
-- Compass hud
-- Lowered shields
+## Features
 
-## Keybindings
+### Keybinds
+| Name         | Description                                                                                                                       | Default Bind |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------|
+| Zoom         | Zooms in the player's camera.                                                                                                     | `V`          |
+| Freecam      | User has free control of their camera.                                                                                            | `F4`         |
+| Light Level  | Renders squares on blocks around the player that are light-level 0.                                                               | `Numpad1`    |
+| Mob Health   | Renders percentage of the entities' health above their head.                                                                      | `Numpad2`    |
+| Full Bright  | Causes the world to appear unlit (Does not work with shaders).                                                                    | `Numpad3`    |
+| Auto Attack  | Sets the button for Attack (Default key is LMB) to true. Can be disabled by using the Attack or Auto Attack key bind.             | `Numpad4`    |
+| Auto Use     | Sets the button for Use (Default key is RMB) to true. Can be disabled by using the Use or Auto Use key bind.                      | `Numpad5`    |
+| Auto Forward | Sets the button for Forward (Default key is W) to true. Can be disabled by using the Forward or Auto Forward key bind.            | `Numpad6`    |
+| Debug        | Only shows up in Minecraft development mode. For debugging and logging various parts of the mod.                                  | `Numpad0`    |
 
-| Name         | Description                                                                                        | Default Bind |
-|--------------|----------------------------------------------------------------------------------------------------|--------------|
-| Zoom         | Zooms in the user field of view.                                                                   | `V`          |
-| Freecam      | Unbinds the camera from the player allowing free movement of the camera.                           | `F4`         |
-| Light Level  | Shows positions with block light level below level 0.                                              | `Numpad1`    |
-| Mob Health   | Shows the health of living entities around the player.                                             | `Numpad2`    |
-| Full Bright  | Causes the world to appear unlit (Does not work with shaders).                                     | `Numpad3`    |
-| Debug        | Only shows up in Minecraft development mode. For debugging and logging various parts of the mod.   | `Numpad0`    |
+### Commands
+- Entity List command
+  - Give a list of the number of entities around the player in an N radius (The default radius is 10 blocks).
 
-## Clips of some of the features
-<p align="center">
-  <img src="https://github.com/Hen676/TantalumTweaks/assets/36480544/cdcc37a2-3825-43b1-825a-a43e5e2b6366"  alt=""/>
-  <img src="https://github.com/Hen676/TantalumTweaks/assets/36480544/6342c5df-ab6d-4d2b-b1e4-d8ff82acf2f5"  alt=""/>
-</p>
+### Tooltips
+- Durability tooltips
+  - Adds durability to tooltips. This includes effective durability due to unbraking and effective elytra flight time.
+- Food tooltips
+  - Adds Hunger and Saturation of given food to the tooltip.
+- Fuel tooltips
+  - Adds item's burn time and items it can smelt to the tooltip.
+- Compost tooltips
+  - Adds a chance of the item giving a compost layer.
+- Effect tooltips
+  - Adds more `When Applied:` effects for potion effects.
 
-## Multiple Customizations
-<p align="center">
-  <img src="https://github.com/Hen676/TantalumTweaks/assets/36480544/15d2bb99-27b1-4b3d-8ddc-d97151584f36"  alt="Config screen"/>
-</p>
+### Misc
+- Remove Fog
+  - Cancels fog rendering (Not compatible with shaders).
+- Compass
+  - Renders an X, Y, Z, and Facing direction to the user's HUD.
+- Smokey Furances
+  - Makes Furnaces, Smokers, and Blast Furnaces produce smoke.
+- Resource Pack
+  - Makes shields render out of view in first person
+  - Reduces the on-screen effect of wearing a pumpkin
+
+## Config 
+Config is available via a button in the options menu. Config is also available via [Mod Menu](https://modrinth.com/mod/modmenu) if installed.
 
 ## License
 [MIT](https://github.com/Hen676/TantalumTweaks/blob/master/LICENSE)
