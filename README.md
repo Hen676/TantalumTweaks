@@ -14,9 +14,8 @@ Client-side Minecraft fabric mod with minor quality-of-life features.
 |--------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------|
 | Zoom         | Zooms in the player's camera.                                                                                                     | `V`          |
 | Freecam      | User has free control of their camera.                                                                                            | `F4`         |
-| Light Level  | Renders squares on blocks around the player that are light-level 0.                                                               | `Numpad1`    |
-| Mob Health   | Renders percentage of the entities' health above their head.                                                                      | `Numpad2`    |
-| Full Bright  | Causes the world to appear unlit (Does not work with shaders).                                                                    | `Numpad3`    |
+| Light Level  | Render's squares on blocks around the player that are light-level 0.                                                              | `Numpad1`    |
+| Mob Health   | Render's percentage of the entities' health above their head.                                                                     | `Numpad2`    |
 | Auto Attack  | Sets the button for Attack (Default key is LMB) to true. Can be disabled by using the Attack or Auto Attack key bind.             | `Numpad4`    |
 | Auto Use     | Sets the button for Use (Default key is RMB) to true. Can be disabled by using the Use or Auto Use key bind.                      | `Numpad5`    |
 | Auto Forward | Sets the button for Forward (Default key is W) to true. Can be disabled by using the Forward or Auto Forward key bind.            | `Numpad6`    |
