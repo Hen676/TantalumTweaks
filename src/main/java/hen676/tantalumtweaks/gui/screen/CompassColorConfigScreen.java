@@ -87,10 +87,8 @@ public class CompassColorConfigScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
         if (this.client == null) return;
-        RenderSystem.enableBlend();
         Identifier identifier = this.client.world == null ? Screen.HEADER_SEPARATOR_TEXTURE : Screen.INWORLD_HEADER_SEPARATOR_TEXTURE;
         context.drawTexture(RenderLayer::getGuiTextured, identifier, 0, this.layout.getHeaderHeight() - 2, 0.0F, 0.0F, this.width, 2, 32, 2);
-        RenderSystem.disableBlend();
     }
 
     @Override

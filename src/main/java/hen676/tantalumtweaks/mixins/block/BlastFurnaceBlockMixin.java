@@ -49,7 +49,7 @@ public abstract class BlastFurnaceBlockMixin {
                     z = pos.getZ() - 0.1D;
                 }
             }
-            world.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+            world.addParticleClient(ParticleTypes.CAMPFIRE_COSY_SMOKE,
                     x,
                     (double) pos.getY() + 0.5D + random.nextDouble() / 3.0D * (double) (random.nextBoolean() ? 1 : -1),
                     z,
