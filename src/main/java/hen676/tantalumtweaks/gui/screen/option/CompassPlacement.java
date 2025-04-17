@@ -11,7 +11,7 @@ public enum CompassPlacement {
     BOTTOM_LEFT(3),
     BOTTOM_RIGHT(4);
 
-    private static final IntFunction<CompassPlacement> BY_ID = ValueLists.createIdToValueFunction(CompassPlacement::getId, values(), ValueLists.OutOfBoundsHandling.ZERO);
+    private static final IntFunction<CompassPlacement> BY_ID = ValueLists.createIndexToValueFunction(CompassPlacement::getId, values(), ValueLists.OutOfBoundsHandling.ZERO);
     private final int id;
 
     CompassPlacement(int id) {

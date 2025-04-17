@@ -71,7 +71,6 @@ public class ConfigScreen extends Screen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
-        RenderSystem.enableBlend();
         context.drawTexture(
                 RenderLayer::getGuiTextured,
                 Screen.FOOTER_SEPARATOR_TEXTURE,
@@ -83,7 +82,6 @@ public class ConfigScreen extends Screen {
                 2,
                 32,
                 2);
-        RenderSystem.disableBlend();
     }
 
     @Override
